@@ -1,0 +1,156 @@
+.card {
+  border: 1px solid #dce6df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+  min-width: 0;
+  width: 100%;
+}
+
+.errorBanner {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid #ead8a8;
+  border-radius: 10px;
+  color: #9d6b10;
+  background: #fff7df;
+  font-size: 0.74rem;
+}
+
+.filters {
+  margin-bottom: 15px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(140px, 180px);
+  gap: 10px;
+  align-items: center;
+}
+
+.filters > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filters svg {
+  position: absolute;
+  left: 12px;
+  color: #246448;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  height: 42px;
+  border: 1px solid #c9d7ce;
+  border-radius: 9px;
+  outline: none;
+  font-size: 0.72rem;
+}
+
+.filters input {
+  padding: 0 11px 0 38px;
+}
+
+.filters select {
+  padding: 0 9px;
+}
+
+.resultCount {
+  margin: 0 0 12px;
+  color: #647169;
+  font-size: 0.7rem;
+}
+
+.loading {
+  padding: 16px;
+  color: #647169;
+  font-size: 0.74rem;
+}
+
+.empty {
+  min-height: 220px;
+  padding: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.table {
+  overflow: hidden;
+}
+
+.head,
+.row {
+  display: grid;
+  grid-template-columns:
+    minmax(140px, 1fr)
+    minmax(110px, 0.8fr)
+    minmax(160px, 1.2fr)
+    minmax(130px, 1fr)
+    110px
+    70px;
+  gap: 12px;
+  align-items: center;
+}
+
+.head {
+  padding: 12px 15px;
+  color: #7b8780;
+  background: #f2f7f3;
+  font-size: 0.61rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.row {
+  padding: 14px 15px;
+  border-top: 1px solid #dce6df;
+}
+
+.row strong,
+.row small {
+  display: block;
+}
+
+.row strong {
+  color: #0f3527;
+  font-size: 0.72rem;
+}
+
+.row small {
+  margin-top: 3px;
+  color: #7b8780;
+  font-size: 0.62rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #174b37;
+  font-size: 0.64rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.viewLink:hover,
+.viewLink:focus,
+.viewLink:visited {
+  text-decoration: none;
+}
+
+@media (max-width: 980px) {
+  .table {
+    overflow-x: auto;
+  }
+
+  .head,
+  .row {
+    min-width: 900px;
+  }
+}

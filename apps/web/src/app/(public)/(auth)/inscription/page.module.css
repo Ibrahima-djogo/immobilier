@@ -1,0 +1,859 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--text-dark);
+  background:
+    radial-gradient(ellipse 70% 40% at 100% 0%, rgba(232, 191, 77, 0.07), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 0% 100%, rgba(15, 61, 46, 0.04), transparent 45%),
+    var(--surface);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Header ——— */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.headerContainer {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  min-height: 4.1rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.navigation a {
+  min-height: 2.35rem;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-body);
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.navigation a:hover {
+  color: var(--forest-800);
+  background: var(--forest-50);
+}
+
+/* ——— Split layout ——— */
+
+.authSection {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  min-height: 0;
+}
+
+.visualPanel {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(7, 31, 23, 0.12), rgba(7, 31, 23, 0.12)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85")
+      center / cover;
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(232, 191, 77, 0.16),
+      transparent 28%
+    ),
+    linear-gradient(
+      115deg,
+      rgba(7, 31, 23, 0.94) 0%,
+      rgba(7, 31, 23, 0.8) 55%,
+      rgba(7, 31, 23, 0.55) 100%
+    );
+  pointer-events: none;
+}
+
+.visualContent {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, calc(100% - 4.5rem));
+  margin-inline: auto;
+  padding: 4rem 0;
+  display: grid;
+  gap: 0;
+  align-content: center;
+}
+
+.visualBrand {
+  margin: 0 0 0.85rem;
+  color: var(--gold-400);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.visualContent h1 {
+  margin: 0;
+  max-width: 14ch;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 2.95rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.visualContent h1 span {
+  display: block;
+  color: var(--gold-400);
+}
+
+.visualDescription {
+  max-width: 34ch;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.stepsList {
+  margin-top: 2rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  gap: 1rem;
+}
+
+.stepItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.stepNumber {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--forest-950);
+  background: var(--gold-400);
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.stepItem strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.stepItem p {
+  margin: 0.2rem 0 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.roleNotice {
+  margin-top: 1.5rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(232, 191, 77, 0.28);
+  border-radius: var(--radius-md);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  background: rgba(232, 191, 77, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.roleNotice > svg {
+  color: var(--gold-400);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.roleNotice p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.roleNotice strong {
+  color: var(--gold-400);
+  font-weight: 700;
+}
+
+/* ——— Form column ——— */
+
+.formPanel {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 3rem) var(--gutter);
+  background: var(--white);
+}
+
+.formContainer {
+  width: min(34rem, 100%);
+}
+
+.breadcrumb {
+  margin-bottom: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.breadcrumb a {
+  color: var(--forest-700);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.breadcrumb strong {
+  color: var(--text-dark);
+  font-weight: 650;
+}
+
+.formHeading {
+  margin-bottom: 1.5rem;
+}
+
+.formEyebrow,
+.stateEyebrow {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  color: var(--gold-700);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.formHeading h2,
+.stateCard h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.5vw, 1.95rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.formHeading p,
+.stateCard > p {
+  max-width: 42ch;
+  margin: 0.45rem 0 0;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.fieldGroup {
+  min-width: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.fieldGroup > label,
+.verificationForm > label {
+  margin: 0;
+  display: block;
+  color: var(--text-dark);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper > svg {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 0.9rem;
+  transform: translateY(-50%);
+  display: block;
+  color: var(--text-soft);
+  pointer-events: none;
+}
+
+.inputWrapper input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--text-dark);
+  background: var(--surface-muted, #f7f9f7);
+  font: inherit;
+  font-size: 0.92rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.inputWrapper input::placeholder {
+  color: color-mix(in srgb, var(--text-soft) 80%, transparent);
+}
+
+.inputWrapper input:focus {
+  border-color: color-mix(in srgb, var(--forest-600) 55%, var(--border));
+  background: var(--white);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--forest-600) 14%, transparent);
+}
+
+.inputWrapperError input {
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+  background: var(--danger-soft);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+.passwordToggle {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 0.35rem;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  cursor: pointer;
+  color: var(--text-soft);
+  background: transparent;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.passwordToggle > svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.passwordToggle:hover,
+.passwordToggle:focus-visible {
+  color: var(--forest-700);
+  background: var(--forest-50);
+}
+
+.fieldError {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.passwordCriteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.passwordCriteria span {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-soft);
+  background: var(--forest-50);
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.passwordCriteria .criterionValid {
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+  background: var(--success-soft);
+}
+
+.consentSection {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 0.85rem;
+  background: var(--forest-50);
+}
+
+.checkboxRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  cursor: pointer;
+  color: var(--text-body);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.checkboxRow input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.customCheckbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  display: grid;
+  place-items: center;
+  color: transparent;
+  background: var(--white);
+  flex-shrink: 0;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.checkboxRow input:checked + .customCheckbox {
+  color: var(--white);
+  background: var(--forest-700);
+  border-color: var(--forest-700);
+}
+
+.checkboxRow input:focus-visible + .customCheckbox {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--forest-600) 18%, transparent);
+}
+
+.checkboxRow a {
+  color: var(--forest-700);
+  font-weight: 700;
+  text-underline-offset: 2px;
+}
+
+.checkboxRow a:hover {
+  color: var(--forest-900);
+}
+
+.checkboxRow small {
+  color: var(--text-soft);
+  font-size: 0.8em;
+}
+
+.submitButton,
+.secondaryButton {
+  width: 100%;
+  min-height: 3.05rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.submitButton {
+  border: 1px solid var(--gold-500);
+  color: var(--forest-950);
+  background: var(--gold-500);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--gold-400);
+  border-color: var(--gold-400);
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.secondaryButton {
+  border: 1px solid var(--border);
+  color: var(--forest-800);
+  background: var(--white);
+}
+
+.secondaryButton:hover {
+  border-color: color-mix(in srgb, var(--forest-600) 35%, var(--border));
+  background: var(--forest-50);
+  color: var(--forest-900);
+}
+
+.loginPrompt {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.loginPrompt a {
+  color: var(--forest-700);
+  font-weight: 700;
+}
+
+.loginPrompt a:hover {
+  color: var(--forest-900);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.standardAccountNotice {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+}
+
+.standardAccountNotice > svg {
+  color: var(--gold-700);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.standardAccountNotice p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.standardAccountNotice strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* ——— Verification & success ——— */
+
+.stateCard {
+  max-width: 28rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.backButton {
+  margin: 0 auto 1.5rem 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--forest-700);
+  background: transparent;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.backButton:hover {
+  color: var(--forest-900);
+  background: var(--forest-50);
+}
+
+.stateIcon,
+.successIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.15rem;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.stateIcon > svg,
+.successIcon > svg {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.stateIcon {
+  color: var(--forest-950);
+  background: var(--gold-400);
+}
+
+.successIcon {
+  color: var(--success);
+  background: var(--success-soft);
+}
+
+.contactPreview {
+  margin: 1.35rem 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 0.65rem;
+  background: var(--forest-50);
+}
+
+.contactPreview span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--forest-800);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.verificationForm {
+  margin-top: 0.25rem;
+  display: grid;
+  gap: 0.85rem;
+  text-align: left;
+}
+
+.verificationForm input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--forest-950);
+  background: var(--surface-muted, #f7f9f7);
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-align: center;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.verificationForm input:focus {
+  border-color: color-mix(in srgb, var(--forest-600) 55%, var(--border));
+  background: var(--white);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--forest-600) 14%, transparent);
+}
+
+.verificationHelp {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.stateCard .submitButton,
+.stateCard .secondaryButton {
+  margin-top: 0.15rem;
+}
+
+.stateCard .secondaryButton {
+  margin-top: 0.65rem;
+}
+
+/* ——— Footer ——— */
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+.footerContainer {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  min-height: 3.5rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.footerContainer p {
+  margin: 0;
+}
+
+.footerContainer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerContainer a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+.footerContainer a:hover {
+  color: var(--forest-800);
+}
+
+/* ——— Responsive ——— */
+
+@media (max-width: 980px) {
+  .authSection {
+    grid-template-columns: 1fr;
+  }
+
+  .visualPanel {
+    min-height: 18rem;
+    order: -1;
+  }
+
+  .visualContent {
+    width: min(40rem, calc(100% - 2.5rem));
+    padding: 2.5rem 0;
+  }
+
+  .visualContent h1 {
+    max-width: none;
+  }
+
+  .stepsList {
+    display: none;
+  }
+
+  .formPanel {
+    padding: 2rem var(--gutter) 2.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .navigation {
+    display: none;
+  }
+
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .footerContainer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .visualPanel {
+    min-height: 14rem;
+  }
+
+  .visualContent {
+    width: min(100% - 2rem, 40rem);
+    padding: 1.75rem 0;
+  }
+
+  .roleNotice {
+    margin-top: 1rem;
+  }
+
+  .formHeading h2,
+  .stateCard h2 {
+    font-size: 1.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation a,
+  .submitButton,
+  .secondaryButton,
+  .inputWrapper input,
+  .passwordToggle,
+  .backButton,
+  .customCheckbox,
+  .verificationForm input {
+    transition: none;
+  }
+
+  .submitButton:hover:not(:disabled) {
+    transform: none;
+  }
+}

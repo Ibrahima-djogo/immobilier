@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------
+   Demeure Guinée — design tokens (socle global)
+   Les pages / modules peuvent surcharger localement si besoin.
+-------------------------------------------------------------------------- */
+
+:root {
+  /* Brand — forest */
+  --forest-950: #071f17;
+  --forest-900: #0f3527;
+  --forest-800: #174b37;
+  --forest-700: #246448;
+  --forest-600: #3d7d5f;
+  --forest-100: #e3eee7;
+  --forest-50: #f2f7f3;
+
+  /* Brand — gold */
+  --gold-700: #9f700d;
+  --gold-600: #bc8918;
+  --gold-500: #d8aa34;
+  --gold-400: #e8bf4d;
+  --gold-100: #faf0cf;
+
+  /* Surfaces */
+  --white: #ffffff;
+  --ivory: #f8f6f0;
+  --surface: var(--ivory);
+  --surface-elevated: var(--white);
+  --background: var(--ivory);
+  --foreground: #17261f;
+
+  /* Text */
+  --text-dark: #17261f;
+  --text-body: #5b6861;
+  --text-soft: #7b8780;
+  --text-muted: #4d5a53;
+
+  /* Borders & status */
+  --border: #dce6df;
+  --border-strong: #c9d7ce;
+  --success: #2f7454;
+  --success-soft: #e8f3ec;
+  --danger: #9a3f39;
+  --danger-soft: #f8ecea;
+  --info: #2f6fed;
+  --info-soft: #e8f0fe;
+
+  /* Valeurs chiffrées (KPI, compteurs, montants) : la couleur dépend du fond,
+     une valeur ne doit jamais hériter d'une teinte secondaire. */
+  --stat-value-on-light: var(--forest-950);
+  --stat-label-on-light: var(--text-soft);
+  --stat-value-on-dark: #fffef9;
+  --stat-label-on-dark: rgba(255, 254, 249, 0.82);
+  --stat-hint-on-dark: rgba(255, 254, 249, 0.74);
+  --stat-value-on-gold: var(--forest-950);
+
+  /* Connected spaces — shared sidebar */
+  --sidebar-bg: #0f3d2e;
+  --sidebar-bg-dark: #0a2c21;
+  --sidebar-text: rgba(255, 255, 255, 0.78);
+  --sidebar-text-active: #ffffff;
+  --sidebar-accent: #d5aa35;
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-active: rgba(255, 255, 255, 0.12);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+
+  /* Chart palette */
+  --chart-green-dark: #0f3d2e;
+  --chart-green: #285c45;
+  --chart-green-mid: #4f755e;
+  --chart-gold: #d5aa35;
+  --chart-muted: #68726d;
+  --chart-border: #dfe5e1;
+  --chart-surface: #ffffff;
+  --chart-ivory: #f6f2e9;
+
+  /* Layout */
+  --container: 1180px;
+  --container-wide: 1260px;
+  --gutter: 20px;
+  --gutter-sm: 14px;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --section-y: 40px;
+  --section-y-md: 56px;
+  --section-y-lg: 72px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-soft: 0 12px 34px rgba(7, 31, 23, 0.07);
+  --shadow-medium: 0 22px 58px rgba(7, 31, 23, 0.11);
+  --shadow-strong: 0 36px 92px rgba(7, 31, 23, 0.18);
+  --shadow-gold: 0 10px 28px rgba(188, 137, 24, 0.22);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 160ms;
+  --duration: 220ms;
+
+  /* Typography (wired from next/font CSS variables) */
+  --font-fraunces: "Fraunces", "Times New Roman", Georgia, serif;
+  --font-manrope: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), "Times New Roman", Georgia, serif;
+  --font-body: var(--font-manrope), "Segoe UI", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16.5px;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--surface);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-dark);
+}
+
+p {
+  color: var(--text-body);
+}
+
+a {
+  color: inherit;
+}
+
+/* Contre globals.css : img { max-width: 100% } casse Leaflet (tuiles + souvent le pan). */
+.leaflet-container img.leaflet-tile,
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/*
+  Cause du décentrage Lucide : max-width:100% sur svg réduit/déforme
+  l’icône dans les carrés/cercles (glyphe collé en haut à gauche).
+*/
+svg {
+  max-width: none;
+}
+
+/* Conteneur d’icône partagé — centrage horizontal + vertical */
+.dg-icon-box {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.dg-icon-box > svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(232, 191, 77, 0.35);
+  color: var(--forest-950);
+}
+
+/* Utilitaires globaux (adoption progressive) */
+.dg-container {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.dg-container-wide {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.dg-section {
+  padding-block: var(--section-y);
+}
+
+.dg-eyebrow {
+  display: inline-block;
+  margin: 0 0 var(--space-2);
+  color: var(--forest-600);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --gutter: var(--gutter-sm);
+    --section-y: 36px;
+  }
+}

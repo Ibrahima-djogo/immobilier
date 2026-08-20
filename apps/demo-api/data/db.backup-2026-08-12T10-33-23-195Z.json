@@ -1,0 +1,2490 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Mamadou Diallo",
+      "email": "mamadou.diallo@example.com",
+      "phone": "+224 622 45 78 90",
+      "role": "PROPRIETAIRE",
+      "status": "ACTIF",
+      "roleVerified": true,
+      "documentsVerified": true,
+      "reportsCount": 0
+    },
+    {
+      "id": "u4",
+      "name": "Ibrahima Bah",
+      "email": "ibrahima.bah@example.com",
+      "phone": "+224 620 11 22 33",
+      "role": "PROPRIETAIRE",
+      "status": "ACTIF",
+      "roleVerified": true,
+      "documentsVerified": false,
+      "reportsCount": 2
+    }
+  ],
+  "agencies": [
+    {
+      "id": "ag1",
+      "userId": "u-ag1",
+      "name": "Habitat Conakry",
+      "initials": "HC",
+      "email": "contact@habitat-conakry.gn",
+      "phone": "+224 621 55 54 44",
+      "city": "Conakry",
+      "verified": true,
+      "documentsVerified": true,
+      "managerName": "Aïssatou Bah",
+      "managerEmail": "aissatou@habitat-conakry.gn",
+      "managerPhone": "+224 621 00 11 22",
+      "reportsCount": 0
+    }
+  ],
+  "properties": [
+    {
+      "id": "prop-1786469157590",
+      "slug": "terrain-e2e-ui-agence-172556",
+      "reference": "DG-B-2026-7590",
+      "title": "Terrain E2E UI Agence 172556",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 77000000,
+      "area": 310,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786469157590-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "videos": [],
+      "description": "Terrain E2E agence Lambanyi",
+      "status": "ACTIF",
+      "mandateType": "SIMPLE",
+      "clientDisplayName": "Client E2E",
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T17:25:57.590Z",
+      "updatedAt": "2026-08-11T17:25:57.590Z"
+    },
+    {
+      "id": "prop-1786469157178",
+      "slug": "villa-e2e-ui-owner-172556",
+      "reference": "DG-B-2026-7179",
+      "title": "Villa E2E UI Owner 172556",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 88000000,
+      "area": 520,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kaporo Rails",
+      "landmark": "Près Lycée",
+      "adminAddress": "Kaporo Rails, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.651,
+        "lng": -13.582
+      },
+      "locationLabel": "Kaporo Rails, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786469157178-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "videos": [],
+      "description": "Terrain E2E propriétaire Kaporo Rails",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T17:25:57.179Z",
+      "updatedAt": "2026-08-11T17:25:57.179Z"
+    },
+    {
+      "id": "prop-1786467451606",
+      "slug": "terrain-admin-complet",
+      "reference": "DG-B-2026-1606",
+      "title": "Terrain Admin Complet",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 90000000,
+      "area": 400,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Pres du Lycee Francais",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786467451606-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ],
+      "videos": [],
+      "description": "Terrain cree par admin avec localisation.",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdByAdminId": "adm-1",
+      "updatedByAdminId": "adm-1",
+      "createdAt": "2026-08-11T16:57:31.606Z",
+      "updatedAt": "2026-08-11T16:57:31.606Z"
+    },
+    {
+      "id": "prop-1786467451583",
+      "slug": "villa-e2e-localisation-complete",
+      "reference": "DG-B-2026-1584",
+      "title": "Villa E2E Localisation Complete",
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 250000000,
+      "area": 220,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Nongo",
+      "landmark": "Pres du marche de Nongo",
+      "adminAddress": "Nongo, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.62,
+        "lng": -13.61
+      },
+      "locationLabel": "Nongo, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786467451583-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+        }
+      ],
+      "videos": [],
+      "description": "Villa de test E2E avec localisation complete.",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T16:57:31.584Z",
+      "updatedAt": "2026-08-11T16:57:31.584Z"
+    },
+    {
+      "id": "prop-1786464658795",
+      "slug": "check-owner",
+      "reference": "DG-B-2026-8795",
+      "title": "Check owner",
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 0,
+      "area": 180,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786464658795-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ],
+      "videos": [],
+      "description": "Check owner — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdByAdminId": "adm-1",
+      "updatedByAdminId": "adm-1",
+      "createdAt": "2026-08-11T16:10:58.795Z",
+      "updatedAt": "2026-08-11T16:10:58.795Z"
+    },
+    {
+      "id": "prop-1786464658580",
+      "slug": "bien-test-super-1786464658558",
+      "reference": "DG-B-2026-8581",
+      "title": "Bien test SUPER 1786464658558",
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 1000000,
+      "area": 180,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "media": [
+        {
+          "id": "media-prop-1786464658580-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ],
+      "videos": [],
+      "description": "Bien test SUPER 1786464658558 — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdByAdminId": "adm-1",
+      "updatedByAdminId": "adm-1",
+      "createdAt": "2026-08-11T16:10:58.581Z",
+      "updatedAt": "2026-08-11T16:10:58.581Z"
+    },
+    {
+      "id": "prop-1786462093315",
+      "slug": "test-image-sanitize-2",
+      "reference": "DG-B-2026-3315",
+      "title": "Test Image Sanitize",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 10,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Test Image Sanitize — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T15:28:13.315Z",
+      "updatedAt": "2026-08-11T15:28:13.315Z",
+      "media": [
+        {
+          "id": "media-prop-1786462093315-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786461720403",
+      "slug": "test-image-sanitize",
+      "reference": "DG-B-2026-0404",
+      "title": "Test Image Sanitize",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 10,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Test Image Sanitize — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T15:22:00.404Z",
+      "updatedAt": "2026-08-11T15:22:00.404Z",
+      "media": [
+        {
+          "id": "media-prop-1786461720403-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786460132393",
+      "slug": "terrain-no-direct-approve",
+      "reference": "DG-B-2026-2393",
+      "title": "Terrain No Direct Approve",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 100,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Test",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Test, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Test, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain No Direct Approve — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:55:32.393Z",
+      "updatedAt": "2026-08-11T14:55:32.393Z",
+      "media": [
+        {
+          "id": "media-prop-1786460132393-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786460132264",
+      "slug": "terrain-refus-definitif",
+      "reference": "DG-B-2026-2264",
+      "title": "Terrain Refus Definitif",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 100,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Test",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Test, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Test, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain Refus Definitif — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:55:32.264Z",
+      "updatedAt": "2026-08-11T14:55:32.264Z",
+      "media": [
+        {
+          "id": "media-prop-1786460132264-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786460132081",
+      "slug": "terrain-refus-revisable",
+      "reference": "DG-B-2026-2081",
+      "title": "Terrain Refus Revisable",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 100,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Test",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Test, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Test, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain Refus Revisable — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:55:32.081Z",
+      "updatedAt": "2026-08-11T14:55:32.081Z",
+      "media": [
+        {
+          "id": "media-prop-1786460132081-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786460131836",
+      "slug": "terrain-correction-e2e",
+      "reference": "DG-B-2026-1837",
+      "title": "Terrain Correction E2E",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "area": 100,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Test",
+      "landmark": "Repère de démonstration",
+      "adminAddress": "Test, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Test, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain Correction E2E — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:55:31.837Z",
+      "updatedAt": "2026-08-11T14:55:31.837Z",
+      "media": [
+        {
+          "id": "media-prop-1786460131836-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786457664338",
+      "slug": "terrain-dixinn-controle-statut",
+      "reference": "DG-B-2026-4339",
+      "title": "Terrain Dixinn Controle Statut",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 75000000,
+      "area": 200,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Dixinn",
+      "district": "Dixinn",
+      "landmark": "Centre Dixinn",
+      "adminAddress": "Dixinn, Dixinn, Conakry",
+      "coordinates": {
+        "lat": 9.55,
+        "lng": -13.68
+      },
+      "locationLabel": "Dixinn, Dixinn, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain Dixinn Controle Statut — fiche enrichie pour la démonstration (Demo API).",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:14:24.339Z",
+      "updatedAt": "2026-08-11T14:14:24.339Z",
+      "media": [
+        {
+          "id": "media-prop-1786457664338-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786457617251",
+      "slug": "terrain-lambanyi-workflow-fix",
+      "reference": "DG-B-2026-7252",
+      "title": "Terrain Lambanyi Workflow Fix",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 91000000,
+      "area": 300,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "Près du Lycée Français",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain workflow",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:13:37.252Z",
+      "updatedAt": "2026-08-11T14:13:37.253Z",
+      "media": [
+        {
+          "id": "media-prop-1786457617251-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786457447986",
+      "slug": "terrain-lambanyi-test-statut-e2e",
+      "reference": "DG-B-2026-7986",
+      "title": "Terrain Lambanyi Test Statut E2E",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 88000000,
+      "area": 280,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain de test workflow statut",
+      "status": "ACTIF",
+      "mandateType": "SIMPLE",
+      "clientDisplayName": "Client statut",
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:10:47.986Z",
+      "updatedAt": "2026-08-11T14:10:47.986Z",
+      "media": [
+        {
+          "id": "media-prop-1786457447986-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786457376314",
+      "slug": "terrain-lambanyi-test-statut",
+      "reference": "DG-B-2026-6314",
+      "title": "Terrain Lambanyi Test Statut",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 88000000,
+      "area": 280,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain de test workflow statut",
+      "status": "ACTIF",
+      "mandateType": "SIMPLE",
+      "clientDisplayName": "Client statut",
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T14:09:36.314Z",
+      "updatedAt": "2026-08-11T14:09:36.314Z",
+      "media": [
+        {
+          "id": "media-prop-1786457376314-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786455906258",
+      "slug": "terrain-a-vendre-a-hamdallaye",
+      "reference": "DG-B-2026-6259",
+      "title": "Terrain a vendre a Hamdallaye",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1000000000000,
+      "area": 120,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Gnariwada",
+      "landmark": "a 100m de la mosquee",
+      "adminAddress": "Gnariwada, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.580925384249841,
+        "lng": -13.652038105561797
+      },
+      "locationLabel": "Hamdallaye 2, Ratoma, Conakry, Guinée",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [
+        {
+          "id": "vid-1786455897002-mmnpg9",
+          "url": "https://www.youtube.com/playlist?list=PLrVCDIsdAnfy7j67v8IenMc3PiQ2ucHY2",
+          "type": "EXTERNAL",
+          "title": "https://www.youtube.com/playlist?list=PLrVCDIsdAnfy7j67v8IenMc3PiQ2ucHY2",
+          "isPrimary": true
+        }
+      ],
+      "description": "achetez ou construire c'est important les gens",
+      "status": "ACTIF",
+      "mandateType": "SIMPLE",
+      "clientDisplayName": "Terrain a vocation commerciale",
+      "clientReference": "BG1399",
+      "views": 0,
+      "contacts": 0,
+      "completeness": 100,
+      "createdAt": "2026-08-11T13:45:06.259Z",
+      "updatedAt": "2026-08-11T13:45:06.259Z",
+      "media": [
+        {
+          "id": "media-prop-1786455906258-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786455473159",
+      "slug": "terrain-test-agence-lambanyi",
+      "reference": "DG-B-2026-3159",
+      "title": "Terrain Test Agence Lambanyi",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 95000000,
+      "area": 300,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Lambanyi",
+      "landmark": "",
+      "adminAddress": "Lambanyi, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.64,
+        "lng": -13.57
+      },
+      "locationLabel": "Lambanyi, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": null,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain démo agency",
+      "status": "ACTIF",
+      "mandateType": "SIMPLE",
+      "clientDisplayName": "Client démo",
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T13:37:53.159Z",
+      "updatedAt": "2026-08-11T13:37:53.159Z",
+      "media": [
+        {
+          "id": "media-prop-1786455473159-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-1786455473055",
+      "slug": "terrain-test-proprietaire-kaporo-rails",
+      "reference": "DG-B-2026-3055",
+      "title": "Terrain Test Propriétaire Kaporo Rails",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 120000000,
+      "area": 450,
+      "bedrooms": null,
+      "bathrooms": null,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kaporo Rails",
+      "landmark": "",
+      "adminAddress": "Kaporo Rails, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.65,
+        "lng": -13.58
+      },
+      "locationLabel": "Kaporo Rails, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "description": "Terrain démo owner",
+      "status": "ACTIF",
+      "mandateType": null,
+      "clientDisplayName": null,
+      "clientReference": null,
+      "views": 0,
+      "contacts": 0,
+      "completeness": 0,
+      "createdAt": "2026-08-11T13:37:53.056Z",
+      "updatedAt": "2026-08-11T13:37:53.056Z",
+      "media": [
+        {
+          "id": "media-prop-1786455473055-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "p-1786451915814",
+      "slug": "maison-a-vendre-a-kipe",
+      "reference": "DG-B-2026-0065",
+      "title": "maison a vendre a kipe",
+      "type": "Maison",
+      "operation": "VENTE",
+      "price": 120000,
+      "area": 120,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kobaya",
+      "landmark": "a 200m de la station total",
+      "adminAddress": "Kobaya, Ratoma, Conakry",
+      "coordinates": {
+        "lat": 9.652404933032356,
+        "lng": -13.600599359549442
+      },
+      "locationLabel": "Kobaya, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [
+        {
+          "id": "vid-1786451899058-lzyesc",
+          "url": "https://www.youtube.com/watch?v=KMWFhJH__WY",
+          "type": "EXTERNAL",
+          "title": "https://www.youtube.com/watch?v=KMWFhJH__WY",
+          "isPrimary": true
+        }
+      ],
+      "description": "description du travaille",
+      "media": [
+        {
+          "id": "media-p-1786451915814-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prop-test-corr",
+      "slug": "villa-corr-test",
+      "reference": "DG-B-2026-4196",
+      "title": "Villa Correction Test",
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 850000000,
+      "area": 180,
+      "bedrooms": 0,
+      "bathrooms": 0,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kipé",
+      "landmark": "Secteur Kipé",
+      "adminAddress": "Cité Kipé",
+      "coordinates": {
+        "lat": 9.635,
+        "lng": -13.575
+      },
+      "locationLabel": "Kipé, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      ],
+      "videos": [],
+      "description": "Villa Correction Test — fiche enrichie pour la démonstration (Demo API).",
+      "media": [
+        {
+          "id": "media-prop-test-corr-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+        }
+      ]
+    },
+    {
+      "id": "prop-test-kipe",
+      "slug": "villa-test-kipe",
+      "reference": "DG-B-2026-3958",
+      "title": "Villa Test Kipé",
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 850000000,
+      "area": 180,
+      "bedrooms": 0,
+      "bathrooms": 0,
+      "amenities": [],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kipé",
+      "landmark": "Secteur Kipé",
+      "adminAddress": "Cité Kipé",
+      "coordinates": {
+        "lat": 9.635,
+        "lng": -13.575
+      },
+      "locationLabel": "Kipé, Ratoma, Conakry",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "agencyId": null,
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      ],
+      "videos": [],
+      "description": "Villa Test Kipé — fiche enrichie pour la démonstration (Demo API).",
+      "media": [
+        {
+          "id": "media-prop-test-kipe-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+        }
+      ]
+    },
+    {
+      "id": "prop-1",
+      "slug": "villa-contemporaine-kipe",
+      "reference": "DG-B-2026-001",
+      "title": "Villa contemporaine avec jardin",
+      "type": "Villa",
+      "operation": "LOCATION",
+      "price": 4500000,
+      "area": 310,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "amenities": [
+        "Jardin",
+        "Groupe électrogène",
+        "Parking",
+        "Gardiennage"
+      ],
+      "city": "Conakry",
+      "commune": "Ratoma",
+      "district": "Kipé",
+      "landmark": "Près de l’école internationale",
+      "adminAddress": "Cité Kipé Extension, villa n°18",
+      "coordinates": {
+        "lat": 9.6412,
+        "lng": -13.5784
+      },
+      "locationLabel": "Kipé, Ratoma, Conakry, Guinée",
+      "locationConfirmed": true,
+      "ownerId": "u1",
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=86"
+      ],
+      "videos": [
+        {
+          "id": "vid-1",
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "title": "Visite vidéo — villa Kipé"
+        }
+      ],
+      "description": "Villa spacieuse avec jardin à Kipé.",
+      "media": [
+        {
+          "id": "media-prop-1-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86"
+        },
+        {
+          "id": "media-prop-1-002",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=86"
+        }
+      ]
+    },
+    {
+      "id": "prop-2",
+      "slug": "appartement-standing-miniere",
+      "reference": "DG-B-2026-002",
+      "title": "Appartement standing Minière",
+      "type": "Appartement",
+      "operation": "VENTE",
+      "price": 1250000000,
+      "area": 175,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "amenities": [
+        "Ascenseur",
+        "Parking",
+        "Climatisation"
+      ],
+      "city": "Conakry",
+      "commune": "Dixinn",
+      "district": "Minière",
+      "landmark": "Résidence sécurisée Minière",
+      "adminAddress": "Résidence Les Palmiers, apt. B12",
+      "coordinates": {
+        "lat": 9.545,
+        "lng": -13.677
+      },
+      "locationConfirmed": true,
+      "agencyId": "ag1",
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=86"
+      ],
+      "videos": [],
+      "description": "Appartement standing en résidence sécurisée.",
+      "media": [
+        {
+          "id": "media-prop-2-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=86"
+        }
+      ],
+      "locationLabel": "Minière, Dixinn, Conakry"
+    }
+  ],
+  "listings": [
+    {
+      "id": "ad-1786464658749",
+      "reference": "DG-A-2026-8749",
+      "slug": "refus-1786464658738",
+      "propertyId": "prop-1786464658580",
+      "title": "Refus 1786464658738",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 1000000,
+      "description": "",
+      "status": "REFUSEE",
+      "createdAt": "2026-08-11T16:10:58.749Z",
+      "submittedAt": "2026-08-11T16:10:58.749Z",
+      "updatedAt": "2026-08-11T16:10:58.767Z",
+      "publishedAt": null,
+      "moderationNote": "Contenu non conforme",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786464658749-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786464658749-1",
+          "date": "2026-08-11T16:10:58.749Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786464658749-2",
+          "date": "2026-08-11T16:10:58.749Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786464658767",
+          "date": "2026-08-11T16:10:58.767Z",
+          "label": "Annonce refusée (moderateur@demeureguinee.com)"
+        }
+      ],
+      "rejectionReason": "Contenu non conforme",
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": false
+    },
+    {
+      "id": "ad-1786464658718",
+      "reference": "DG-A-2026-8718",
+      "slug": "correction-1786464658706",
+      "propertyId": "prop-1786464658580",
+      "title": "Correction 1786464658706",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 1000000,
+      "description": "",
+      "status": "A_CORRIGER",
+      "createdAt": "2026-08-11T16:10:58.718Z",
+      "submittedAt": "2026-08-11T16:10:58.718Z",
+      "updatedAt": "2026-08-11T16:10:58.736Z",
+      "publishedAt": null,
+      "moderationNote": "Photos manquantes",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786464658718-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786464658718-1",
+          "date": "2026-08-11T16:10:58.718Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786464658718-2",
+          "date": "2026-08-11T16:10:58.718Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786464658736",
+          "date": "2026-08-11T16:10:58.736Z",
+          "label": "Correction demandée (moderateur@demeureguinee.com)"
+        }
+      ],
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": false
+    },
+    {
+      "id": "ad-1786464658687",
+      "reference": "DG-A-2026-8687",
+      "slug": "soumission-1786464658672",
+      "propertyId": "prop-1786464658580",
+      "title": "Soumission 1786464658672",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 1000000,
+      "description": "",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T16:10:58.687Z",
+      "submittedAt": "2026-08-11T16:10:58.687Z",
+      "updatedAt": "2026-08-11T16:10:58.704Z",
+      "publishedAt": "2026-08-11T16:10:58.704Z",
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786464658687-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786464658687-1",
+          "date": "2026-08-11T16:10:58.687Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786464658687-2",
+          "date": "2026-08-11T16:10:58.687Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786464658704",
+          "date": "2026-08-11T16:10:58.704Z",
+          "label": "Annonce approuvée (modération) (moderateur@demeureguinee.com)"
+        }
+      ],
+      "approvedByAdminId": "adm-2",
+      "publishedByAdminId": "adm-2"
+    },
+    {
+      "id": "ad-1786464658657",
+      "reference": "DG-A-2026-8657",
+      "slug": "draft-pour-mod-1786464658643",
+      "propertyId": "prop-1786464658580",
+      "title": "Draft pour mod 1786464658643",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 1000000,
+      "description": "",
+      "status": "BROUILLON",
+      "createdAt": "2026-08-11T16:10:58.657Z",
+      "submittedAt": null,
+      "updatedAt": "2026-08-11T16:10:58.657Z",
+      "publishedAt": null,
+      "moderationNote": null,
+      "createdByAdminId": "adm-1",
+      "updatedByAdminId": "adm-1",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786464658657-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786464658657-1",
+          "date": "2026-08-11T16:10:58.657Z",
+          "label": "Annonce créée par administrateur (admin@demeureguinee.com)"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786464658628",
+      "reference": "DG-A-2026-8628",
+      "slug": "annonce-admin-1786464658618",
+      "propertyId": "prop-1786464658580",
+      "title": "Annonce admin 1786464658618",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 2000000,
+      "description": "Créée par admin immobilier",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T16:10:58.628Z",
+      "submittedAt": null,
+      "updatedAt": "2026-08-11T16:10:58.640Z",
+      "publishedAt": "2026-08-11T16:10:58.640Z",
+      "moderationNote": null,
+      "createdByAdminId": "adm-7",
+      "updatedByAdminId": "adm-7",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786464658628-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786464658628-1",
+          "date": "2026-08-11T16:10:58.628Z",
+          "label": "Annonce créée par administrateur (immobilier@demeureguinee.com)"
+        },
+        {
+          "id": "h-1786464658640",
+          "date": "2026-08-11T16:10:58.640Z",
+          "label": "Annonce publiée directement par administrateur (immobilier@demeureguinee.com)"
+        }
+      ],
+      "publishedByAdminId": "adm-7"
+    },
+    {
+      "id": "ad-1786460132425",
+      "reference": "DG-A-2026-2425",
+      "slug": "ad-no-direct-approve",
+      "propertyId": "prop-1786460132393",
+      "title": "Ad No Direct Approve",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "description": "test",
+      "status": "REFUSEE",
+      "createdAt": "2026-08-11T14:55:32.425Z",
+      "submittedAt": "2026-08-11T14:55:32.425Z",
+      "updatedAt": "2026-08-11T14:55:32.468Z",
+      "publishedAt": null,
+      "moderationNote": "Prix incohérent",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786460132425-1",
+          "date": "2026-08-11T14:55:32.425Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786460132425-2",
+          "date": "2026-08-11T14:55:32.425Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786460132468",
+          "date": "2026-08-11T14:55:32.468Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        }
+      ],
+      "rejectionReason": "Prix incohérent",
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": false,
+      "media": [
+        {
+          "id": "media-ad-1786460132425-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786460132297",
+      "reference": "DG-A-2026-2297",
+      "slug": "ad-refus-definitif",
+      "propertyId": "prop-1786460132264",
+      "title": "Ad Refus Definitif",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "description": "test",
+      "status": "REFUSEE",
+      "createdAt": "2026-08-11T14:55:32.297Z",
+      "submittedAt": "2026-08-11T14:55:32.297Z",
+      "updatedAt": "2026-08-11T14:55:32.347Z",
+      "publishedAt": null,
+      "moderationNote": "Fraude avérée",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786460132298-1",
+          "date": "2026-08-11T14:55:32.297Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786460132298-2",
+          "date": "2026-08-11T14:55:32.297Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786460132347",
+          "date": "2026-08-11T14:55:32.347Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        }
+      ],
+      "rejectionReason": "Fraude avérée",
+      "canResubmit": false,
+      "resubmitRequiresVerifiedAdvertiser": false,
+      "media": [
+        {
+          "id": "media-ad-1786460132297-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786460132131",
+      "reference": "DG-A-2026-2131",
+      "slug": "ad-refus-revisable",
+      "propertyId": "prop-1786460132081",
+      "title": "Ad Refus Revisable",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "description": "test",
+      "status": "EN_ATTENTE",
+      "createdAt": "2026-08-11T14:55:32.131Z",
+      "submittedAt": "2026-08-11T14:55:32.208Z",
+      "updatedAt": "2026-08-11T14:55:32.208Z",
+      "publishedAt": null,
+      "moderationNote": "Annonceur non vérifié",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786460132131-1",
+          "date": "2026-08-11T14:55:32.131Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786460132131-2",
+          "date": "2026-08-11T14:55:32.131Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786460132172",
+          "date": "2026-08-11T14:55:32.172Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786460132208",
+          "date": "2026-08-11T14:55:32.208Z",
+          "label": "Annonce renvoyée pour validation (AGENCE)"
+        }
+      ],
+      "rejectionReason": "Annonceur non vérifié",
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": true,
+      "media": [
+        {
+          "id": "media-ad-1786460132131-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786460131886",
+      "reference": "DG-A-2026-1886",
+      "slug": "ad-correction-e2e",
+      "propertyId": "prop-1786460131836",
+      "title": "Ad Correction E2E",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1,
+      "description": "test",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T14:55:31.886Z",
+      "submittedAt": "2026-08-11T14:55:31.986Z",
+      "updatedAt": "2026-08-11T14:55:32.042Z",
+      "publishedAt": "2026-08-11T14:55:32.042Z",
+      "moderationNote": "Ajoutez des photos plus claires.",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786460131886-1",
+          "date": "2026-08-11T14:55:31.886Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786460131886-2",
+          "date": "2026-08-11T14:55:31.886Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786460131939",
+          "date": "2026-08-11T14:55:31.937Z",
+          "label": "Correction demandée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786460131986",
+          "date": "2026-08-11T14:55:31.986Z",
+          "label": "Annonce renvoyée pour validation (AGENCE)"
+        },
+        {
+          "id": "h-1786460132042",
+          "date": "2026-08-11T14:55:32.042Z",
+          "label": "Annonce approuvée (SUPER_ADMIN)"
+        }
+      ],
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": false,
+      "media": [
+        {
+          "id": "media-ad-1786460131886-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786457664378",
+      "reference": "DG-A-2026-4378",
+      "slug": "annonce-terrain-dixinn-controle",
+      "propertyId": "prop-1786457664338",
+      "title": "Annonce Terrain Dixinn Controle",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 75000000,
+      "description": "Reste EN_ATTENTE pour verification UI",
+      "status": "EN_ATTENTE",
+      "createdAt": "2026-08-11T14:14:24.378Z",
+      "submittedAt": "2026-08-11T14:14:24.378Z",
+      "updatedAt": "2026-08-11T14:14:24.378Z",
+      "publishedAt": null,
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786457664378-1",
+          "date": "2026-08-11T14:14:24.378Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786457664378-2",
+          "date": "2026-08-11T14:14:24.378Z",
+          "label": "Annonce soumise"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786457664378-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786457617286",
+      "reference": "DG-A-2026-7286",
+      "slug": "annonce-vente-terrain-lambanyi-workflow-fix",
+      "propertyId": "prop-1786457617251",
+      "title": "Titre patch ok",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 91000000,
+      "description": "Soumission agence",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T14:13:37.286Z",
+      "submittedAt": "2026-08-11T14:13:37.286Z",
+      "updatedAt": "2026-08-11T14:13:37.344Z",
+      "publishedAt": "2026-08-11T14:13:37.344Z",
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786457617286-1",
+          "date": "2026-08-11T14:13:37.286Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786457617286-2",
+          "date": "2026-08-11T14:13:37.286Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786457617344",
+          "date": "2026-08-11T14:13:37.344Z",
+          "label": "Annonce approuvée (SUPER_ADMIN)"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786457617286-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786457448000",
+      "reference": "DG-A-2026-8000",
+      "slug": "annonce-vente-terrain-lambanyi-test-statut-e2e",
+      "propertyId": "prop-1786457447986",
+      "title": "hack title ok",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 88000000,
+      "description": "Soumission agence pour test statut",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T14:10:48.000Z",
+      "submittedAt": "2026-08-11T14:10:48.000Z",
+      "updatedAt": "2026-08-11T14:10:48.040Z",
+      "publishedAt": "2026-08-11T14:10:48.023Z",
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786457448000-1",
+          "date": "2026-08-11T14:10:48.000Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786457448000-2",
+          "date": "2026-08-11T14:10:48.000Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786457448023",
+          "date": "2026-08-11T14:10:48.023Z",
+          "label": "Annonce approuvée (AGENCE)"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786457448000-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786457376389",
+      "reference": "DG-A-2026-6389",
+      "slug": "annonce-vente-terrain-lambanyi-test-statut",
+      "propertyId": "prop-1786457376314",
+      "title": "Annonce vente Terrain Lambanyi Test Statut",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 88000000,
+      "description": "Soumission agence pour test statut",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T14:09:36.389Z",
+      "submittedAt": "2026-08-11T14:09:36.389Z",
+      "updatedAt": "2026-08-11T14:09:36.389Z",
+      "publishedAt": "2026-08-11T14:09:36.389Z",
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786457376389-1",
+          "date": "2026-08-11T14:09:36.389Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786457376389-2",
+          "date": "2026-08-11T14:09:36.389Z",
+          "label": "Annonce soumise"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786457376389-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=86"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786456368523",
+      "reference": "DG-A-2026-8523",
+      "slug": "terrain-a-vendre-a-hamdallaye",
+      "propertyId": "prop-1786455906258",
+      "title": "Terrain a vendre a Hamdallaye",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "ownerId": null,
+      "agencyId": "ag1",
+      "type": "Terrain",
+      "operation": "VENTE",
+      "price": 1000000000000,
+      "description": "tres bien fonctionnel",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T13:52:48.523Z",
+      "submittedAt": "2026-08-11T14:55:32.516Z",
+      "updatedAt": "2026-08-11T14:57:49.669Z",
+      "publishedAt": "2026-08-11T14:57:49.669Z",
+      "moderationNote": "Annonceur non vérifié",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [
+        {
+          "id": "vid-1786455897002-mmnpg9",
+          "url": "https://www.youtube.com/playlist?list=PLrVCDIsdAnfy7j67v8IenMc3PiQ2ucHY2",
+          "type": "EXTERNAL",
+          "title": "https://www.youtube.com/playlist?list=PLrVCDIsdAnfy7j67v8IenMc3PiQ2ucHY2",
+          "isPrimary": true
+        }
+      ],
+      "history": [
+        {
+          "id": "h-1786456368524-1",
+          "date": "2026-08-11T13:52:48.523Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786456368524-2",
+          "date": "2026-08-11T13:52:48.523Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786457046222",
+          "date": "2026-08-11T14:04:06.222Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786458222030",
+          "date": "2026-08-11T14:23:42.030Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786460132516",
+          "date": "2026-08-11T14:55:32.516Z",
+          "label": "Annonce renvoyée pour validation (AGENCE)"
+        },
+        {
+          "id": "h-1786460269669",
+          "date": "2026-08-11T14:57:49.669Z",
+          "label": "Annonce approuvée (SUPER_ADMIN)"
+        }
+      ],
+      "canResubmit": true,
+      "resubmitRequiresVerifiedAdvertiser": true,
+      "rejectionReason": "Annonceur non vérifié",
+      "media": [
+        {
+          "id": "media-ad-1786456368523-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786451980065",
+      "reference": "DG-A-2026-0065",
+      "slug": "maison-a-vendre-a-kipe",
+      "propertyId": "p-1786451915814",
+      "title": "maison a vendre a kipe",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Maison",
+      "operation": "VENTE",
+      "price": 120000,
+      "description": "arretez l'arnaque et payez cette maison les gens.",
+      "status": "PUBLIEE",
+      "createdAt": "2026-08-11T12:39:40.065Z",
+      "submittedAt": "2026-08-11T12:39:40.065Z",
+      "updatedAt": "2026-08-11T12:41:50.586Z",
+      "publishedAt": "2026-08-11T12:41:50.586Z",
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "/images/properties/property-placeholder.jpg"
+      ],
+      "videos": [
+        {
+          "id": "vid-1786451899058-lzyesc",
+          "url": "https://www.youtube.com/watch?v=KMWFhJH__WY",
+          "type": "EXTERNAL",
+          "title": "https://www.youtube.com/watch?v=KMWFhJH__WY",
+          "isPrimary": true
+        }
+      ],
+      "history": [
+        {
+          "id": "h-1786451980065-1",
+          "date": "2026-08-11T12:39:40.065Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786451980065-2",
+          "date": "2026-08-11T12:39:40.065Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786452110586",
+          "date": "2026-08-11T12:41:50.586Z",
+          "label": "Annonce approuvée (SUPER_ADMIN)"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786451980065-001",
+          "type": "IMAGE",
+          "url": "/images/properties/property-placeholder.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786450694196",
+      "reference": "DG-A-2026-4196",
+      "slug": "villa-correction-test",
+      "propertyId": "prop-test-corr",
+      "title": "Villa Correction Test",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 850000000,
+      "description": "Test E2E démo",
+      "status": "REFUSEE",
+      "createdAt": "2026-08-11T12:18:14.196Z",
+      "submittedAt": "2026-08-11T12:18:14.286Z",
+      "updatedAt": "2026-08-11T12:18:14.314Z",
+      "publishedAt": null,
+      "moderationNote": "Contenu non conforme",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786450694196-1",
+          "date": "2026-08-11T12:18:14.196Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786450694196-2",
+          "date": "2026-08-11T12:18:14.196Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786450694223",
+          "date": "2026-08-11T12:18:14.223Z",
+          "label": "Correction demandée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786450694286",
+          "date": "2026-08-11T12:18:14.286Z",
+          "label": "Annonce resoumise (PROPRIETAIRE)"
+        },
+        {
+          "id": "h-1786450694314",
+          "date": "2026-08-11T12:18:14.314Z",
+          "label": "Annonce refusée (SUPER_ADMIN)"
+        }
+      ],
+      "canResubmit": true,
+      "rejectionReason": "Contenu non conforme",
+      "media": [
+        {
+          "id": "media-ad-1786450694196-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+        }
+      ]
+    },
+    {
+      "id": "ad-1786450693958",
+      "reference": "DG-A-2026-3958",
+      "slug": "villa-test-kipe",
+      "propertyId": "prop-test-kipe",
+      "title": "Villa Test Kipé",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "agencyId": null,
+      "type": "Villa",
+      "operation": "VENTE",
+      "price": 850000000,
+      "description": "Test E2E démo",
+      "status": "SUSPENDUE",
+      "createdAt": "2026-08-11T12:18:13.957Z",
+      "submittedAt": "2026-08-11T12:18:13.957Z",
+      "updatedAt": "2026-08-11T12:18:14.371Z",
+      "publishedAt": "2026-08-11T12:18:14.152Z",
+      "moderationNote": "Signalement",
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 20,
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h-1786450693958-1",
+          "date": "2026-08-11T12:18:13.957Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h-1786450693958-2",
+          "date": "2026-08-11T12:18:13.957Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h-1786450694152",
+          "date": "2026-08-11T12:18:14.152Z",
+          "label": "Annonce approuvée (SUPER_ADMIN)"
+        },
+        {
+          "id": "h-1786450694371",
+          "date": "2026-08-11T12:18:14.371Z",
+          "label": "Annonce suspendue (SUPER_ADMIN)"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad-1786450693958-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+        }
+      ]
+    },
+    {
+      "id": "ad1",
+      "reference": "DG-A-2026-0142",
+      "slug": "villa-contemporaine-a-louer-kipe",
+      "propertyId": "prop-1",
+      "title": "Villa contemporaine à louer à Kipé",
+      "owner": "Mamadou Diallo",
+      "advertiserType": "PROPRIETAIRE",
+      "ownerId": "u1",
+      "type": "Villa",
+      "operation": "LOCATION",
+      "price": 4500000,
+      "description": "Villa spacieuse avec jardin, stationnement et groupe électrogène.",
+      "status": "PUBLIEE",
+      "createdAt": "2026-07-28T10:00:00.000Z",
+      "submittedAt": "2026-07-31T09:00:00.000Z",
+      "updatedAt": "2026-08-01T11:00:00.000Z",
+      "publishedAt": "2026-08-01T11:00:00.000Z",
+      "moderationNote": null,
+      "views": 642,
+      "favorites": 28,
+      "contacts": 9,
+      "reports": 0,
+      "risk": 12,
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h1",
+          "date": "2026-07-28T10:00:00.000Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h2",
+          "date": "2026-07-31T09:00:00.000Z",
+          "label": "Annonce soumise"
+        },
+        {
+          "id": "h3",
+          "date": "2026-08-01T11:00:00.000Z",
+          "label": "Annonce approuvée"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad1-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86"
+        }
+      ]
+    },
+    {
+      "id": "ad2",
+      "reference": "DG-A-2026-0158",
+      "slug": "appartement-standing-a-vendre-miniere",
+      "propertyId": "prop-2",
+      "title": "Appartement standing à vendre à Minière",
+      "owner": "Habitat Conakry",
+      "advertiserType": "AGENCE",
+      "agencyId": "ag1",
+      "type": "Appartement",
+      "operation": "VENTE",
+      "price": 1250000000,
+      "description": "Appartement standing en résidence sécurisée, 4 chambres, parking inclus.",
+      "status": "EN_ATTENTE",
+      "createdAt": "2026-08-09T08:00:00.000Z",
+      "submittedAt": "2026-08-10T08:45:00.000Z",
+      "updatedAt": "2026-08-10T08:45:00.000Z",
+      "publishedAt": null,
+      "moderationNote": null,
+      "views": 0,
+      "favorites": 0,
+      "contacts": 0,
+      "reports": 0,
+      "risk": 34,
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=86"
+      ],
+      "videos": [],
+      "history": [
+        {
+          "id": "h1",
+          "date": "2026-08-09T08:00:00.000Z",
+          "label": "Annonce créée"
+        },
+        {
+          "id": "h2",
+          "date": "2026-08-10T08:45:00.000Z",
+          "label": "Annonce soumise"
+        }
+      ],
+      "media": [
+        {
+          "id": "media-ad2-001",
+          "type": "IMAGE",
+          "url": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=86"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "n-1786460132530",
+      "type": "LISTING_RESUBMITTED",
+      "listingId": "ad-1786456368523",
+      "createdAt": "2026-08-11T14:55:32.516Z",
+      "message": "Annonce DG-A-2026-8523 renvoyée pour validation"
+    },
+    {
+      "id": "n-1786460132225",
+      "type": "LISTING_RESUBMITTED",
+      "listingId": "ad-1786460132131",
+      "createdAt": "2026-08-11T14:55:32.208Z",
+      "message": "Annonce DG-A-2026-2131 renvoyée pour validation"
+    },
+    {
+      "id": "n-1786460132004",
+      "type": "LISTING_RESUBMITTED",
+      "listingId": "ad-1786460131886",
+      "createdAt": "2026-08-11T14:55:31.986Z",
+      "message": "Annonce DG-A-2026-1886 renvoyée pour validation"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "audit-1786467451606-87",
+      "timestamp": "2026-08-11T16:57:31.606Z",
+      "adminId": "adm-1",
+      "adminEmail": "admin@demeureguinee.com",
+      "action": "PROPERTY_CREATE_FOR_AGENCY",
+      "entityType": "property",
+      "entityId": "prop-1786467451606",
+      "targetOwnerId": null,
+      "targetAgencyId": "ag1",
+      "message": "Bien créé pour une agence"
+    },
+    {
+      "id": "audit-1786464658796-164",
+      "timestamp": "2026-08-11T16:10:58.796Z",
+      "adminId": "adm-1",
+      "adminEmail": "admin@demeureguinee.com",
+      "action": "PROPERTY_CREATE_FOR_OWNER",
+      "entityType": "property",
+      "entityId": "prop-1786464658795",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Bien créé pour un propriétaire"
+    },
+    {
+      "id": "audit-1786464658767-91",
+      "timestamp": "2026-08-11T16:10:58.767Z",
+      "adminId": "adm-2",
+      "adminEmail": "moderateur@demeureguinee.com",
+      "action": "LISTING_REJECT",
+      "entityType": "listing",
+      "entityId": "ad-1786464658749",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Contenu non conforme"
+    },
+    {
+      "id": "audit-1786464658736-961",
+      "timestamp": "2026-08-11T16:10:58.736Z",
+      "adminId": "adm-2",
+      "adminEmail": "moderateur@demeureguinee.com",
+      "action": "LISTING_REQUEST_CORRECTION",
+      "entityType": "listing",
+      "entityId": "ad-1786464658718",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Photos manquantes"
+    },
+    {
+      "id": "audit-1786464658704-999",
+      "timestamp": "2026-08-11T16:10:58.704Z",
+      "adminId": "adm-2",
+      "adminEmail": "moderateur@demeureguinee.com",
+      "action": "LISTING_APPROVE",
+      "entityType": "listing",
+      "entityId": "ad-1786464658687",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Annonce approuvée après soumission"
+    },
+    {
+      "id": "audit-1786464658657-758",
+      "timestamp": "2026-08-11T16:10:58.657Z",
+      "adminId": "adm-1",
+      "adminEmail": "admin@demeureguinee.com",
+      "action": "LISTING_CREATE_ADMIN",
+      "entityType": "listing",
+      "entityId": "ad-1786464658657",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Annonce créée administrativement"
+    },
+    {
+      "id": "audit-1786464658640-537",
+      "timestamp": "2026-08-11T16:10:58.640Z",
+      "adminId": "adm-7",
+      "adminEmail": "immobilier@demeureguinee.com",
+      "action": "LISTING_PUBLISH_DIRECT",
+      "entityType": "listing",
+      "entityId": "ad-1786464658628",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Annonce publiée directement par administrateur"
+    },
+    {
+      "id": "audit-1786464658628-388",
+      "timestamp": "2026-08-11T16:10:58.628Z",
+      "adminId": "adm-7",
+      "adminEmail": "immobilier@demeureguinee.com",
+      "action": "LISTING_CREATE_ADMIN",
+      "entityType": "listing",
+      "entityId": "ad-1786464658628",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Annonce créée administrativement"
+    },
+    {
+      "id": "audit-1786464658581-703",
+      "timestamp": "2026-08-11T16:10:58.581Z",
+      "adminId": "adm-1",
+      "adminEmail": "admin@demeureguinee.com",
+      "action": "PROPERTY_CREATE_FOR_OWNER",
+      "entityType": "property",
+      "entityId": "prop-1786464658580",
+      "targetOwnerId": "u1",
+      "targetAgencyId": null,
+      "message": "Bien créé pour un propriétaire"
+    },
+    {
+      "id": "audit-1786460132530",
+      "action": "LISTING_RESUBMIT",
+      "target": "ad-1786456368523",
+      "actor": "AGENCE",
+      "date": "2026-08-11T14:55:32.516Z"
+    },
+    {
+      "id": "audit-1786460132225",
+      "action": "LISTING_RESUBMIT",
+      "target": "ad-1786460132131",
+      "actor": "AGENCE",
+      "date": "2026-08-11T14:55:32.208Z"
+    },
+    {
+      "id": "audit-1786460132004",
+      "action": "LISTING_RESUBMIT",
+      "target": "ad-1786460131886",
+      "actor": "AGENCE",
+      "date": "2026-08-11T14:55:31.986Z"
+    }
+  ],
+  "admins": [
+    {
+      "id": "adm-1",
+      "email": "admin@demeureguinee.com",
+      "name": "Ibrahima Bah",
+      "role": "SUPER_ADMIN",
+      "permissions": [
+        "TOUTES"
+      ],
+      "status": "ACTIF"
+    },
+    {
+      "id": "adm-2",
+      "email": "moderateur@demeureguinee.com",
+      "name": "Aïssatou Camara",
+      "role": "MODERATEUR",
+      "permissions": [
+        "MODERATION",
+        "SIGNALEMENTS",
+        "ANNONCES"
+      ],
+      "status": "ACTIF"
+    },
+    {
+      "id": "adm-3",
+      "email": "support@demeureguinee.com",
+      "name": "Mamadou Diallo",
+      "role": "SUPPORT",
+      "permissions": [
+        "UTILISATEURS_LECTURE",
+        "UTILISATEURS_ECRITURE",
+        "CONTACTS"
+      ],
+      "status": "ACTIF"
+    },
+    {
+      "id": "adm-4",
+      "email": "contenu@demeureguinee.com",
+      "name": "Fatoumata Sylla",
+      "role": "CONTENT_ADMIN",
+      "permissions": [
+        "CONTENUS",
+        "FAQ",
+        "GUIDES"
+      ],
+      "status": "ACTIF"
+    },
+    {
+      "id": "adm-6",
+      "email": "admin.ops@demeureguinee.com",
+      "name": "Sékou Touré",
+      "role": "ADMIN",
+      "permissions": [
+        "MODERATION",
+        "SIGNALEMENTS",
+        "ANNONCES",
+        "ANNONCES_ECRITURE",
+        "ANNONCES_PUBLICATION",
+        "BIENS_ECRITURE",
+        "UTILISATEURS_LECTURE",
+        "UTILISATEURS_ECRITURE",
+        "STATISTIQUES",
+        "AUDIT"
+      ],
+      "status": "ACTIF"
+    },
+    {
+      "id": "adm-7",
+      "email": "immobilier@demeureguinee.com",
+      "name": "Aminata Condé",
+      "role": "ADMIN",
+      "permissions": [
+        "ANNONCES",
+        "ANNONCES_ECRITURE",
+        "ANNONCES_PUBLICATION",
+        "BIENS_ECRITURE",
+        "MODERATION",
+        "SIGNALEMENTS"
+      ],
+      "status": "ACTIF"
+    }
+  ]
+}

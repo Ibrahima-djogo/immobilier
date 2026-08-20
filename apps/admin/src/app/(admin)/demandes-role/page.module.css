@@ -1,0 +1,304 @@
+.card {
+  border: 1px solid #dce6df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+  min-width: 0;
+  width: 100%;
+}
+
+.filters {
+  margin-bottom: 15px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 150px) minmax(130px, 170px) auto;
+  gap: 10px;
+  min-width: 0;
+}
+
+.filters > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.filters svg {
+  position: absolute;
+  left: 12px;
+  color: #246448;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #c9d7ce;
+  border-radius: 9px;
+  outline: none;
+  font-size: 0.72rem;
+}
+
+.filters input {
+  padding: 0 11px 0 38px;
+}
+
+.filters select {
+  padding: 0 9px;
+}
+
+.table {
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+
+.head,
+.row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.55fr)
+    minmax(0, 0.7fr)
+    minmax(0, 0.8fr)
+    minmax(0, 0.55fr)
+    minmax(0, 0.6fr)
+    minmax(0, 0.7fr)
+    minmax(0, 0.85fr);
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.head {
+  padding: 10px 14px;
+  color: #7b8780;
+  background: #f2f7f3;
+  font-size: 0.61rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.head .colActions {
+  text-align: right;
+}
+
+.row {
+  padding: 11px 14px;
+  border-top: 1px solid #dce6df;
+}
+
+.primary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #246448;
+  background: #e3eee7;
+  flex-shrink: 0;
+}
+
+.primary strong,
+.primary small,
+.colRole,
+.colDocs,
+.colDate {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.primary strong {
+  color: #0f3527;
+  font-size: 0.7rem;
+}
+
+.demoTag {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border: 1px dashed #b6a06a;
+  border-radius: 999px;
+  color: #8a6d1f;
+  background: #fffdf5;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.primary small,
+.colDocs,
+.colDate {
+  margin-top: 3px;
+  color: #7b8780;
+  font-size: 0.6rem;
+}
+
+.colRole {
+  color: #647169;
+  font-size: 0.62rem;
+  font-weight: 800;
+  min-width: 0;
+}
+
+.colStatus,
+.colRisk {
+  min-width: 0;
+}
+
+.colRisk {
+  width: fit-content;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 0.61rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.faible {
+  color: #2f7454;
+  background: #e8f3ec;
+}
+
+.moyen {
+  color: #9d6b10;
+  background: #fff7df;
+}
+
+.eleve {
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.actionLink {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid #c9d7ce;
+  border-radius: 8px;
+  color: #174b37;
+  background: #fff;
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.resultCount {
+  margin: 0 0 12px;
+  color: #647169;
+  font-size: 0.7rem;
+}
+
+.empty {
+  min-height: 220px;
+  padding: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.reset,
+.empty button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #c9d7ce;
+  border-radius: 9px;
+  background: #fff;
+  color: #174b37;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.metaStacked {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .head,
+  .row {
+    grid-template-columns:
+      minmax(0, 1.6fr)
+      minmax(0, 0.75fr)
+      minmax(0, 0.85fr)
+      minmax(0, 0.55fr)
+      minmax(0, 0.9fr);
+  }
+
+  .colDocs,
+  .colDate,
+  .head .colDocs,
+  .head .colDate {
+    display: none;
+  }
+
+  .metaStacked {
+    display: block;
+    margin-top: 4px;
+    color: #7b8780;
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .head {
+    display: none;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "primary actions"
+      "role status"
+      "risk risk";
+    gap: 10px;
+  }
+
+  .primary {
+    grid-area: primary;
+  }
+
+  .colRole {
+    grid-area: role;
+  }
+
+  .colStatus {
+    grid-area: status;
+    justify-self: end;
+  }
+
+  .colRisk {
+    grid-area: risk;
+  }
+
+  .actionLink {
+    grid-area: actions;
+  }
+}
+
+@media (max-width: 650px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}

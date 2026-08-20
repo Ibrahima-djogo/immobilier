@@ -1,0 +1,2 @@
+"use client";
+export default function AdminError({reset}:{reset:()=>void}){return <main style={{minHeight:"100vh",display:"grid",placeItems:"center",background:"#f8f6f0"}}><section style={{padding:30,border:"1px solid #dce6df",borderRadius:16,background:"#fff",textAlign:"center"}}><h1 style={{color:"#0f3527"}}>Erreur d’administration</h1><p style={{color:"#647169"}}>Impossible de charger cette zone sensible.</p><button onClick={reset} style={{minHeight:40,padding:"0 14px",border:0,borderRadius:9,color:"#fff",background:"#174b37"}}>Réessayer</button></section></main>;}

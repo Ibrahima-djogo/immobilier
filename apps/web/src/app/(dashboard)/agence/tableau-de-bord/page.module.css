@@ -1,0 +1,219 @@
+.action {
+  min-height: 44px;
+  padding: 0 15px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #071f17;
+  background: #e8bf4d;
+  font-size: 0.71rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.rowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #246448;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.panelLink {
+  color: #246448;
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.listThumb {
+  position: relative;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e3eee7;
+}
+
+.thumbImage {
+  object-fit: cover;
+}
+
+.card {
+  border: 1px solid #dce6df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+}
+
+.sectionTitle {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sectionTitle h2 {
+  margin: 0;
+  color: #0f3527;
+  font-size: 1rem;
+}
+
+.sectionTitle p {
+  margin: 5px 0 0;
+  color: #647169;
+  font-size: 0.7rem;
+}
+
+.verification {
+  margin-bottom: 18px;
+  padding: 15px;
+  border: 1px solid #bdd8c7;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 11px;
+  background: #e8f3ec;
+}
+
+.verification > span {
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #2f7454;
+  background: #fff;
+}
+
+.verification strong {
+  color: #0f3527;
+  font-size: 0.75rem;
+}
+
+.verification p {
+  margin: 4px 0 0;
+  color: #587064;
+  font-size: 0.67rem;
+}
+
+.verification a {
+  color: #246448;
+  font-size: 0.67rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.grid {
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(270px, 0.7fr);
+  gap: 18px;
+}
+
+.chartsGrid {
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+  gap: 18px;
+}
+
+.chartCard {
+  padding: 21px;
+}
+
+.periods {
+  padding: 3px;
+  border-radius: 8px;
+  display: flex;
+  background: #f2f7f3;
+}
+
+.periods button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text-body, #5b6861);
+  background: transparent;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.periods .activePeriod {
+  color: #fff;
+  background: #174b37;
+}
+
+.chart {
+  height: 210px;
+  padding: 15px 10px 0;
+  border: 1px solid #dce6df;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: end;
+  gap: 12px;
+}
+
+.chart div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.chart span {
+  width: min(28px, 70%);
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(to top, #246448, #e8bf4d);
+}
+
+.chart small {
+  color: #7b8780;
+  font-size: 0.6rem;
+}
+
+.trend {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2f7454;
+  font-size: 0.67rem;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .verification {
+    grid-template-columns: auto 1fr;
+  }
+
+  .verification a {
+    grid-column: 1 / -1;
+  }
+
+  .chart {
+    height: 180px;
+    gap: 6px;
+  }
+}

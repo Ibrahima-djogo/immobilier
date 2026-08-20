@@ -1,0 +1,692 @@
+==================== FICHIERS RACINE ==================== 
+.env.local.example
+.gitignore
+.next
+AGENTS.md
+backup-administration
+backup-agence
+backup-correctif-audit-encodage
+backup-proprietaire
+backup-public-complementaire
+backup-rollback-guide-aide
+backup-socle-integration
+CLAUDE.md
+create-demeure-pages.bat
+create-demeure-pages.ps1
+create-proprietaire-pages-cmd.bat
+docs
+eslint.config.mjs
+install-administration.cmd
+install-agence.cmd
+install-proprietaire.cmd
+install-public-complementaire.cmd
+install-socle-integration.cmd
+installer-correctif-audit-encodage.cmd
+inventaire-complet-front.txt
+next-env.d.ts
+next.config.ts
+node_modules
+package
+package-lock.json
+package.json
+postcss.config.mjs
+public
+README.md
+README.txt
+reparer-routes-administration.cmd
+rollback-guide-aide.cmd
+src
+tools
+tsconfig.json
+tsconfig.tsbuildinfo
+ 
+==================== STRUCTURE SRC ==================== 
+Structure du dossier pour le volume Windows_11_Pro
+Le numéro de série du volume est C08C-9ADC
+C:\USERS\IBRAHIMA DJOGO\DESKTOP\IMMOBILIER\SRC
+|   middleware.example.ts
+|   
++---app
+|   |   error.tsx
+|   |   global-error.tsx
+|   |   globals.css
+|   |   layout.tsx
+|   |   loading.tsx
+|   |   not-found.tsx
+|   |   robots.ts
+|   |   sitemap.ts
+|   |   system-pages.module.css
+|   |   
+|   +---(admin)
+|   |   \---administration
+|   |       |   error.tsx
+|   |       |   loading.tsx
+|   |       |   not-found.tsx
+|   |       |   page.module.css
+|   |       |   page.tsx
+|   |       |   
+|   |       +---administrateurs
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       +---annonces
+|   |       |   |   page.module.css
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   \---[id]
+|   |       |           page.module.css
+|   |       |           page.tsx
+|   |       |           
+|   |       +---audit
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       +---contenus
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       +---demandes-role
+|   |       |   |   page.module.css
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   \---[id]
+|   |       |           page.module.css
+|   |       |           page.tsx
+|   |       |           
+|   |       +---moderation
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       +---parametres
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       +---referentiels
+|   |       |   |   page.module.css
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   +---categories
+|   |       |   |       page.module.css
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---equipements
+|   |       |   |       page.module.css
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   +---quartiers
+|   |       |   |       page.module.css
+|   |       |   |       page.tsx
+|   |       |   |       
+|   |       |   \---villes
+|   |       |           page.module.css
+|   |       |           page.tsx
+|   |       |           
+|   |       +---signalements
+|   |       |   |   page.module.css
+|   |       |   |   page.tsx
+|   |       |   |   
+|   |       |   \---[id]
+|   |       |           page.module.css
+|   |       |           page.tsx
+|   |       |           
+|   |       +---statistiques
+|   |       |       page.module.css
+|   |       |       page.tsx
+|   |       |       
+|   |       \---utilisateurs
+|   |           |   page.module.css
+|   |           |   page.tsx
+|   |           |   
+|   |           \---[id]
+|   |                   page.module.css
+|   |                   page.tsx
+|   |                   
+|   +---(dashboard)
+|   |   +---agence
+|   |   |   |   error.tsx
+|   |   |   |   loading.tsx
+|   |   |   |   not-found.tsx
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   +---activite
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   +---annonces
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   +---nouvelle
+|   |   |   |   |       page.module.css
+|   |   |   |   |       page.tsx
+|   |   |   |   |       
+|   |   |   |   \---[id]
+|   |   |   |       |   page.module.css
+|   |   |   |       |   page.tsx
+|   |   |   |       |   
+|   |   |   |       \---modifier
+|   |   |   |               page.module.css
+|   |   |   |               page.tsx
+|   |   |   |               
+|   |   |   +---biens
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   +---nouveau
+|   |   |   |   |       page.module.css
+|   |   |   |   |       page.tsx
+|   |   |   |   |       
+|   |   |   |   \---[slug]
+|   |   |   |       |   page.module.css
+|   |   |   |       |   page.tsx
+|   |   |   |       |   
+|   |   |   |       \---modifier
+|   |   |   |               page.module.css
+|   |   |   |               page.tsx
+|   |   |   |               
+|   |   |   +---profil-professionnel
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   +---prospects
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   \---[id]
+|   |   |   |           page.module.css
+|   |   |   |           page.tsx
+|   |   |   |           
+|   |   |   +---statistiques
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---tableau-de-bord
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---demande-role
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   \---suivi
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---demandes-contact
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---favoris
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---mes-annonces
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   +---nouvelle
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---[id]
+|   |   |       |   page.module.css
+|   |   |       |   page.tsx
+|   |   |       |   
+|   |   |       +---modifier
+|   |   |       |       page.module.css
+|   |   |       |       page.tsx
+|   |   |       |       
+|   |   |       \---previsualisation
+|   |   |               page.module.css
+|   |   |               page.tsx
+|   |   |               
+|   |   +---mes-biens
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   +---nouveau
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---[id]
+|   |   |       |   page.module.css
+|   |   |       |   page.tsx
+|   |   |       |   
+|   |   |       \---modifier
+|   |   |               page.module.css
+|   |   |               page.tsx
+|   |   |               
+|   |   +---notifications
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---profil
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---proprietaire
+|   |   |   |   error.tsx
+|   |   |   |   loading.tsx
+|   |   |   |   not-found.tsx
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   +---annonces
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   +---nouvelle
+|   |   |   |   |       page.module.css
+|   |   |   |   |       page.tsx
+|   |   |   |   |       
+|   |   |   |   \---[id]
+|   |   |   |       |   page.module.css
+|   |   |   |       |   page.tsx
+|   |   |   |       |   
+|   |   |   |       \---modifier
+|   |   |   |               page.module.css
+|   |   |   |               page.tsx
+|   |   |   |               
+|   |   |   +---biens
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   +---nouveau
+|   |   |   |   |       page.module.css
+|   |   |   |   |       page.tsx
+|   |   |   |   |       
+|   |   |   |   \---[slug]
+|   |   |   |       |   page.module.css
+|   |   |   |       |   page.tsx
+|   |   |   |       |   
+|   |   |   |       \---modifier
+|   |   |   |               page.module.css
+|   |   |   |               page.tsx
+|   |   |   |               
+|   |   |   +---contacts
+|   |   |   |   |   page.module.css
+|   |   |   |   |   page.tsx
+|   |   |   |   |   
+|   |   |   |   \---[id]
+|   |   |   |           page.module.css
+|   |   |   |           page.tsx
+|   |   |   |           
+|   |   |   +---statistiques
+|   |   |   |       page.module.css
+|   |   |   |       page.tsx
+|   |   |   |       
+|   |   |   \---tableau-de-bord
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---prospects
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   \---[id]
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---securite
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   \---tableau-de-bord
+|   |           page.module.css
+|   |           page.tsx
+|   |           
+|   +---(public)
+|   |   |   page.module.css
+|   |   |   page.tsx
+|   |   |   
+|   |   +---a-propos
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---agences
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   \---[slug]
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---aide
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---annonces
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   \---[slug]
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---charte-publication
+|   |   |       page.tsx
+|   |   |       
+|   |   +---conditions-utilisation
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---confidentialite
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---connexion
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---contact
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---cookies
+|   |   |       page.tsx
+|   |   |       
+|   |   +---faq
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---guides
+|   |   |   |   page.module.css
+|   |   |   |   page.tsx
+|   |   |   |   
+|   |   |   \---[slug]
+|   |   |           page.module.css
+|   |   |           page.tsx
+|   |   |           
+|   |   +---inscription
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---mot-de-passe-oublie
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---plan-du-site
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   +---procedure-signalement
+|   |   |       page.tsx
+|   |   |       
+|   |   +---recherche
+|   |   |       page.module.css
+|   |   |       page.tsx
+|   |   |       
+|   |   \---signaler
+|   |           page.module.css
+|   |           page.tsx
+|   |           
+|   +---acces-refuse
+|   |       page.tsx
+|   |       
+|   +---hors-ligne
+|   |       page.tsx
+|   |       
+|   \---maintenance
+|           page.tsx
+|           
++---components
+|   +---admin
+|   |       .gitkeep
+|   |       
+|   +---administration
+|   |       AdminShell.module.css
+|   |       AdminShell.tsx
+|   |       ReferenceManager.module.css
+|   |       ReferenceManager.tsx
+|   |       
+|   +---agence
+|   |       AgencyShell.module.css
+|   |       AgencyShell.tsx
+|   |       
+|   +---auth
+|   |   \---LoginForm
+|   |           LoginForm.module.css
+|   |           LoginForm.tsx
+|   |           
+|   +---dashboard
+|   |       .gitkeep
+|   |       
+|   +---feedback
+|   |       .gitkeep
+|   |       
+|   +---forms
+|   |       .gitkeep
+|   |       
+|   +---layout
+|   |       .gitkeep
+|   |       Footer.tsx
+|   |       Header.tsx
+|   |       
+|   +---property
+|   |   |   .gitkeep
+|   |   |   ContactAgentCard.tsx
+|   |   |   PropertyCard.tsx
+|   |   |   PropertyGallery.tsx
+|   |   |   PropertyShareButton.tsx
+|   |   |   
+|   |   +---PropertyGallery
+|   |   |       PropertyGallery.module.css
+|   |   |       PropertyGallery.tsx
+|   |   |       
+|   |   \---VisitForm
+|   |           VisitForm.module.css
+|   |           VisitForm.tsx
+|   |           
+|   +---proprietaire
+|   |       OwnerShell.module.css
+|   |       OwnerShell.tsx
+|   |       
+|   +---public
+|   |       InstitutionalShell.module.css
+|   |       InstitutionalShell.tsx
+|   |       LegalDocument.module.css
+|   |       LegalDocument.tsx
+|   |       
+|   +---search
+|   |       .gitkeep
+|   |       FilterControls.tsx
+|   |       HeroSearchForm.tsx
+|   |       HomeHeroSearch.tsx
+|   |       ListingsContainer.tsx
+|   |       
+|   +---system
+|   |       AsyncState.module.css
+|   |       AsyncState.tsx
+|   |       OfflineBanner.module.css
+|   |       OfflineBanner.tsx
+|   |       SkipLink.module.css
+|   |       SkipLink.tsx
+|   |       
+|   \---ui
+|           .gitkeep
+|           
++---constants
+|       .gitkeep
+|       
++---context
+|       FavoritesContext.tsx
+|       
++---data
+|       .gitkeep
+|       properties.ts
+|       
++---features
+|   +---auth
+|   |       .gitkeep
+|   |       
+|   +---favorites
+|   |       .gitkeep
+|   |       
+|   +---leads
+|   |       .gitkeep
+|   |       
+|   +---listings
+|   |       .gitkeep
+|   |       
+|   +---moderation
+|   |       .gitkeep
+|   |       
+|   +---notifications
+|   |       .gitkeep
+|   |       
+|   +---properties
+|   |       .gitkeep
+|   |       
+|   +---role-requests
+|   |       .gitkeep
+|   |       
+|   \---users
+|           .gitkeep
+|           
++---hooks
+|       .gitkeep
+|       
++---lib
+|   +---administration
+|   |       demo-data.ts
+|   |       
+|   +---agence
+|   |       demo-data.ts
+|   |       
+|   +---api
+|   |       endpoints.ts
+|   |       http-client.ts
+|   |       types.ts
+|   |       
+|   +---auth
+|   |       access-control.ts
+|   |       types.ts
+|   |       
+|   +---config
+|   |       env.ts
+|   |       
+|   +---proprietaire
+|   |       demo-data.ts
+|   |       
+|   +---public
+|   |       demo-data.ts
+|   |       
+|   \---routes
+|           app-routes.ts
+|           
++---schemas
+|       .gitkeep
+|       
++---services
+|       .gitkeep
+|       
++---stores
+|       .gitkeep
+|       
++---types
+|       .gitkeep
+|       property.ts
+|       
+\---utils
+        .gitkeep
+        
+ 
+==================== DOSSIER PUBLIC ==================== 
+Structure du dossier pour le volume Windows_11_Pro
+Le numéro de série du volume est C08C-9ADC
+C:\USERS\IBRAHIMA DJOGO\DESKTOP\IMMOBILIER\PUBLIC
+Aucun sous-dossier existant 
+
+ 
+==================== TOUTES LES PAGES NEXT.JS ==================== 
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\administrateurs\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\annonces\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\annonces\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\audit\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\contenus\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\demandes-role\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\demandes-role\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\moderation\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\parametres\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\referentiels\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\referentiels\categories\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\referentiels\equipements\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\referentiels\quartiers\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\referentiels\villes\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\signalements\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\signalements\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\statistiques\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\utilisateurs\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(admin)\administration\utilisateurs\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\activite\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\annonces\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\annonces\nouvelle\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\annonces\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\annonces\[id]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\biens\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\biens\nouveau\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\biens\[slug]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\biens\[slug]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\profil-professionnel\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\prospects\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\prospects\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\statistiques\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\agence\tableau-de-bord\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\demande-role\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\demande-role\suivi\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\demandes-contact\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\favoris\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-annonces\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-annonces\nouvelle\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-annonces\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-annonces\[id]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-annonces\[id]\previsualisation\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\nouveau\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\[id]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\notifications\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\profil\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\annonces\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\annonces\nouvelle\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\annonces\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\annonces\[id]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\biens\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\biens\nouveau\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\biens\[slug]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\biens\[slug]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\contacts\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\contacts\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\statistiques\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\proprietaire\tableau-de-bord\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\prospects\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\prospects\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\securite\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\tableau-de-bord\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\a-propos\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\agences\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\agences\[slug]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\aide\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\annonces\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\annonces\[slug]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\charte-publication\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\conditions-utilisation\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\confidentialite\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\connexion\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\contact\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\cookies\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\faq\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\guides\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\guides\[slug]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\inscription\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\mot-de-passe-oublie\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\plan-du-site\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\procedure-signalement\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\recherche\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\signaler\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\acces-refuse\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\hors-ligne\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\maintenance\page.tsx

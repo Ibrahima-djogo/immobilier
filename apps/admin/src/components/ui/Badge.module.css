@@ -1,0 +1,44 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+  padding: 0.28rem 0.58rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.neutral {
+  color: var(--text-muted);
+  background: var(--forest-50);
+  border: 1px solid var(--border);
+}
+
+.gold {
+  color: var(--forest-950);
+  background: var(--gold-100);
+  border: 1px solid rgba(216, 170, 52, 0.35);
+}
+
+.forest {
+  color: var(--forest-50);
+  background: var(--forest-800);
+  border: 1px solid var(--forest-800);
+}
+
+.success {
+  color: var(--success);
+  background: var(--success-soft);
+  border: 1px solid rgba(47, 116, 84, 0.18);
+}
+
+.danger {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid rgba(154, 63, 57, 0.18);
+}

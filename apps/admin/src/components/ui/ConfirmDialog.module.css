@@ -1,0 +1,102 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(7, 31, 23, 0.48);
+}
+
+.dialog {
+  position: relative;
+  width: min(100%, 440px);
+  padding: 24px 22px 20px;
+  border-radius: 16px;
+  border: 1px solid #dce6df;
+  background: #fff;
+  box-shadow: 0 24px 50px rgba(7, 31, 23, 0.22);
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 9px;
+  background: #f3f6f4;
+  color: #647169;
+  cursor: pointer;
+}
+
+.close:focus-visible {
+  outline: 2px solid #246448;
+  outline-offset: 2px;
+}
+
+.dialog h2 {
+  margin: 0 32px 0 0;
+  color: #0f3527;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.dialog p {
+  margin: 10px 0 0;
+  color: #647169;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.subject {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f4f7f5;
+  color: #0f3527;
+  font-size: 0.8rem;
+  /* Autorise les récapitulatifs multi-lignes (rôle, preset, scopes). */
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cancel,
+.confirm {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cancel {
+  border: 1px solid #c9d7ce;
+  background: #fff;
+  color: #0f3527;
+}
+
+.confirm {
+  border: 1px solid #9b2c2c;
+  background: #9b2c2c;
+  color: #fff;
+}
+
+.cancel:focus-visible,
+.confirm:focus-visible {
+  outline: 2px solid #246448;
+  outline-offset: 2px;
+}

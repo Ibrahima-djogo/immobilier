@@ -1,0 +1,183 @@
+.card {
+  margin: 0;
+  padding: 16px 18px 18px;
+  border: 1px solid #dce6df;
+  border-radius: 14px;
+  background: #fbfdfb;
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf3ed;
+  color: #246448;
+}
+
+.headCopy {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.headCopy h3 {
+  margin: 0;
+  color: #0f3527;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.status {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusNone {
+  border: 1px solid #dbe3dd;
+  color: #647169;
+  background: #f2f5f3;
+}
+
+.statusPending {
+  border: 1px solid #ead8a8;
+  color: #9d6b10;
+  background: #fff7df;
+}
+
+.copy {
+  margin: 0;
+  color: #647169;
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.details {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px 16px;
+}
+
+.details > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.details dt {
+  color: #7b8780;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.details dd {
+  margin: 0;
+  color: #0f3527;
+  font-size: 0.76rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  border: 1px solid #174b37;
+  color: #fff;
+  background: #174b37;
+}
+
+.primaryBtn:hover {
+  background: #12613f;
+}
+
+.secondaryBtn {
+  border: 1px solid #c9d7ce;
+  color: #246448;
+  background: #fff;
+}
+
+.primaryBtn:focus-visible,
+.secondaryBtn:focus-visible {
+  outline: 2px solid #246448;
+  outline-offset: 2px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.field {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.field > span {
+  color: #0f3527;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 0 11px;
+  border: 1px solid #c9d7ce;
+  border-radius: 10px;
+  background: #fff;
+  color: #0f3527;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 2px solid #246448;
+  outline-offset: 1px;
+}

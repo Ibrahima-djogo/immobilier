@@ -1,0 +1,66 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(7, 31, 23, 0.55);
+  cursor: pointer;
+}
+
+.panel {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 100%);
+  max-height: min(88vh, 900px);
+  overflow: auto;
+  border-radius: 16px;
+  background: #0b1f17;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.panel header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(11, 31, 23, 0.92);
+  color: #f5f7f6;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.panel header button {
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(88vh - 3.5rem);
+  object-fit: contain;
+  background: #091810;
+}

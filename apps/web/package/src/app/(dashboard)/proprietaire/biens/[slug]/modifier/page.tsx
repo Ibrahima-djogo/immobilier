@@ -1,0 +1,36 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowLeft, CheckCircle2, Save } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+
+import OwnerShell from "@/components/proprietaire/OwnerShell";
+import { ownerProperties } from "@/lib/proprietaire/demo-data";
+import styles from "./page.module.css";
+
+export default function EditPropertyPage() {
+  const params = useParams<{slug:string}>();
+  const property = ownerProperties.find((item)=>item.slug===params.slug) ?? ownerProperties[0];
+  const [saved,setSaved] = useState(false);
+  const [form,setForm] = useState({title:property.title,location:property.location,price:String(property.price),area:String(property.area),bedrooms:String(property.bedrooms),bathrooms:String(property.bathrooms),description:property.description});
+
+  return (
+    <OwnerShell active="biens" eyebrow="Modification" title="Modifier le bien" description="Mettez à jour les informations sans publier automatiquement l’annonce.">
+      <Link href={`/proprietaire/biens/${property.slug}`} className={styles.back}><ArrowLeft size={15}/> Retour à la fiche</Link>
+      {saved&&<div className={styles.success}><CheckCircle2 size={17}/> Modifications simulées enregistrées.</div>}
+      <form className={`${styles.card} ${styles.form}`} onSubmit={(e)=>{e.preventDefault();setSaved(true)}}>
+        <div className={styles.grid}>
+          <label className={styles.full}>Titre<input value={form.title} onChange={(e)=>setForm(v=>({...v,title:e.target.value}))}/></label>
+          <label className={styles.full}>Localisation<input value={form.location} onChange={(e)=>setForm(v=>({...v,location:e.target.value}))}/></label>
+          <label>Prix<input type="number" value={form.price} onChange={(e)=>setForm(v=>({...v,price:e.target.value}))}/></label>
+          <label>Surface<input type="number" value={form.area} onChange={(e)=>setForm(v=>({...v,area:e.target.value}))}/></label>
+          <label>Chambres<input type="number" value={form.bedrooms} onChange={(e)=>setForm(v=>({...v,bedrooms:e.target.value}))}/></label>
+          <label>Salles d’eau<input type="number" value={form.bathrooms} onChange={(e)=>setForm(v=>({...v,bathrooms:e.target.value}))}/></label>
+          <label className={styles.full}>Description<textarea rows={8} value={form.description} onChange={(e)=>setForm(v=>({...v,description:e.target.value}))}/></label>
+        </div>
+        <div className={styles.footer}><p>Les changements réels seront validés par l’API.</p><button type="submit"><Save size={16}/>Enregistrer</button></div>
+      </form>
+    </OwnerShell>
+  );
+}

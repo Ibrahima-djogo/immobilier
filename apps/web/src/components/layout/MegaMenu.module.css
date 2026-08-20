@@ -1,0 +1,232 @@
+.item {
+  position: static;
+}
+
+.trigger {
+  position: relative;
+  padding: 1.7rem 0 1.45rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: color var(--duration-fast) ease;
+}
+
+.trigger:hover,
+.triggerActive {
+  color: var(--forest-800);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.triggerActive::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.95rem;
+  left: 0;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-400));
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  z-index: 60;
+  width: min(1180px, calc(100vw - (var(--gutter) * 2)));
+  transform: translateX(-50%);
+  padding: 0;
+  border: 1px solid #dfe5e1;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f6f0 100%);
+  box-shadow: 0 22px 48px rgba(7, 31, 23, 0.1);
+  animation: megaIn 0.18s ease;
+}
+
+.panelInner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 2.5rem;
+  padding: 1.6rem 1.75rem 1.75rem;
+}
+
+.columnTitle {
+  margin: 0 0 0.7rem;
+  color: var(--forest-700);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.linkList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.link {
+  min-height: 3rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: rgba(227, 238, 231, 0.72);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 2px;
+}
+
+.linkCopy {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.linkCopy strong {
+  color: var(--forest-900);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.linkCopy small {
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.linkArrow {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--gold-600);
+  opacity: 0.75;
+}
+
+.link:hover .linkArrow,
+.link:focus-visible .linkArrow {
+  opacity: 1;
+}
+
+.mobileAccordion {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.mobileTrigger {
+  min-height: 2.7rem;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  color: var(--text-body);
+  background: transparent;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mobileTrigger:hover,
+.mobileTriggerOpen {
+  color: var(--forest-800);
+  background: var(--forest-50);
+}
+
+.mobileTrigger:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 2px;
+}
+
+.mobilePanel {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.35rem 0.4rem 0.7rem 0.85rem;
+}
+
+.mobileColumn {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.mobileSubLink {
+  min-height: 2.35rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  color: var(--text-body);
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.mobileSubLink:hover,
+.mobileSubLink:focus-visible {
+  color: var(--forest-800);
+  background: var(--ivory);
+}
+
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .chevron {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .panel {
+    display: none;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}

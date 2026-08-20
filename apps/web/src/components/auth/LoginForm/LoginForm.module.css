@@ -1,0 +1,322 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  width: 100%;
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.breadcrumb a {
+  color: var(--forest-700);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.formTitle {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.5vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.formDesc {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.formError,
+.formDemo {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-md);
+}
+
+.formError {
+  border: 1px solid rgba(154, 63, 57, 0.25);
+  background: var(--danger-soft);
+}
+
+.formError svg,
+.formError p {
+  color: var(--danger);
+}
+
+.formDemo {
+  border: 1px solid var(--border);
+  background: var(--forest-50);
+}
+
+.formDemo svg {
+  color: var(--forest-700);
+}
+
+.formError p,
+.formDemo p {
+  margin: 0;
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.fieldGroup {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.label {
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  transform: translateY(-50%);
+  display: block;
+  color: var(--text-soft);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0 0.9rem 0 2.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fbfcfa;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  outline: none;
+  transition:
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease,
+    background var(--duration-fast) ease;
+}
+
+.input::placeholder {
+  color: var(--text-soft);
+}
+
+.input:focus {
+  border-color: var(--forest-600);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(61, 125, 95, 0.12);
+}
+
+.inputWrapper:focus-within .inputIcon {
+  color: var(--forest-700);
+}
+
+.inputWithToggle {
+  padding-right: 2.85rem;
+}
+
+.inputError {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(154, 63, 57, 0.12) !important;
+}
+
+.fieldError {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--danger);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 0.45rem;
+  transform: translateY(-50%);
+  width: 2.15rem;
+  height: 2.15rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  line-height: 0;
+  color: var(--text-soft);
+  background: transparent;
+  cursor: pointer;
+}
+
+.togglePassword > svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.togglePassword:hover {
+  color: var(--forest-700);
+  background: var(--forest-50);
+}
+
+.optionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-body);
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.checkboxLabel input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--forest-800);
+}
+
+.forgotLink {
+  color: var(--forest-700);
+  font-size: 0.84rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.forgotLink:hover {
+  color: var(--forest-900);
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: 100%;
+  min-height: 3.05rem;
+  margin-top: 0.15rem;
+  border: 1px solid var(--gold-500);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--forest-950);
+  background: var(--gold-500);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--gold-400);
+  border-color: var(--gold-400);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-gold);
+}
+
+.submitButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid rgba(7, 31, 23, 0.2);
+  border-top-color: var(--forest-950);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.registerRow {
+  margin: 0;
+  text-align: center;
+  color: var(--text-body);
+  font-size: 0.88rem;
+}
+
+.registerRow a {
+  color: var(--forest-800);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.registerRow a:hover {
+  text-decoration: underline;
+}
+
+.publishNote {
+  margin: 0;
+  padding-top: 0.15rem;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.publishNote a {
+  color: var(--forest-700);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.publishNote a:hover {
+  text-decoration: underline;
+}

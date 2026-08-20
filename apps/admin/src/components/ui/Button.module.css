@@ -1,0 +1,113 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.button,
+.button:hover,
+.button:focus,
+.button:active,
+.button:visited {
+  text-decoration: none;
+}
+
+.button svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.sm {
+  min-height: 2.35rem;
+  padding: 0 0.9rem;
+  font-size: 0.8rem;
+}
+
+.md {
+  min-height: 2.7rem;
+  padding: 0 1.15rem;
+  font-size: 0.88rem;
+}
+
+.lg {
+  min-height: 3.05rem;
+  padding: 0 1.35rem;
+  font-size: 0.94rem;
+}
+
+.primary {
+  border: 1px solid var(--gold-500);
+  color: var(--forest-950);
+  background: var(--gold-500);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+.primary:hover:not(:disabled) {
+  border-color: var(--gold-400);
+  background: var(--gold-400);
+  box-shadow: var(--shadow-gold);
+}
+
+.secondary {
+  border: 1px solid var(--border-strong);
+  color: var(--forest-800);
+  background: var(--white);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: var(--forest-600);
+  background: var(--forest-50);
+}
+
+.ghost {
+  border: 1px solid transparent;
+  color: var(--forest-800);
+  background: transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--forest-50);
+}
+
+.danger {
+  border: 1px solid #e3c8c5;
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.danger:hover:not(:disabled) {
+  border-color: #d4a8a4;
+  background: #fde8e6;
+}
+
+.fullWidth {
+  width: 100%;
+}

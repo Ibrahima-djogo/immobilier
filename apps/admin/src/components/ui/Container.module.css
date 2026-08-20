@@ -1,0 +1,8 @@
+.container {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.wide {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+}

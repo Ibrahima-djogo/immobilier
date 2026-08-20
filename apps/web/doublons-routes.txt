@@ -1,0 +1,36 @@
+﻿==================================================
+ROUTE EN CONFLIT : /mes-biens
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\mes-biens\page.tsx
+
+==================================================
+ROUTE EN CONFLIT : /mes-biens/nouveau
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\nouveau\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\mes-biens\nouveau\page.tsx
+
+==================================================
+ROUTE EN CONFLIT : /mes-biens/[]
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\mes-biens\[id]\page.tsx
+
+==================================================
+ROUTE EN CONFLIT : /mes-biens/[]/modifier
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\mes-biens\[id]\modifier\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\mes-biens\[id]\modifier\page.tsx
+
+==================================================
+ROUTE EN CONFLIT : /prospects
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\prospects\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\prospects\page.tsx
+
+==================================================
+ROUTE EN CONFLIT : /prospects/[]
+==================================================
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(dashboard)\prospects\[id]\page.tsx
+C:\Users\Ibrahima Djogo\Desktop\immobilier\src\app\(public)\prospects\[id]\page.tsx
+

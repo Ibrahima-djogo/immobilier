@@ -1,0 +1,331 @@
+.card {
+  position: sticky;
+  top: 5.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.priceBlock {
+  padding: 1.15rem 1.2rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--white);
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(232, 191, 77, 0.22),
+      transparent 40%
+    ),
+    linear-gradient(145deg, var(--forest-950), var(--forest-800));
+}
+
+.priceLabel {
+  color: var(--gold-400);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.priceAmount {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.agentProfile {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.agentAvatar {
+  width: 3.1rem;
+  height: 3.1rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--forest-950);
+  background: linear-gradient(145deg, var(--gold-400), var(--gold-500));
+  font-size: 0.95rem;
+  font-weight: 850;
+}
+
+.agentInfo h3 {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 1rem;
+}
+
+.agentInfo p {
+  margin: 0.2rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.agentHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.agentVerifiedBadge {
+  color: var(--gold-600);
+}
+
+.mediationNote {
+  margin: -0.35rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.quickContactButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.phoneButton,
+.whatsappButton {
+  min-height: 2.65rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.phoneButton {
+  color: var(--forest-900);
+  background: var(--forest-50);
+  border: 1px solid var(--border-strong);
+}
+
+.whatsappButton {
+  color: var(--white);
+  background: #25d366;
+  border: 1px solid #20bd5a;
+}
+
+.contactDisabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.visitFormSection {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--forest-50);
+}
+
+.visitFormTitle {
+  margin: 0 0 0.75rem;
+  color: var(--forest-900);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.guestGate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 0.35rem;
+  text-align: center;
+}
+
+.guestGateIcon {
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-bottom: 0.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold-400);
+  background: linear-gradient(145deg, var(--forest-800), var(--forest-950));
+}
+
+.guestGateTitle {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.guestGateDesc {
+  margin: 0;
+  max-width: 16rem;
+  color: var(--text-body);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.guestGateActions {
+  width: 100%;
+  margin-top: 0.35rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.guestLoginButton,
+.guestRegisterButton {
+  min-height: 2.55rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.guestLoginButton {
+  color: var(--white);
+  background: var(--forest-800);
+}
+
+.guestRegisterButton {
+  color: var(--forest-950);
+  background: var(--gold-400);
+  border: 1px solid var(--gold-500);
+}
+
+.visitForm {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.formGroup {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.formGroup label {
+  color: var(--text-dark);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dark);
+  background: var(--white);
+  font: inherit;
+  font-size: 0.84rem;
+  outline: none;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--forest-600);
+  box-shadow: 0 0 0 3px rgba(61, 125, 95, 0.1);
+}
+
+.formError {
+  margin: 0;
+  color: #9a3f39;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.inputWithIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWithIcon svg {
+  position: absolute;
+  left: 0.65rem;
+  color: var(--forest-600);
+  pointer-events: none;
+}
+
+.inputWithIcon input,
+.inputWithIcon select {
+  padding-left: 2.15rem;
+}
+
+.submitVisitButton {
+  min-height: 2.65rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--white);
+  background: var(--forest-800);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.formSuccessMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  color: var(--forest-900);
+  background: var(--success-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.securityNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(216, 170, 52, 0.28);
+  border-radius: var(--radius-md);
+  background: var(--gold-100);
+}
+
+.securityNotice svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--gold-700);
+}
+
+.securityNotice p {
+  margin: 0;
+  color: #72520a;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .card {
+    position: static;
+  }
+}

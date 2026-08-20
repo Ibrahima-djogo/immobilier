@@ -1,0 +1,208 @@
+.searchWrapper {
+  position: relative;
+  z-index: 20;
+  width: min(1120px, calc(100% - (var(--gutter) * 2)));
+  margin: -4.5rem auto 0;
+}
+
+.searchForm {
+  width: 100%;
+  padding: 1.05rem;
+  border: 1px solid rgba(17, 51, 38, 0.08);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(14px);
+}
+
+.operationTabs {
+  min-width: 0;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.operationTabs legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.operationTabs input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.operationTabs label {
+  min-height: 2.3rem;
+  padding: 0 1.05rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--text-body);
+  background: var(--forest-50);
+  font-size: 0.8rem;
+  font-weight: 750;
+  transition:
+    color var(--duration-fast) ease,
+    background var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.operationTabs input:checked + label {
+  color: var(--white);
+  background: var(--forest-800);
+  box-shadow: 0 8px 18px rgba(23, 75, 55, 0.18);
+}
+
+.searchFields {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 1.5fr) minmax(175px, 1fr) minmax(180px, 1fr) 9.5rem;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.searchField {
+  min-width: 0;
+}
+
+.searchField label {
+  margin: 0 0 0.45rem 0.2rem;
+  display: block;
+  color: var(--forest-900);
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.fieldControl {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fieldIcon {
+  position: absolute;
+  z-index: 2;
+  left: 0.85rem;
+  color: var(--forest-600);
+  pointer-events: none;
+}
+
+.searchField input,
+.searchField select {
+  width: 100%;
+  height: 3.1rem;
+  padding: 0 0.85rem 0 2.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--text-dark);
+  background: #fbfcfa;
+  font: inherit;
+  font-size: 0.86rem;
+  transition:
+    border-color var(--duration-fast) ease,
+    background var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.searchField input::placeholder {
+  color: #99a39d;
+}
+
+.searchField input:hover,
+.searchField select:hover {
+  border-color: var(--border-strong);
+  background: var(--white);
+}
+
+.searchField input:focus,
+.searchField select:focus {
+  border-color: var(--forest-600);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(61, 125, 95, 0.12);
+}
+
+.searchButton {
+  width: 100%;
+  height: 3.1rem;
+  padding: 0 1.15rem;
+  border: 1px solid var(--forest-800);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--white);
+  background: var(--forest-800);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 750;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.searchButton:hover {
+  background: var(--forest-950);
+  border-color: var(--forest-950);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(7, 31, 23, 0.2);
+}
+
+@media (max-width: 1160px) {
+  .searchWrapper {
+    width: min(900px, calc(100% - (var(--gutter) * 2)));
+    margin-top: -4rem;
+  }
+
+  .searchFields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .searchButton {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 920px) {
+  .searchWrapper {
+    margin-top: -3.25rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .searchWrapper {
+    width: min(100% - 1.75rem, 1120px);
+    margin-top: -2.75rem;
+  }
+
+  .searchForm {
+    padding: 0.9rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .searchFields {
+    grid-template-columns: 1fr;
+  }
+
+  .searchButton {
+    grid-column: auto;
+  }
+
+  .operationTabs label {
+    flex: 1;
+  }
+}

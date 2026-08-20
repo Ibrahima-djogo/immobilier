@@ -1,0 +1,70 @@
+.logo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 14px 14px 7px 7px;
+  display: grid;
+  place-items: center;
+  color: var(--forest-950);
+  background: linear-gradient(145deg, var(--gold-400), var(--gold-500));
+  box-shadow: var(--shadow-gold);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.text strong {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.text small {
+  margin-top: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.light {
+  color: var(--forest-900);
+}
+
+.light .text small {
+  color: var(--forest-600);
+}
+
+.dark {
+  color: var(--white);
+}
+
+.dark .text small {
+  color: var(--gold-400);
+}
+
+.sm .mark {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.sm .text strong {
+  font-size: 1rem;
+}
+
+.sm .text small {
+  font-size: 0.64rem;
+}

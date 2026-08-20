@@ -1,0 +1,24 @@
+.action {
+  min-height: 44px; padding: 0 15px; border-radius: 10px; display: inline-flex;
+  align-items: center; justify-content: center; gap: 7px; color: #071f17;
+  background: #e8bf4d; font-size: .66rem; font-weight: 900; text-decoration: none;
+}
+.card { border: 1px solid #dce6df; border-radius: 16px; background: #fff; box-shadow: 0 14px 35px rgba(7,31,23,.07); }
+.sectionTitle { margin-bottom: 16px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.sectionTitle h2 { margin: 0; color: #0f3527; font-size: 1rem; }
+.sectionTitle p { margin: 5px 0 0; color: #647169; font-size: .62rem; }
+.empty { min-height: 300px; padding: 30px; display: grid; place-items: center; text-align: center; }
+
+.back { margin-bottom: 14px; display: inline-flex; align-items: center; gap: 5px; color: #246448; font-size: .59rem; font-weight: 850; text-decoration: none; }
+.success { margin-bottom: 14px; padding: 12px; border: 1px solid #bdd8c7; border-radius: 10px; display: flex; align-items: center; gap: 7px; color: #2f7454; background: #e8f3ec; font-size: .62rem; }
+.form { padding: 23px; }
+.grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 13px; }
+.full { grid-column: 1/-1; }
+.form label { color: #0f3527; font-size: .64rem; font-weight: 850; }
+.form input,.form textarea { width: 100%; margin-top: 7px; border: 1px solid #c9d7ce; border-radius: 9px; outline: none; font: inherit; font-size: .66rem; }
+.form input { height: 44px; padding: 0 11px; }
+.form textarea { padding: 11px; resize: vertical; }
+.footer { margin-top: 18px; padding-top: 16px; border-top: 1px solid #dce6df; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.footer p { margin: 0; color: #647169; font-size: .58rem; }
+.footer button { min-height: 40px; padding: 0 13px; border: 1px solid #174b37; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; background: #174b37; font-size: .6rem; font-weight: 850; }
+@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.footer{align-items:stretch;flex-direction:column}.footer button{justify-content:center}}

@@ -1,0 +1,536 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 1.35rem;
+  border: 1px solid rgba(36, 100, 72, 0.1);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fbf9f4 0%, #f7f4ec 42%, #f3f7f4 100%);
+  box-shadow: 0 10px 26px rgba(15, 53, 39, 0.035);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(159, 112, 13, 0.28),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Motifs architecturaux : purement décoratifs, aucun média lourd. */
+.decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.decorationCircle,
+.decorationCircleSoft,
+.decorationGrid,
+.decorationArc {
+  position: absolute;
+}
+
+.decorationCircle {
+  top: -46px;
+  right: -34px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(36, 100, 72, 0.1);
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(212, 175, 55, 0.12),
+    transparent 68%
+  );
+}
+
+.decorationCircleSoft {
+  top: 38px;
+  right: 82px;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  border: 1px solid rgba(159, 112, 13, 0.14);
+  opacity: 0.7;
+}
+
+.decorationGrid {
+  top: 16px;
+  right: 22px;
+  width: 150px;
+  height: 100px;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(23, 75, 55, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 75, 55, 0.35) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(135deg, transparent 10%, #000 70%);
+}
+
+.decorationArc {
+  right: 38px;
+  bottom: -52px;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  border: 1px solid rgba(23, 75, 55, 0.1);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(18deg);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  padding: 1.15rem 1.3rem 1.25rem;
+}
+
+.back {
+  width: fit-content;
+  margin-bottom: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 8px;
+  color: var(--forest-800, #174b37);
+  font-size: 0.75rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--forest-950, #071f17);
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--gold-400, #e8bf4d);
+  outline-offset: 3px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+}
+
+/* Le titre garde une largeur lisible : les KPI passent à la ligne avant
+   de comprimer la colonne de gauche. */
+.copy {
+  min-width: 0;
+  flex: 1 1 21rem;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconWrap {
+  width: 1.85rem;
+  height: 1.85rem;
+  flex-shrink: 0;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: var(--gold-700, #9f700d);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(159, 112, 13, 0.22);
+  box-shadow: 0 4px 12px rgba(15, 53, 39, 0.04);
+}
+
+.eyebrow {
+  margin: 0;
+  min-width: 0;
+  color: var(--gold-700, #9f700d);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.titleRow {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.title {
+  margin: 0;
+  min-width: 0;
+  color: var(--forest-950, #071f17);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.5rem, 2.3vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.26rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 100, 72, 0.16);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--forest-800, #174b37);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badgeSuccess {
+  border-color: rgba(36, 100, 72, 0.28);
+  background: #e8f3ec;
+  color: #246448;
+}
+
+.badgeWarning {
+  border-color: rgba(159, 112, 13, 0.32);
+  background: #fff7df;
+  color: #9d6b10;
+}
+
+.badgeDanger {
+  border-color: rgba(154, 63, 57, 0.28);
+  background: #fdeceb;
+  color: #9a3f39;
+}
+
+.badgeInfo {
+  border-color: rgba(36, 82, 122, 0.24);
+  background: #eaf2fa;
+  color: #2b5f8f;
+}
+
+.description {
+  margin: 0.55rem 0 0;
+  max-width: 62ch;
+  color: var(--text-body, #5b6861);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.note {
+  margin: 0.4rem 0 0;
+  max-width: 64ch;
+  color: var(--text-soft, #7b8780);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+/* ── Métadonnées de fiche ───────────────────────────────────────────────
+   Même langage visuel que les tuiles KPI : la valeur porte l'information,
+   le libellé reste discret. Styles centralisés ici, aucune page ne les
+   redéfinit. */
+.meta {
+  margin: 0.85rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.metaItem {
+  flex: 1 1 11rem;
+  min-width: 0;
+  max-width: 18rem;
+  padding: 0.5rem 0.7rem 0.55rem;
+  border: 1px solid rgba(36, 100, 72, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 3px 10px rgba(15, 53, 39, 0.035);
+}
+
+.metaLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-soft, #7b8780);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.metaLabel :global(svg) {
+  flex-shrink: 0;
+  display: block;
+}
+
+.metaValue {
+  margin: 0.22rem 0 0;
+  color: var(--forest-950, #071f17);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  /* Une référence longue passe à la ligne au lieu d'élargir la tuile. */
+  overflow-wrap: anywhere;
+}
+
+/* Colonne droite : actions puis indicateurs chiffrés. */
+.side {
+  flex-shrink: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.7rem;
+}
+
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actions :global(svg) {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Indicateurs chiffrés (KPI) ─────────────────────────────────────────
+   Le chiffre est l'information principale, le libellé la secondaire.
+   Styles volontairement centralisés ici : aucune page ne redéfinit `.stat`. */
+.stats {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.stat {
+  flex: 0 1 auto;
+  min-width: 7.5rem;
+  max-width: 13rem;
+  padding: 0.5rem 0.7rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.15rem;
+  border: 1px solid rgba(36, 100, 72, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 3px 10px rgba(15, 53, 39, 0.035);
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-soft, #7b8780);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.statLabel :global(svg) {
+  flex-shrink: 0;
+  display: block;
+}
+
+.statValue {
+  margin: 0;
+  color: var(--forest-950, #071f17);
+  font-size: clamp(1.4rem, 1.8vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* Une donnée absente ne doit pas se lire comme un chiffre. */
+.statValueMissing {
+  color: var(--text-soft, #7b8780);
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+.statHint {
+  margin: 0.1rem 0 0;
+  color: var(--text-soft, #7b8780);
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.statNeutral {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.statSuccess {
+  border-color: rgba(36, 100, 72, 0.26);
+  background: #eef6f1;
+}
+
+.statSuccess .statValue {
+  color: #246448;
+}
+
+.statWarning {
+  border-color: rgba(159, 112, 13, 0.28);
+  background: #fffaea;
+}
+
+.statWarning .statValue {
+  color: #9d6b10;
+}
+
+/* Accent plus marqué, sans carte rouge vif : le libellé reste explicite. */
+.statDanger {
+  border-color: rgba(154, 63, 57, 0.26);
+  border-left: 3px solid #9a3f39;
+  background: #fdf1f0;
+}
+
+.statDanger .statLabel {
+  color: #9a3f39;
+}
+
+.statDanger .statValue {
+  color: #9a3f39;
+}
+
+.statInfo {
+  border-color: rgba(36, 82, 122, 0.22);
+  background: #eff5fb;
+}
+
+.statInfo .statValue {
+  color: #2b5f8f;
+}
+
+/* Variantes */
+.compact {
+  margin-bottom: 1.1rem;
+  border-radius: 15px;
+}
+
+.compact .inner {
+  padding: 0.95rem 1.1rem 1rem;
+}
+
+.compact .title {
+  font-size: clamp(1.3rem, 1.9vw, 1.6rem);
+}
+
+.compact .decorationCircleSoft,
+.compact .decorationArc {
+  display: none;
+}
+
+.detail .inner {
+  padding: 1.2rem 1.3rem 1.3rem;
+}
+
+@media (max-width: 900px) {
+  .decorationGrid,
+  .decorationArc {
+    opacity: 0.3;
+  }
+
+  .decorationCircleSoft {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    border-radius: 15px;
+  }
+
+  .inner,
+  .compact .inner,
+  .detail .inner {
+    padding: 1rem 0.95rem 1.05rem;
+  }
+
+  .row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: clamp(1.25rem, 5.4vw, 1.55rem);
+  }
+
+  .side {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .actions > :global(*) {
+    flex: 1 1 auto;
+  }
+
+  /* Tablette : 2 × 2 plutôt qu'une rangée comprimée. Sans `grow`, une tuile
+     seule sur la dernière ligne garde la largeur d'une colonne. */
+  .metaItem {
+    flex: 0 1 calc(50% - 0.25rem);
+    max-width: none;
+  }
+
+  /* Sous le titre : grille 2 colonnes, chiffres toujours pleine taille. */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+  }
+
+  .stat {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .decorationGrid {
+    width: 104px;
+    height: 74px;
+    opacity: 0.16;
+  }
+
+  .decorationCircle {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 420px) {
+  .stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metaItem {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}

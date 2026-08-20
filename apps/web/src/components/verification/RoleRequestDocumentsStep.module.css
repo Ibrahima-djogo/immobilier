@@ -1,0 +1,281 @@
+.wrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.sectionHeader > span {
+  color: var(--gold-700, #9f700d);
+  margin-top: 0.2rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  color: var(--forest-900, #0f3527);
+  font-size: 1.3rem;
+}
+
+.sectionHeader p {
+  margin: 0.4rem 0 0;
+  color: var(--text-body, #5b6861);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.progressCard {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border, #dce6df);
+  border-radius: 14px;
+  background: var(--forest-50, #f2f7f3);
+}
+
+.progressCopy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.progressCopy strong {
+  color: var(--forest-950, #071f17);
+  font-size: 0.86rem;
+}
+
+.progressCopy span {
+  color: var(--text-soft, #7b8780);
+  font-size: 0.72rem;
+}
+
+.progressBar {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(23, 75, 55, 0.12);
+}
+
+.progressBar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #174b37, #2f7454);
+  transition: width 180ms ease;
+}
+
+.notice {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid #e5d7a8;
+  border-radius: 12px;
+  background: #fff9e9;
+  color: #726647;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.notice p {
+  margin: 0;
+}
+
+.correctionNotice {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ead6a2;
+  border-radius: 12px;
+  background: #fff7df;
+  color: #736548;
+}
+
+.correctionNotice strong {
+  display: block;
+  color: #9d6b10;
+  font-size: 0.76rem;
+}
+
+.correctionNotice ul {
+  margin: 0.45rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.conditionalBlock {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #f0d7a4;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fffbf2, #fff);
+}
+
+.conditionalHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.conditionalHead strong {
+  color: var(--forest-950, #071f17);
+  font-size: 0.92rem;
+}
+
+.conditionalHead span {
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #f0d7a4;
+  background: #fff6e5;
+  color: #9f700d;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.conditionalLead {
+  margin: 0;
+  color: var(--text-body, #5b6861);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.drawerHint {
+  margin: 0;
+  color: var(--text-soft, #7b8780);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* Le nombre de colonnes suit la largeur réelle de la carte de formulaire. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.9rem;
+}
+
+.stickyActions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  padding: 0.85rem 0.2rem;
+  border-top: 1px solid var(--border, #dce6df);
+  background: linear-gradient(
+    180deg,
+    rgba(251, 252, 250, 0.72),
+    rgba(251, 252, 250, 0.98) 35%
+  );
+  backdrop-filter: blur(6px);
+}
+
+.stickyActions > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.secondaryButton,
+.draftButton,
+.primaryButton {
+  min-height: 2.45rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.secondaryButton,
+.draftButton {
+  border: 1px solid var(--border, #dce6df);
+  color: var(--forest-800, #174b37);
+  background: var(--white, #fff);
+}
+
+.primaryButton {
+  border: 1px solid var(--forest-800, #174b37);
+  color: var(--white, #fff);
+  background: var(--forest-800, #174b37);
+}
+
+.draftButton:disabled,
+.primaryButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  color: var(--forest-900, #0f3527);
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.field input,
+.field select {
+  min-height: 2.4rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border, #dce6df);
+  border-radius: 10px;
+  background: var(--white, #fff);
+  color: var(--forest-950, #071f17);
+  font: inherit;
+  font-size: 0.84rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+@media (max-width: 720px) {
+  .metaGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stickyActions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .stickyActions > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .secondaryButton,
+  .draftButton,
+  .primaryButton {
+    width: 100%;
+  }
+}

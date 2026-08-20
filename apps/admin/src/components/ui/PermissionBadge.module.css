@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  border: 1px solid #d0ddd5;
+  border-radius: 999px;
+  color: #246448;
+  background: #e9f2ec;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.all {
+  border-color: #d4b056;
+  color: #7a5a10;
+  background:
+    linear-gradient(180deg, #fff9e8 0%, #fff3cf 100%);
+  font-weight: 900;
+}

@@ -1,0 +1,112 @@
+.banner {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid #dce6df;
+  border-radius: 14px;
+  background: #f7faf7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.banner[data-tone="warn"] {
+  border-color: #ead8a8;
+  background: #fff7df;
+}
+
+.copy {
+  min-width: 0;
+  flex: 1 1 240px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #7b8780;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 5px 0 0;
+  color: #0f3527;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.text strong {
+  font-weight: 850;
+}
+
+.scopeList {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+}
+
+.scopeItem {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 9px;
+  border: 1px solid #dce6df;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.scopeItem strong {
+  color: #0f3527;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.scopeItem span {
+  color: #246448;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #174b37;
+  border-radius: 9px;
+  color: #fff;
+  background: #174b37;
+  font-size: 0.68rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #12613f;
+}
+
+.button:focus-visible {
+  outline: 2px solid #e8bf4d;
+  outline-offset: 2px;
+}
+
+.buttonSecondary {
+  border-color: #c9d7ce;
+  color: #246448;
+  background: #fff;
+}
+
+.muted {
+  margin: 0;
+  color: #647169;
+  font-size: 0.72rem;
+}

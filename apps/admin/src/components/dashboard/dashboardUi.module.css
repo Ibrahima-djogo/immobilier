@@ -1,0 +1,324 @@
+.kpiStrip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 1.35rem;
+}
+
+.kpiStripHighlight {
+  grid-template-columns: 1.35fr repeat(3, minmax(0, 1fr));
+}
+
+.kpiCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--border, #dce6df);
+  border-radius: 14px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 12px 34px rgba(7, 31, 23, 0.06));
+}
+
+.kpiHero {
+  background:
+    linear-gradient(145deg, rgba(15, 61, 46, 0.96), rgba(7, 31, 23, 0.92));
+  border-color: transparent;
+  color: #fffef9;
+  box-shadow: 0 16px 40px rgba(7, 31, 23, 0.18);
+}
+
+.kpiIcon {
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--forest-800, #174b37);
+  background: var(--forest-100, #e3eee7);
+  flex-shrink: 0;
+}
+
+.kpiBody {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.kpiBody small {
+  color: var(--stat-label-on-light, #7b8780);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.kpiBody strong {
+  color: var(--stat-value-on-light, #071f17);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpiHint {
+  color: var(--text-body, #5b6861);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+/* Carte de synthèse sur fond vert foncé. Déclarée après les règles claires
+   et portée par `.kpiHero` : sinon `.kpiBody strong`, de même spécificité,
+   repeindrait la valeur en vert très foncé sur ce fond sombre. */
+.kpiHero .kpiIcon {
+  background: rgba(232, 191, 77, 0.95);
+  color: #071f17;
+}
+
+.kpiHero .kpiBody small {
+  color: var(--stat-label-on-dark, rgba(255, 254, 249, 0.82));
+}
+
+.kpiHero .kpiBody strong {
+  color: var(--stat-value-on-dark, #fffef9);
+  font-size: 1.7rem;
+}
+
+.kpiHero .kpiHint {
+  color: var(--stat-hint-on-dark, rgba(255, 254, 249, 0.74));
+}
+
+.tone_default .kpiIcon {
+  /* default forest tile — kept explicit for module hashing */
+}
+
+.tone_accent .kpiIcon {
+  background: var(--gold-100, #faf0cf);
+  color: var(--gold-700, #9f700d);
+}
+
+.tone_success .kpiIcon {
+  background: var(--success-soft, #e8f3ec);
+  color: var(--success, #2f7454);
+}
+
+.tone_warning .kpiIcon {
+  background: #f8f0e4;
+  color: #9a6420;
+}
+
+.panel {
+  border: 1px solid var(--border, #dce6df);
+  border-radius: 16px;
+  background: var(--white, #fff);
+  box-shadow: var(--shadow-soft, 0 12px 34px rgba(7, 31, 23, 0.06));
+  overflow: hidden;
+}
+
+.panelHeader {
+  padding: 1.1rem 1.2rem 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border, #dce6df) 85%, transparent);
+}
+
+.panelHeader h2 {
+  margin: 0;
+  color: var(--forest-950, #071f17);
+  font-family: var(--font-display, inherit);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.panelHeader p {
+  margin: 0.3rem 0 0;
+  color: var(--text-body, #5b6861);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.panelAction {
+  flex-shrink: 0;
+}
+
+.panelBody {
+  padding: 0.35rem 0.4rem 0.5rem;
+}
+
+/* ── Lignes de liste : titre · description · statut · action ─────────────
+   Les colonnes sont déclarées une seule fois sur `.listGroup` ; chaque ligne
+   les reprend en `subgrid`. Sans cela chaque ligne formait sa propre grille
+   et la position du statut dépendait de la longueur du texte précédent. */
+.listGroup {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(6rem, 1.05fr)
+    minmax(0, 1.6fr)
+    auto
+    auto;
+  align-content: start;
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(6rem, 1.05fr)
+    minmax(0, 1.6fr)
+    auto
+    auto;
+  align-items: center;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+}
+
+.listGroup > .listRow {
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.listGroup > .listRow + .listRow {
+  border-top: 1px solid var(--border, #dce6df);
+}
+
+.listRow:hover {
+  background: var(--forest-50, #f2f7f3);
+}
+
+.listRowLink {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.listRowLink:focus-visible {
+  outline: 2px solid var(--forest-700, #174b37);
+  outline-offset: 2px;
+}
+
+/* Espacement porté par les cellules : une colonne vide ne laisse alors
+   aucun écart fantôme, contrairement à `column-gap`. */
+.listLeading {
+  grid-column: 1;
+  padding-inline-end: 0.7rem;
+}
+
+.listTitle {
+  grid-column: 2;
+  min-width: 0;
+  padding-inline-end: 0.7rem;
+  color: var(--forest-950, #071f17);
+  font-size: 0.88rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listSubtitle {
+  grid-column: 3;
+  min-width: 0;
+  padding-inline-end: 0.7rem;
+  color: var(--text-body, #5b6861);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listAside {
+  grid-column: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-inline-end: 0.7rem;
+}
+
+/* Ce créneau porte aussi bien des dates que des compteurs : il ne peut donc
+   pas utiliser la teinte « soft » réservée aux textes purement secondaires. */
+.listMeta {
+  color: var(--text-body, #5b6861);
+  font-size: 0.75rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.listTrailing {
+  grid-column: 5;
+  justify-self: end;
+}
+
+/* Panneau étroit ou écran mobile : titre + statut, description, puis action.
+   Le seuil suit la largeur réelle du panneau, pas celle de la fenêtre. */
+@container (max-width: 34rem) {
+  .listGroup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .listGroup > .listRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "lead title aside"
+      "lead subtitle subtitle"
+      "lead action action";
+    align-items: start;
+    row-gap: 0.15rem;
+  }
+
+  .listGroup > .listRow > .listLeading {
+    grid-area: lead;
+    align-self: center;
+  }
+
+  .listGroup > .listRow > .listTitle {
+    grid-area: title;
+    padding-inline-end: 0.5rem;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .listGroup > .listRow > .listSubtitle {
+    grid-area: subtitle;
+    padding-inline-end: 0;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .listGroup > .listRow > .listAside {
+    grid-area: aside;
+    justify-self: end;
+    padding-inline-end: 0;
+  }
+
+  .listGroup > .listRow > .listTrailing {
+    grid-area: action;
+    justify-self: end;
+    margin-top: 0.35rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .kpiStrip,
+  .kpiStripHighlight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .kpiStrip,
+  .kpiStripHighlight {
+    grid-template-columns: 1fr;
+  }
+}

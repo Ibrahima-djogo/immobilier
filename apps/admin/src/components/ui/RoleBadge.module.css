@@ -1,0 +1,22 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.26rem 0.52rem;
+  border: 1px solid #c9d7ce;
+  border-radius: 999px;
+  color: #174b37;
+  background: #f2f7f3;
+  font-size: 0.62rem;
+  font-weight: 850;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.super {
+  border-color: #d4b056;
+  color: #7a5a10;
+  background: #fff7df;
+}

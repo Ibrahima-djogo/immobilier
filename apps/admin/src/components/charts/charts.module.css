@@ -1,0 +1,250 @@
+.card {
+  border: 1px solid var(--chart-border, #dfe5e1);
+  border-radius: 16px;
+  background: var(--chart-surface, #fff);
+  padding: 1.15rem 1.2rem 1.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.titleBlock {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: block;
+  margin: 0 0 0.25rem;
+  color: var(--chart-muted, #68726d);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.title {
+  margin: 0;
+  color: #1d2923;
+  font-family: var(--font-display, inherit);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.valueRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-top: 0.45rem;
+}
+
+.value {
+  color: #1d2923;
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.delta {
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+.deltaUp {
+  color: var(--chart-green, #285c45);
+}
+
+.deltaDown {
+  color: #9a3f39;
+}
+
+.description {
+  margin: 0.35rem 0 0;
+  color: var(--chart-muted, #68726d);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.action {
+  flex-shrink: 0;
+}
+
+.body {
+  min-width: 0;
+}
+
+/* ——— Line chart ——— */
+
+.lineWrap {
+  position: relative;
+  width: 100%;
+  min-height: 12rem;
+}
+
+.lineSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  max-height: 16rem;
+}
+
+
+.gridLine {
+  stroke: var(--chart-border, #dfe5e1);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.areaFill {
+  fill: color-mix(in srgb, var(--chart-green, #285c45) 14%, transparent);
+}
+
+.linePath {
+  fill: none;
+  stroke: var(--chart-green, #285c45);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dot {
+  fill: var(--chart-surface, #fff);
+  stroke: var(--chart-green, #285c45);
+  stroke-width: 2;
+}
+
+.dotHit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.axisLabel {
+  fill: var(--chart-muted, #68726d);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, calc(-100% - 10px));
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--chart-border, #dfe5e1);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(15, 61, 46, 0.1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltip strong {
+  display: block;
+  color: #1d2923;
+  font-size: 0.82rem;
+}
+
+.tooltip span {
+  color: var(--chart-muted, #68726d);
+  font-size: 0.72rem;
+}
+
+/* ——— Donut ——— */
+
+.donutLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.donutWrap {
+  position: relative;
+  width: min(100%, 11rem);
+  margin-inline: auto;
+  aspect-ratio: 1;
+}
+
+.donutSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.donutCenter strong {
+  color: #1d2923;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.donutCenter span {
+  margin-top: 0.25rem;
+  color: var(--chart-muted, #68726d);
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.legend {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.55rem;
+  align-items: center;
+  color: #1d2923;
+  font-size: 0.84rem;
+}
+
+.swatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.legendItem span {
+  color: var(--chart-muted, #68726d);
+}
+
+.legendItem strong {
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .donutLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .donutWrap {
+    width: min(100%, 10rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    flex-direction: column;
+  }
+}

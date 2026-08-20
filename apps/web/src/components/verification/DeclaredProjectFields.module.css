@@ -1,0 +1,322 @@
+.root {
+  --dpf-brand: var(--color-brand, #246448);
+  --dpf-brand-strong: #174b37;
+  --dpf-border: var(--color-border, #d3ddd6);
+  --dpf-ink: var(--color-ink, #17261f);
+  --dpf-muted: var(--color-muted, #5b6861);
+
+  display: grid;
+  gap: 0.9rem;
+}
+
+.block {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.question {
+  margin: 0;
+  color: var(--dpf-ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.hint {
+  margin: -0.15rem 0 0.1rem;
+  color: var(--dpf-muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.emptyHint {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px dashed var(--dpf-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--dpf-muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --- Types disponibles --------------------------------------------------- */
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.typeButton {
+  position: relative;
+  min-height: 54px;
+  min-width: 0;
+  padding: 0.4rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--dpf-border);
+  border-radius: 11px;
+  background: #ffffff;
+  color: var(--dpf-ink);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.typeButton > span:first-of-type {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.typeButton > svg {
+  flex-shrink: 0;
+  color: var(--dpf-muted);
+}
+
+.typeButton:hover {
+  border-color: color-mix(in srgb, var(--dpf-brand) 45%, var(--dpf-border));
+}
+
+.typeButtonActive {
+  border-color: var(--dpf-brand);
+  background: color-mix(in srgb, var(--dpf-brand) 8%, #ffffff);
+  color: var(--dpf-brand-strong);
+}
+
+.typeButtonActive > svg {
+  color: var(--dpf-brand);
+}
+
+.typeCheck {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--dpf-brand);
+}
+
+/* --- Vos biens déclarés -------------------------------------------------- */
+
+/* 2 cartes par ligne dès que la carte de formulaire est assez large,
+   que le panneau latéral soit présent ou non. */
+.intentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.65rem;
+}
+
+@container (min-width: 620px) {
+  .intentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Au-delà, 2 colonnes étireraient chaque carte à ~500px pour rien. */
+@container (min-width: 1020px) {
+  .intentGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.intentCard {
+  min-width: 0;
+  padding: 0.75rem 0.8rem 0.85rem;
+  display: grid;
+  gap: 0.6rem;
+  border: 1px solid var(--dpf-border);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.intentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.intentTitle {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--dpf-brand-strong);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.intentTitle > svg {
+  flex-shrink: 0;
+  color: var(--dpf-brand);
+}
+
+.removeButton {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0.2rem 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--dpf-muted);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.intentField {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.fieldLabel {
+  color: var(--dpf-muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.operationOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.optionButton {
+  position: relative;
+  min-height: 40px;
+  min-width: 0;
+  padding: 0 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid var(--dpf-border);
+  border-radius: 9px;
+  background: #ffffff;
+  color: var(--dpf-ink);
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.optionCheck {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--dpf-border);
+  border-radius: 4px;
+  background: #ffffff;
+  color: #ffffff;
+}
+
+.optionButton:hover {
+  border-color: color-mix(in srgb, var(--dpf-brand) 45%, var(--dpf-border));
+}
+
+.optionButtonActive {
+  border-color: var(--dpf-brand);
+  background: color-mix(in srgb, var(--dpf-brand) 8%, #ffffff);
+  color: var(--dpf-brand-strong);
+}
+
+.optionButtonActive .optionCheck {
+  border-color: var(--dpf-brand);
+  background: var(--dpf-brand);
+}
+
+.quantityOptions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--dpf-border);
+  border-radius: 9px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.segButton {
+  position: relative;
+  min-height: 38px;
+  min-width: 0;
+  padding: 0 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-left: 1px solid var(--dpf-border);
+  background: transparent;
+  color: var(--dpf-ink);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.segButton:first-child {
+  border-left: 0;
+}
+
+.segButton:hover {
+  background: color-mix(in srgb, var(--dpf-brand) 6%, #ffffff);
+}
+
+.segButtonActive {
+  color: #ffffff;
+  background: var(--dpf-brand);
+}
+
+.segButtonActive:hover {
+  background: var(--dpf-brand);
+}
+
+.typeButton:focus-visible,
+.optionButton:focus-visible,
+.segButton:focus-visible,
+.removeButton:focus-visible {
+  outline: 2px solid var(--dpf-brand);
+  outline-offset: 2px;
+}
+
+/* En dessous de 300px de conteneur, `auto-fit` retomberait sur 2 pistes
+   trop étroites : on force une colonne unique. */
+@container (max-width: 300px) {
+  .typeGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

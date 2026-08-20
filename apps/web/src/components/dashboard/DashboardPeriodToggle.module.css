@@ -1,0 +1,24 @@
+.periods {
+  padding: 3px;
+  border-radius: 8px;
+  display: flex;
+  background: #f2f7f3;
+}
+
+.periods button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text-body, #5b6861);
+  background: transparent;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.active {
+  color: #fff !important;
+  background: #174b37 !important;
+}

@@ -1,0 +1,280 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--text-dark);
+  background: var(--surface);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.headerInner {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  min-height: 4.1rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.headerNavLink {
+  min-height: 2.35rem;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-body);
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.headerNavLink:hover {
+  color: var(--forest-800);
+  background: var(--forest-50);
+}
+
+.body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  min-height: 0;
+}
+
+.visual {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--forest-950);
+}
+
+.visualImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(232, 191, 77, 0.16),
+      transparent 28%
+    ),
+    linear-gradient(
+      115deg,
+      rgba(7, 31, 23, 0.94) 0%,
+      rgba(7, 31, 23, 0.78) 55%,
+      rgba(7, 31, 23, 0.5) 100%
+    );
+}
+
+.visualContent {
+  position: relative;
+  z-index: 1;
+  width: min(30rem, calc(100% - 4.5rem));
+  margin: 0 auto;
+  padding: 4.5rem 0;
+  display: grid;
+  align-content: center;
+  min-height: 100%;
+}
+
+.visualBrand {
+  margin: 0 0 0.85rem;
+  color: var(--gold-400);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.visualTitle {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.visualTitle span {
+  display: block;
+  color: var(--gold-400);
+}
+
+.visualDesc {
+  max-width: 28rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.visualPerks {
+  margin: 2rem 0 0;
+  padding: 1.35rem 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.visualPerks li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+/*
+  Spécificité .visualPerks .perkIcon — ne pas laisser une règle
+  générique `.visualPerks span` écraser display:grid.
+*/
+.visualPerks .perkIcon {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2.35rem;
+  box-sizing: border-box;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+  color: var(--forest-950);
+  background: var(--gold-400);
+}
+
+.visualPerks .perkIcon > svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: static;
+  inset: auto;
+  transform: none;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.visualPerks strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+/* Description uniquement — ne cible PAS .perkIcon (aussi un span) */
+.visualPerks li > div > span {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.formColumn {
+  display: grid;
+  place-items: center;
+  padding: 2.5rem var(--gutter);
+  background: var(--white);
+}
+
+.formWrapper {
+  width: min(26.5rem, 100%);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+.footerInner {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  min-height: 3.5rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+}
+
+.footerInner p {
+  margin: 0;
+}
+
+.footerInner nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footerInner a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+.footerInner a:hover {
+  color: var(--forest-800);
+}
+
+@media (max-width: 980px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    min-height: 18rem;
+  }
+
+  .visualContent {
+    width: min(40rem, calc(100% - 2.5rem));
+    padding: 2.5rem 0;
+    min-height: auto;
+  }
+
+  .visualPerks {
+    display: none;
+  }
+
+  .formColumn {
+    padding: 2rem var(--gutter) 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerNavLink {
+    display: none;
+  }
+
+  .footerInner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 0.85rem;
+  }
+}

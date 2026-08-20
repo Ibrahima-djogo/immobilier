@@ -1,0 +1,156 @@
+.section {
+  --ltf-brand: var(--color-brand, #246448);
+  --ltf-border: var(--color-border, #d3ddd6);
+  --ltf-ink: var(--color-ink, #17261f);
+  --ltf-muted: var(--color-muted, #5b6861);
+
+  /* Les grilles internes s'adaptent à la largeur réelle du formulaire,
+     pas à celle de la fenêtre : pas de colonne vide en mode 2 colonnes. */
+  container-type: inline-size;
+
+  margin: 0;
+  padding: 0.95rem 1rem 1.05rem;
+  border: 1px solid var(--ltf-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.section > legend {
+  padding: 0 0.35rem;
+  color: var(--ltf-ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.hint {
+  margin: 0;
+  color: var(--ltf-muted);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem 0.9rem;
+  align-items: start;
+}
+
+@container (min-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fieldWide {
+    grid-column: 1 / -1;
+  }
+}
+
+.field {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  align-content: start;
+}
+
+.label {
+  color: var(--ltf-ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.field input[type="number"],
+.field input[type="text"],
+.field input[type="date"],
+.field input:not([type]),
+.field select,
+.standalone textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--ltf-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ltf-ink);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.standalone textarea:focus-visible {
+  outline: 2px solid var(--ltf-brand);
+  outline-offset: 1px;
+}
+
+.assist {
+  color: var(--ltf-muted);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.error {
+  color: #b3261e;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ltf-ink);
+  font-size: 0.74rem;
+  cursor: pointer;
+}
+
+.checkbox input {
+  accent-color: var(--ltf-brand);
+}
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.15rem;
+}
+
+.uses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.useButton {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--ltf-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ltf-ink);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.useButton:hover {
+  border-color: var(--ltf-brand);
+}
+
+.useButtonActive {
+  border-color: var(--ltf-brand);
+  background: var(--ltf-brand);
+  color: #fff;
+}
+
+.standalone {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}

@@ -1,0 +1,11 @@
+"use client";
+import {Eye,Heart,MessageSquareText,TrendingUp} from "lucide-react";
+import {useState} from "react";
+import AgencyShell from "@/components/agence/AgencyShell";
+import {agencyAds} from "@/lib/agence/demo-data";
+import styles from "./page.module.css";
+
+export default function AgencyStatisticsPage(){
+ const [period,setPeriod]=useState("30j");const totals={views:agencyAds.reduce((s,a)=>s+a.views,0),favorites:agencyAds.reduce((s,a)=>s+a.favorites,0),contacts:agencyAds.reduce((s,a)=>s+a.contacts,0)};
+ return <AgencyShell active="statistiques" eyebrow="Analyse professionnelle" title="Statistiques de l’agence" description="Analysez les performances du portefeuille de l’agence."><div className={styles.periods}>{["7j","30j","90j","12 mois"].map(p=><button key={p} className={period===p?styles.active:""} onClick={()=>setPeriod(p)}>{p}</button>)}</div><section className={styles.stats}><article className={styles.card}><Eye size={21}/><div><small>Vues</small><strong>{totals.views}</strong></div></article><article className={styles.card}><Heart size={21}/><div><small>Favoris</small><strong>{totals.favorites}</strong></div></article><article className={styles.card}><MessageSquareText size={21}/><div><small>Prospects</small><strong>{totals.contacts}</strong></div></article><article className={styles.card}><TrendingUp size={21}/><div><small>Taux de contact</small><strong>2,1 %</strong></div></article></section><div className={styles.grid}><section className={`${styles.card} ${styles.chartCard}`}><div className={styles.sectionTitle}><div><h2>Évolution des consultations</h2><p>Période : {period}</p></div></div><div className={styles.chart}>{[42,51,49,65,61,76,87,79,91,84,96,90].map((v,i)=><div key={i}><span style={{height:`${v}%`}}/><small>{i+1}</small></div>)}</div></section><section className={`${styles.card} ${styles.ranking}`}><div className={styles.sectionTitle}><div><h2>Annonces performantes</h2><p>Classement du portefeuille.</p></div></div>{[...agencyAds].sort((a,b)=>b.views-a.views).map((a,i)=><article key={a.id}><span>{i+1}</span><div><strong>{a.title}</strong><small>{a.views} vues · {a.contacts} prospects</small></div></article>)}</section></div></AgencyShell>
+}

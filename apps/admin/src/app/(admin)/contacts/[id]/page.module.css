@@ -1,0 +1,178 @@
+.card {
+  border: 1px solid #dce6df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+}
+
+.errorBanner {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid #ead8a8;
+  border-radius: 10px;
+  color: #9d6b10;
+  background: #fff7df;
+  font-size: 0.74rem;
+}
+
+.loading {
+  padding: 16px;
+  color: #647169;
+  font-size: 0.74rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.9fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.main {
+  padding: 22px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eyebrow {
+  color: #9f700d;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.head h2 {
+  margin: 6px 0 0;
+  color: #0f3527;
+  font-size: 1.05rem;
+}
+
+.head p {
+  margin: 4px 0 0;
+  color: #647169;
+  font-size: 0.68rem;
+}
+
+.block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #eef2ef;
+}
+
+.block h3 {
+  margin: 0 0 8px;
+  color: #0f3527;
+  font-size: 0.78rem;
+}
+
+.block > p {
+  margin: 0;
+  color: #476157;
+  font-size: 0.74rem;
+  line-height: 1.55;
+}
+
+.meta {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.meta li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #647169;
+  font-size: 0.68rem;
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.actionBtn {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid #174b37;
+  border-radius: 8px;
+  color: #fff;
+  background: #174b37;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.actionBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.side {
+  display: grid;
+  gap: 12px;
+}
+
+.panel {
+  padding: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.panel h3 {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0f3527;
+  font-size: 0.78rem;
+}
+
+.panel p {
+  margin: 0;
+  color: #476157;
+  font-size: 0.7rem;
+}
+
+.panel a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #174b37;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.role {
+  color: #7b8780 !important;
+  font-size: 0.64rem !important;
+}
+
+.hint {
+  margin-top: 4px !important;
+  color: #7b8780 !important;
+  font-size: 0.62rem !important;
+  line-height: 1.45;
+}
+
+.link {
+  margin-top: 6px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

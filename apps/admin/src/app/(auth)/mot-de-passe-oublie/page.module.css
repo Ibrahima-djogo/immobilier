@@ -1,0 +1,214 @@
+.page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1rem 2rem;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(15, 61, 46, 0.08), transparent 60%),
+    linear-gradient(180deg, #f8f6f0 0%, #ffffff 100%);
+}
+
+.card {
+  width: min(100%, 26.5rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  animation: rise 520ms var(--ease-out) both;
+}
+
+.brand {
+  margin-bottom: 1.35rem;
+}
+
+.brand strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: #0f3d2e;
+  line-height: 1.1;
+}
+
+.brand span {
+  display: inline-block;
+  margin-top: 0.3rem;
+  color: var(--gold-700);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: #0f3d2e;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem;
+  color: var(--text-body);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.input {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--text-dark);
+  font: inherit;
+  font-size: 0.95rem;
+  transition:
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: none;
+  border-color: #0f3d2e;
+  box-shadow: 0 0 0 3px rgba(15, 61, 46, 0.14);
+}
+
+.inputInvalid {
+  border-color: var(--danger);
+}
+
+.inputInvalid:focus,
+.inputInvalid:focus-visible {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(154, 63, 57, 0.16);
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid #0a2c21;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #0f3d2e 0%, #0a2c21 100%);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: linear-gradient(180deg, #174b37 0%, #0f3d2e 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(10, 44, 33, 0.22);
+}
+
+.submit:focus-visible {
+  outline: 2px solid #d5aa35;
+  outline-offset: 3px;
+}
+
+.submit:disabled {
+  opacity: 0.72;
+  cursor: wait;
+  transform: none;
+}
+
+.spinner {
+  animation: spin 0.85s linear infinite;
+}
+
+.message {
+  margin: 1.1rem 0 0;
+  padding: 0.85rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(213, 170, 53, 0.35);
+  background: rgba(213, 170, 53, 0.1);
+  color: var(--text-dark);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.back {
+  display: inline-flex;
+  margin-top: 1.35rem;
+  color: #0f3d2e;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.back:focus-visible {
+  outline: 2px solid #0f3d2e;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .spinner,
+  .submit {
+    animation: none !important;
+    transition: none !important;
+  }
+}

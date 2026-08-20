@@ -1,0 +1,20 @@
+{
+  "name": "immo-demo-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo API temporaire Demeure Guinée — remplacée par Spring Boot",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test:scopes": "node scripts/test-account-scopes.js",
+    "test:demo-scenarios": "node scripts/test-demo-scenarios.js",
+    "demo:scenarios": "node scripts/reset-demo-scenarios.js",
+    "demo:scenarios:reset": "node scripts/reset-demo-scenarios.js --reset"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

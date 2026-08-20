@@ -1,0 +1,24 @@
+.map {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  touch-action: none;
+  cursor: grab;
+  pointer-events: auto !important;
+}
+
+.map:global(.leaflet-dragging) {
+  cursor: grabbing;
+}
+
+/* Contre le max-width:100% global sur img — sinon tuiles / pan cassés */
+.map :global(.leaflet-tile-pane img),
+.map :global(.leaflet-marker-pane img),
+.map :global(.leaflet-shadow-pane img),
+.map :global(img.leaflet-tile) {
+  max-width: none !important;
+  max-height: none !important;
+  -webkit-user-drag: none !important;
+  user-select: none;
+  pointer-events: auto;
+}

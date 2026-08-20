@@ -1,0 +1,11 @@
+// src/app/layout.tsx
+// Ajoutez ces deux imports :
+import OfflineBanner from "@/components/system/OfflineBanner";
+import SkipLink from "@/components/system/SkipLink";
+
+// Placez-les au début de <body> :
+<body>
+  <SkipLink />
+  <OfflineBanner />
+  <div id="contenu-principal">{children}</div>
+</body>

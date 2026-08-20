@@ -1,0 +1,87 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { type ReactNode } from "react";
+
+import styles from "./PageHero.module.css";
+
+export type PageHeroVariant = "default" | "dashboard" | "compact" | "public";
+
+export type PageHeroProps = {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  /** Ligne secondaire discrète sous la description */
+  note?: string;
+  icon?: ReactNode;
+  backHref?: string;
+  backLabel?: string;
+  badge?: ReactNode;
+  actions?: ReactNode;
+  meta?: ReactNode;
+  children?: ReactNode;
+  variant?: PageHeroVariant;
+  className?: string;
+};
+
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+  note,
+  icon,
+  backHref,
+  backLabel = "Retour",
+  badge,
+  actions,
+  meta,
+  children,
+  variant = "default",
+  className,
+}: PageHeroProps) {
+  return (
+    <header
+      className={[styles.hero, styles[variant], className || ""]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div className={styles.decoration} aria-hidden="true">
+        <span className={styles.decorationCircle} />
+        <span className={styles.decorationCircleSoft} />
+        <span className={styles.decorationGrid} />
+        <span className={styles.decorationArc} />
+      </div>
+
+      <div className={styles.inner}>
+        {backHref ? (
+          <Link href={backHref} className={styles.back}>
+            <ArrowLeft size={15} aria-hidden="true" />
+            {backLabel}
+          </Link>
+        ) : null}
+
+        <div className={styles.row}>
+          <div className={styles.copy}>
+            <div className={styles.eyebrowRow}>
+              {icon ? <span className={styles.iconWrap}>{icon}</span> : null}
+              <p className={styles.eyebrow}>{eyebrow}</p>
+            </div>
+
+            <div className={styles.titleRow}>
+              <h1 className={styles.title}>{title}</h1>
+              {badge ? <div className={styles.badge}>{badge}</div> : null}
+            </div>
+
+            {description ? (
+              <p className={styles.description}>{description}</p>
+            ) : null}
+            {note ? <p className={styles.note}>{note}</p> : null}
+            {meta ? <div className={styles.meta}>{meta}</div> : null}
+            {children}
+          </div>
+
+          {actions ? <div className={styles.actions}>{actions}</div> : null}
+        </div>
+      </div>
+    </header>
+  );
+}

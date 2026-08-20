@@ -1,0 +1,438 @@
+.errorBanner {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid #ead8a8;
+  border-radius: 10px;
+  color: #9d6b10;
+  background: #fff7df;
+  font-size: 0.74rem;
+}
+
+.action {
+  min-height: 44px;
+  padding: 0 15px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #071f17;
+  background: #e8bf4d;
+  font-size: 0.71rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.action,
+.action:hover,
+.action:focus,
+.action:active,
+.action:visited {
+  text-decoration: none;
+}
+
+.action:focus-visible {
+  outline: 2px solid #174b37;
+  outline-offset: 2px;
+}
+
+.card {
+  border: 1px solid #dce6df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+  min-width: 0;
+  width: 100%;
+}
+
+.filters {
+  margin-bottom: 15px;
+  padding: 13px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 160px) minmax(110px, 140px) auto;
+  gap: 10px;
+  min-width: 0;
+}
+
+.filters > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.filters svg {
+  position: absolute;
+  left: 12px;
+  color: #246448;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #c9d7ce;
+  border-radius: 9px;
+  outline: none;
+  font-size: 0.72rem;
+}
+
+.filters input {
+  padding: 0 11px 0 38px;
+}
+
+.filters select {
+  padding: 0 9px;
+}
+
+.table {
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+
+.tableHead,
+.tableRow {
+  display: grid;
+  align-items: center;
+  column-gap: 20px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.tableHead {
+  padding: 10px 14px;
+  color: #7b8780;
+  background: #f2f7f3;
+  font-size: 0.61rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tableRow {
+  padding: 12px 14px;
+  border-top: 1px solid #dce6df;
+}
+
+.tableAds .tableHead,
+.tableAds .tableRow {
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(0, 1.1fr)
+    minmax(0, 0.85fr)
+    minmax(0, 0.7fr)
+    minmax(0, 0.95fr);
+}
+
+.tableProps .tableHead,
+.tableProps .tableRow {
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(0, 1fr)
+    minmax(0, 0.75fr)
+    minmax(0, 0.85fr)
+    minmax(0, 0.7fr)
+    minmax(0, 0.95fr);
+}
+
+.identityCell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.identityTitle {
+  display: block;
+  color: #0f3527;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.identityReference {
+  display: block;
+  color: #7b8780;
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.advertiserCell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.advertiserName {
+  color: #174b37;
+  font-size: 0.7rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.advertiserMeta {
+  color: #7b8780;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.plainCell {
+  min-width: 0;
+  color: #174b37;
+  font-size: 0.68rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.statusCell {
+  min-width: 0;
+}
+
+.riskCell {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #647169;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.riskCell svg {
+  flex-shrink: 0;
+  color: #9a3f39;
+}
+
+.actionsCell {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #c9d7ce;
+  border-radius: 8px;
+  color: #174b37;
+  background: #fff;
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.actionLink,
+.actionLink:hover,
+.actionLink:focus,
+.actionLink:active,
+.actionLink:visited {
+  text-decoration: none;
+}
+
+.actionLink:hover {
+  border-color: #2f7454;
+  background: #f2f7f3;
+}
+
+.actionLink:focus-visible {
+  outline: 2px solid #174b37;
+  outline-offset: 2px;
+}
+
+.iconAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #c9d7ce;
+  border-radius: 8px;
+  color: #174b37;
+  background: #fff;
+  text-decoration: none;
+}
+
+.iconAction,
+.iconAction:hover,
+.iconAction:focus,
+.iconAction:active,
+.iconAction:visited {
+  text-decoration: none;
+}
+
+.iconAction:hover {
+  border-color: #2f7454;
+  background: #f2f7f3;
+}
+
+.iconAction:focus-visible {
+  outline: 2px solid #174b37;
+  outline-offset: 2px;
+}
+
+.publishAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #071f17;
+  background: #e8bf4d;
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.publishAction,
+.publishAction:hover,
+.publishAction:focus,
+.publishAction:active,
+.publishAction:visited {
+  text-decoration: none;
+}
+
+.publishAction:focus-visible {
+  outline: 2px solid #174b37;
+  outline-offset: 2px;
+}
+
+.errorBanner {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid #ead8a8;
+  border-radius: 10px;
+  color: #9d6b10;
+  background: #fff7df;
+  font-size: 0.74rem;
+}
+
+.empty {
+  min-height: 220px;
+  padding: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.reset {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #c9d7ce;
+  border-radius: 9px;
+  background: #fff;
+  color: #174b37;
+  font-size: 0.66rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .tableAds .tableHead,
+  .tableAds .tableRow,
+  .tableProps .tableHead,
+  .tableProps .tableRow {
+    column-gap: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .table {
+    overflow-x: auto;
+  }
+
+  .tableAds .tableHead,
+  .tableAds .tableRow {
+    min-width: 720px;
+  }
+
+  .tableProps .tableHead,
+  .tableProps .tableRow {
+    min-width: 820px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .tableHead {
+    display: none;
+  }
+
+  .tableAds .tableRow {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "identity actions"
+      "advertiser status"
+      "risk risk";
+    row-gap: 10px;
+    column-gap: 12px;
+  }
+
+  .tableProps .tableRow {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "identity actions"
+      "advertiser status"
+      "type city";
+    row-gap: 10px;
+    column-gap: 12px;
+  }
+
+  .identityCell {
+    grid-area: identity;
+  }
+
+  .advertiserCell {
+    grid-area: advertiser;
+  }
+
+  .statusCell {
+    grid-area: status;
+    justify-self: end;
+  }
+
+  .riskCell {
+    grid-area: risk;
+  }
+
+  .typeCell {
+    grid-area: type;
+  }
+
+  .cityCell {
+    grid-area: city;
+    justify-self: end;
+  }
+
+  .actionsCell {
+    grid-area: actions;
+  }
+}
+
+@media (max-width: 650px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
