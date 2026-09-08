@@ -23,6 +23,7 @@ import { PropertyCard } from "@/components/property/PropertyCard";
 import { PropertyGallery } from "@/components/property/PropertyGallery";
 import { ContactAgentCard } from "@/components/property/ContactAgentCard";
 import { PropertyShareButton } from "@/components/property/PropertyShareButton";
+import { VerificationFonciereCard } from "@/components/verification-fonciere/VerificationFonciereCard";
 import { Button, InfoField, InfoGrid } from "@/components/ui";
 import { DEMO_API_URL } from "@/lib/demo-api/config";
 import {
@@ -38,6 +39,7 @@ import type {
   DemoListing,
 } from "@/lib/demo-api/listings";
 import type { Property } from "@/types/property";
+import { isFonciereTerrainEligible } from "@/lib/verification-fonciere/eligibility";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -120,6 +122,10 @@ export default async function PropertyDetailPage({ params }: PageProps) {
   ).split("\n\n");
 
   const isRental = property.operationValue === "location";
+  const showFonciereCard = isFonciereTerrainEligible(
+    listing.type || property.category,
+    property.categorySlug,
+  );
   const rentalRows = describeRentalTerms(property.rentalTerms, formatGnf);
 
   const characteristics = [
@@ -356,6 +362,28 @@ export default async function PropertyDetailPage({ params }: PageProps) {
                 </div>
               </div>
             </section>
+
+            {showFonciereCard ? (
+              <VerificationFonciereCard
+                property={{
+                  propertyId: listing.propertyId || property.id,
+                  propertyTitle: property.title,
+                  propertyType: "TERRAIN",
+                  location: property.location,
+                  reference: property.reference,
+                  image: property.image,
+                  slug: property.slug,
+                  ownerId: listing.ownerId || "",
+                  ownerName: listing.advertiser?.name || listing.owner || "",
+                  agencyId: listing.agencyId || "",
+                  agencyName:
+                    listing.advertiserType === "AGENCE"
+                      ? listing.advertiser?.name || listing.owner || ""
+                      : "",
+                  advertiserType: listing.advertiserType,
+                }}
+              />
+            ) : null}
           </div>
 
           <aside id="contact-agent" className={styles.sidebar}>

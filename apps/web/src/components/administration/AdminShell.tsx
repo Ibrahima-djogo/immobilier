@@ -12,6 +12,7 @@ import {
   Flag,
   Gauge,
   Home,
+  Landmark,
   ListChecks,
   LockKeyhole,
   LogOut,
@@ -33,6 +34,7 @@ export type AdminSection =
   | "dashboard"
   | "utilisateurs"
   | "roles"
+  | "verifications-foncieres"
   | "annonces"
   | "moderation"
   | "signalements"
@@ -56,6 +58,7 @@ const nav = [
   ["dashboard", "/administration", "Vue générale", Gauge],
   ["utilisateurs", "/administration/utilisateurs", "Utilisateurs", Users],
   ["roles", "/administration/demandes-role", "Demandes de rôle", ClipboardCheck],
+  ["verifications-foncieres", "/administration/verifications-foncieres", "Vérifications foncières", Landmark],
   ["annonces", "/administration/annonces", "Annonces", FileText],
   ["moderation", "/administration/moderation", "File de modération", ListChecks],
   ["signalements", "/administration/signalements", "Signalements", Flag],

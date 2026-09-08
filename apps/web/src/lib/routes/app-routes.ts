@@ -36,6 +36,11 @@ export const routes = {
     if (accessToken) params.set("acces", accessToken);
     return `/commande/confirmation?${params.toString()}`;
   },
+  fonciereRequest: "/verification-fonciere/demande",
+  myFonciereVerifications: "/mes-verifications-foncieres",
+  myFonciereVerification: (id: string) =>
+    `/mes-verifications-foncieres/${encodeURIComponent(id)}`,
+  listingsTerrains: "/annonces?contenu=terrains",
   about: "/a-propos",
   help: "/aide",
   contact: "/contact",
@@ -60,6 +65,9 @@ export const routes = {
   editOwnerAd: (id: string) => `/proprietaire/annonces/${id}/modifier`,
   newOwnerAd: "/proprietaire/annonces/nouvelle",
   ownerContacts: "/proprietaire/contacts",
+  ownerFonciereVerifications: "/proprietaire/verifications-foncieres",
+  ownerFonciereVerification: (id: string) =>
+    `/proprietaire/verifications-foncieres/${encodeURIComponent(id)}`,
   ownerFavorites: "/proprietaire/favoris",
   agencyDashboard: "/agence/tableau-de-bord",
   agencyProperties: "/agence/biens",
@@ -72,6 +80,9 @@ export const routes = {
   newAgencyAd: "/agence/annonces/nouvelle",
   agencyProspects: "/agence/prospects",
   agencyProspect: (id: string) => `/agence/prospects/${id}`,
+  agencyFonciereVerifications: "/agence/verifications-foncieres",
+  agencyFonciereVerification: (id: string) =>
+    `/agence/verifications-foncieres/${encodeURIComponent(id)}`,
   admin: "/administration",
   adminUsers: "/administration/utilisateurs",
   adminUser: (id: string) => `/administration/utilisateurs/${id}`,
@@ -81,6 +92,9 @@ export const routes = {
   adminReport: (id: string) => `/administration/signalements/${id}`,
   adminRoleRequests: "/administration/demandes-role",
   adminRoleRequest: (id: string) => `/administration/demandes-role/${id}`,
+  adminFonciereVerifications: "/administration/verifications-foncieres",
+  adminFonciereVerification: (id: string) =>
+    `/administration/verifications-foncieres/${encodeURIComponent(id)}`,
   adminAdmins: "/administration/administrateurs",
 } as const;
 
@@ -111,6 +125,12 @@ export const appRoutes: RouteDefinition[] = [
   {
     path: "/commande/paiement",
     label: "Paiement de commande",
+    public: true,
+    indexable: false,
+  },
+  {
+    path: "/verification-fonciere/demande",
+    label: "Demande de vérification foncière",
     public: true,
     indexable: false,
   },
@@ -160,8 +180,22 @@ export const appRoutes: RouteDefinition[] = [
     roles: ["UTILISATEUR", "PROPRIETAIRE", "AGENCE", "ADMIN", "SUPER_ADMIN"],
   },
   {
+    path: "/mes-verifications-foncieres",
+    label: "Mes vérifications foncières",
+    public: false,
+    indexable: false,
+    roles: ["UTILISATEUR", "PROPRIETAIRE", "AGENCE", "ADMIN", "SUPER_ADMIN"],
+  },
+  {
     path: "/proprietaire/tableau-de-bord",
     label: "Espace Propriétaire",
+    public: false,
+    indexable: false,
+    roles: ["PROPRIETAIRE", "SUPER_ADMIN"],
+  },
+  {
+    path: "/proprietaire/verifications-foncieres",
+    label: "Mes vérifications foncières",
     public: false,
     indexable: false,
     roles: ["PROPRIETAIRE", "SUPER_ADMIN"],
@@ -174,8 +208,22 @@ export const appRoutes: RouteDefinition[] = [
     roles: ["AGENCE", "SUPER_ADMIN"],
   },
   {
+    path: "/agence/verifications-foncieres",
+    label: "Vérifications foncières agence",
+    public: false,
+    indexable: false,
+    roles: ["AGENCE", "SUPER_ADMIN"],
+  },
+  {
     path: "/administration",
     label: "Administration",
+    public: false,
+    indexable: false,
+    roles: ["ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    path: "/administration/verifications-foncieres",
+    label: "Vérifications foncières",
     public: false,
     indexable: false,
     roles: ["ADMIN", "SUPER_ADMIN"],

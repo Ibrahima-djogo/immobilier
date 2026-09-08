@@ -9,6 +9,7 @@ import {
   Building2,
   FileText,
   Home,
+  Landmark,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -34,6 +35,7 @@ export type AgencySection =
   | "biens"
   | "annonces"
   | "prospects"
+  | "verifications-foncieres"
   | "statistiques"
   | "profil"
   | "activite";
@@ -51,6 +53,12 @@ const links = [
   ["dashboard", "/agence/tableau-de-bord", "Tableau de bord", LayoutDashboard],
   ["biens", "/agence/biens", "Portefeuille de biens", Building2],
   ["annonces", "/agence/annonces", "Annonces", FileText],
+  [
+    "verifications-foncieres",
+    "/agence/verifications-foncieres",
+    "Vérifications foncières",
+    Landmark,
+  ],
   ["prospects", "/agence/prospects", "Prospects", MessageSquareText],
   ["statistiques", "/agence/statistiques", "Statistiques", BarChart3],
   ["profil", "/agence/profil-professionnel", "Profil professionnel", Store],

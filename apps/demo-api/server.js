@@ -46,6 +46,10 @@ const {
   ensureMaterialCollections,
   registerMaterialRoutes,
 } = require("./materials");
+const {
+  ensureFonciereCollections,
+  registerFonciereRoutes,
+} = require("./fonciere");
 const { readAuthToken, resolveAuthenticatedUser } = require("./auth-request");
 
 function httpsGetJson(url) {
@@ -749,6 +753,7 @@ function readDb() {
     changed = true;
   }
   if (ensureMaterialCollections(db)) changed = true;
+  if (ensureFonciereCollections(db)) changed = true;
   if (changed) writeDb(db);
   return db;
 }
@@ -4420,6 +4425,7 @@ app.patch(
 );
 
 registerMaterialRoutes(app, { readDb, writeDb });
+registerFonciereRoutes(app, { readDb, writeDb });
 
 app.get("/meta/verification-rules", (_req, res) => {
   res.json({

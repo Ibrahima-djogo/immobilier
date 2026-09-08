@@ -7,6 +7,7 @@ import {
   ChevronRight,
   FileSpreadsheet,
   Heart,
+  Landmark,
   HelpCircle,
   Home,
   LockKeyhole,
@@ -42,6 +43,7 @@ export type UserSection =
   | "panier"
   | "favoris"
   | "demandes"
+  | "verifications-foncieres"
   | "notifications"
   | "demande-role"
   | "aide";
@@ -98,6 +100,12 @@ const spaceNav: NavItem[] = [
     href: "/demandes-contact",
     label: "Mes demandes",
     icon: MessageSquareText,
+  },
+  {
+    key: "verifications-foncieres",
+    href: routes.myFonciereVerifications,
+    label: "Mes vérifications foncières",
+    icon: Landmark,
   },
 ];
 

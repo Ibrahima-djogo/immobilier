@@ -1,0 +1,167 @@
+.stack {
+  display: grid;
+  gap: 14px;
+}
+
+.status,
+.empty {
+  margin: 0 0 16px;
+  padding: 16px 18px;
+  border: 1px solid #dce6df;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(7, 31, 23, 0.07);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #5b6861;
+}
+
+.empty {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.empty h2 {
+  margin: 0;
+  color: #0f3527;
+  font-size: 0.95rem;
+}
+
+.empty p {
+  margin: 0;
+}
+
+.count {
+  margin: 0 0 14px;
+  color: #647169;
+  font-size: 0.7rem;
+}
+
+.count strong {
+  color: #071f17;
+  font-weight: 800;
+}
+
+.list {
+  display: grid;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.header strong {
+  color: #071f17;
+  font-size: 1.1rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.property {
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.photo,
+.photoFallback {
+  width: 120px;
+  height: 92px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #e3eee7;
+}
+
+.photoFallback {
+  display: grid;
+  place-items: center;
+  color: #174b37;
+}
+
+.propertyTitle {
+  margin: 0 0 6px;
+  color: #071f17;
+  font-size: 1rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.propertyMeta {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: #5b6861;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.propertyMeta span {
+  overflow-wrap: anywhere;
+}
+
+.message {
+  margin: 12px 0 0;
+  color: #17261f;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.notice {
+  margin: 12px 0 0;
+  color: #7b8780;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.cardTitle {
+  margin: 0 0 12px;
+  color: #0f3527;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.back {
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #246448;
+  font-size: 0.67rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .property {
+    grid-template-columns: 1fr;
+  }
+
+  .photo,
+  .photoFallback {
+    width: 100%;
+    height: 168px;
+  }
+}
+
+@media (max-width: 430px) {
+  .actions :global(button) {
+    width: 100%;
+  }
+}

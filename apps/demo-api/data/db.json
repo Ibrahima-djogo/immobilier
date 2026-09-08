@@ -80788,5 +80788,431 @@
       "updatedAt": "2026-09-03T14:54:56.170Z",
       "createdBy": "admin"
     }
+  ],
+  "fonciereVerifications": [
+    {
+      "id": "vf-1788887549512",
+      "reference": "DG-VF-1788887549512",
+      "propertyId": "prop-other-agency",
+      "propertyTitle": "Terrain autre agence",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-filter-other",
+      "requesterName": "Client Autre",
+      "ownerId": "",
+      "ownerName": "Demeure Demo Agence",
+      "propertyHolderType": "AGENCY",
+      "propertyHolderId": "ag-demo-1",
+      "propertyHolderName": "Demeure Demo Agence",
+      "recipientType": "AGENCY",
+      "recipientId": "ag-demo-1",
+      "recipientName": "Demeure Demo Agence",
+      "agencyId": "ag-demo-1",
+      "agencyName": "Demeure Demo Agence",
+      "requestMode": "ORIENTATION_SERVICE",
+      "status": "DRAFT",
+      "createdAt": "2026-09-08T17:12:29.512Z",
+      "updatedAt": "2026-09-08T17:12:29.512Z",
+      "requester": {
+        "userId": "u-filter-other",
+        "fullName": "Client Autre",
+        "phone": "+224 620 33 33 33",
+        "email": "client-autre@example.com",
+        "city": "Conakry",
+        "message": "Demande 3 autre agence"
+      },
+      "documents": [],
+      "history": [
+        {
+          "id": "vfh-1788887549512",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T17:12:29.512Z",
+          "createdBy": "u-filter-other"
+        }
+      ],
+      "propertyLocation": "",
+      "propertyImage": "",
+      "propertySlug": "",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": ""
+    },
+    {
+      "id": "vf-1788887549248",
+      "reference": "DG-VF-1788887549248",
+      "propertyId": "prop-1786455906258",
+      "propertyTitle": "Terrain a vendre a Hamdallaye",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-filter-habitat",
+      "requesterName": "Client Habitat",
+      "ownerId": "",
+      "ownerName": "Habitat Conakry",
+      "propertyHolderType": "AGENCY",
+      "propertyHolderId": "ag1",
+      "propertyHolderName": "Habitat Conakry",
+      "recipientType": "AGENCY",
+      "recipientId": "ag1",
+      "recipientName": "Habitat Conakry",
+      "agencyId": "ag1",
+      "agencyName": "Habitat Conakry",
+      "requestMode": "ACCOMPAGNEMENT_DEMEURE",
+      "status": "DRAFT",
+      "createdAt": "2026-09-08T17:12:29.248Z",
+      "updatedAt": "2026-09-08T17:12:29.248Z",
+      "requester": {
+        "userId": "u-filter-habitat",
+        "fullName": "Client Habitat",
+        "phone": "+224 620 22 22 22",
+        "email": "client-habitat@example.com",
+        "city": "Conakry",
+        "message": "Demande 2 Habitat Conakry"
+      },
+      "documents": [],
+      "history": [
+        {
+          "id": "vfh-1788887549248",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T17:12:29.248Z",
+          "createdBy": "u-filter-habitat"
+        }
+      ],
+      "propertyLocation": "",
+      "propertyImage": "",
+      "propertySlug": "",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": ""
+    },
+    {
+      "id": "vf-1788887548985",
+      "reference": "DG-VF-1788887548985",
+      "propertyId": "prop-1788260777403",
+      "propertyTitle": "terrain a louer",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-filter-owner",
+      "requesterName": "Client A",
+      "ownerId": "u1",
+      "ownerName": "Mamadou Diallo",
+      "propertyHolderType": "OWNER",
+      "propertyHolderId": "u1",
+      "propertyHolderName": "Mamadou Diallo",
+      "recipientType": "OWNER",
+      "recipientId": "u1",
+      "recipientName": "Mamadou Diallo",
+      "agencyId": "",
+      "agencyName": "",
+      "requestMode": "ORIENTATION_SERVICE",
+      "status": "DRAFT",
+      "createdAt": "2026-09-08T17:12:28.985Z",
+      "updatedAt": "2026-09-08T17:12:28.985Z",
+      "requester": {
+        "userId": "u-filter-owner",
+        "fullName": "Client A",
+        "phone": "+224 620 11 11 11",
+        "email": "client-a@example.com",
+        "city": "Conakry",
+        "message": "Demande 1 propriétaire A"
+      },
+      "owner": {
+        "ownerId": "u1",
+        "name": "Mamadou Diallo",
+        "phone": "",
+        "email": "",
+        "responseStatus": "PENDING"
+      },
+      "documents": [],
+      "history": [
+        {
+          "id": "vfh-1788887548985",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T17:12:28.985Z",
+          "createdBy": "u-filter-owner"
+        }
+      ],
+      "propertyLocation": "",
+      "propertyImage": "",
+      "propertySlug": "",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": ""
+    },
+    {
+      "id": "vf-1788885667909",
+      "reference": "DG-VF-1788885667909",
+      "propertyId": "prop-1786455906258",
+      "propertyTitle": "Terrain a vendre a Hamdallaye",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-client-agency",
+      "requesterName": "Ibrahima Bah",
+      "ownerId": "",
+      "ownerName": "Habitat Conakry",
+      "propertyHolderType": "AGENCY",
+      "propertyHolderId": "ag1",
+      "propertyHolderName": "Habitat Conakry",
+      "agencyId": "ag1",
+      "agencyName": "Habitat Conakry",
+      "requestMode": "ACCOMPAGNEMENT_DEMEURE",
+      "status": "OWNER_ACCEPTED",
+      "createdAt": "2026-09-08T16:41:07.909Z",
+      "updatedAt": "2026-09-08T16:41:08.047Z",
+      "requester": {
+        "userId": "u-client-agency",
+        "fullName": "Ibrahima Bah",
+        "phone": "+224 620 33 44 55",
+        "email": "ibrahima@example.com",
+        "city": "Conakry",
+        "message": "Cas agence Habitat Conakry"
+      },
+      "documents": [],
+      "history": [
+        {
+          "id": "vfh-1788885667909",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T16:41:07.909Z",
+          "createdBy": "u-client-agency"
+        },
+        {
+          "id": "vfh-1788885668047",
+          "status": "OWNER_ACCEPTED",
+          "message": "Le propriétaire a accepté la demande",
+          "createdAt": "2026-09-08T16:41:08.047Z",
+          "createdBy": "ag1"
+        }
+      ],
+      "propertyLocation": "",
+      "propertyImage": "",
+      "propertySlug": "",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": "",
+      "owner": {
+        "ownerId": "ag1",
+        "name": "Habitat Conakry",
+        "phone": "",
+        "email": "",
+        "responseStatus": "ACCEPTED"
+      },
+      "recipientType": "AGENCY",
+      "recipientId": "ag1",
+      "recipientName": "Habitat Conakry"
+    },
+    {
+      "id": "vf-1788885667828",
+      "reference": "DG-VF-1788885667828",
+      "propertyId": "prop-1788260777403",
+      "propertyTitle": "terrain a louer",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-client-owner",
+      "requesterName": "Fatoumata Sylla",
+      "ownerId": "u1",
+      "ownerName": "Mamadou Diallo",
+      "propertyHolderType": "OWNER",
+      "propertyHolderId": "u1",
+      "propertyHolderName": "Mamadou Diallo",
+      "agencyId": "",
+      "agencyName": "",
+      "requestMode": "ORIENTATION_SERVICE",
+      "status": "DRAFT",
+      "createdAt": "2026-09-08T16:41:07.828Z",
+      "updatedAt": "2026-09-08T16:41:07.828Z",
+      "requester": {
+        "userId": "u-client-owner",
+        "fullName": "Fatoumata Sylla",
+        "phone": "+224 620 00 11 22",
+        "email": "fatou@example.com",
+        "city": "Conakry",
+        "message": "Cas propriétaire"
+      },
+      "owner": {
+        "ownerId": "u1",
+        "name": "Mamadou Diallo",
+        "phone": "",
+        "email": "",
+        "responseStatus": "PENDING"
+      },
+      "documents": [],
+      "history": [
+        {
+          "id": "vfh-1788885667828",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T16:41:07.828Z",
+          "createdBy": "u-client-owner"
+        }
+      ],
+      "propertyLocation": "",
+      "propertyImage": "",
+      "propertySlug": "",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": "",
+      "recipientType": "OWNER",
+      "recipientId": "u1",
+      "recipientName": "Mamadou Diallo"
+    },
+    {
+      "id": "vf-1788882111881",
+      "reference": "DG-VF-1788882111881",
+      "propertyId": "prop-1786455906258",
+      "propertyTitle": "Terrain a vendre a Hamdallaye",
+      "propertyType": "TERRAIN",
+      "requesterId": "user-demo-1",
+      "requesterName": "Awa Diallo",
+      "ownerId": "",
+      "ownerName": "Habitat Conakry",
+      "requestMode": "ACCOMPAGNEMENT_DEMEURE",
+      "status": "OFFICIAL_VERIFIED",
+      "createdAt": "2026-09-08T15:41:51.881Z",
+      "updatedAt": "2026-09-08T15:42:35.974Z",
+      "requester": {
+        "userId": "user-demo-1",
+        "fullName": "Awa Diallo",
+        "phone": "+224 620 11 11 11",
+        "email": "user1@demo.demeureguinee.com",
+        "city": "conakry",
+        "message": "trent"
+      },
+      "documents": [
+        {
+          "id": "vfd-1788882150429",
+          "name": "Pièces complémentaires",
+          "type": "Demande administrative",
+          "url": "",
+          "status": "REQUESTED",
+          "uploadedAt": ""
+        }
+      ],
+      "history": [
+        {
+          "id": "vfh-1788882111881",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T15:41:51.881Z",
+          "createdBy": "user-demo-1"
+        },
+        {
+          "id": "vfh-1788882150429",
+          "status": "DOCUMENTS_REQUIRED",
+          "message": "Documents demandés par l’administration.",
+          "createdAt": "2026-09-08T15:42:30.429Z",
+          "createdBy": "admin"
+        },
+        {
+          "id": "vfh-1788882152893",
+          "status": "READY_FOR_SUBMISSION",
+          "message": "Dossier préparé pour transmission.",
+          "createdAt": "2026-09-08T15:42:32.893Z",
+          "createdBy": "admin"
+        },
+        {
+          "id": "vfh-1788882154591",
+          "status": "SUBMITTED",
+          "message": "Dossier marqué comme transmis au service compétent.",
+          "createdAt": "2026-09-08T15:42:34.591Z",
+          "createdBy": "admin"
+        },
+        {
+          "id": "vfh-1788882155974",
+          "status": "OFFICIAL_VERIFIED",
+          "message": "Résultat officiel disponible.",
+          "createdAt": "2026-09-08T15:42:35.974Z",
+          "createdBy": "admin"
+        }
+      ],
+      "propertyLocation": "Hamdallaye 2, Ratoma, Conakry, Guinée",
+      "propertyImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85",
+      "propertySlug": "terrain-a-vendre-a-hamdallaye",
+      "propertyReference": "DG-A-2026-8523",
+      "assignedAgentName": "",
+      "internalNotes": "",
+      "propertyHolderType": "AGENCY",
+      "propertyHolderId": "ag1",
+      "propertyHolderName": "Habitat Conakry",
+      "agencyId": "ag1",
+      "agencyName": "Habitat Conakry",
+      "recipientType": "AGENCY",
+      "recipientId": "ag1",
+      "recipientName": "Habitat Conakry"
+    },
+    {
+      "id": "vf-1788881704402",
+      "reference": "DG-VF-1788881704402",
+      "propertyId": "prop-1788260777403",
+      "propertyTitle": "terrain a louer",
+      "propertyType": "TERRAIN",
+      "requesterId": "u-client-test",
+      "requesterName": "Fatoumata Sylla",
+      "ownerId": "u1",
+      "ownerName": "Mamadou Diallo",
+      "requestMode": "ORIENTATION_SERVICE",
+      "status": "DOCUMENTS_REQUIRED",
+      "createdAt": "2026-09-08T15:35:04.402Z",
+      "updatedAt": "2026-09-08T15:35:04.676Z",
+      "requester": {
+        "userId": "u-client-test",
+        "fullName": "Fatoumata Sylla",
+        "phone": "+224 620 00 11 22",
+        "email": "fatou@example.com",
+        "city": "Conakry",
+        "message": "Demande de test"
+      },
+      "owner": {
+        "ownerId": "u1",
+        "name": "Mamadou Diallo",
+        "phone": "",
+        "email": "",
+        "responseStatus": "ACCEPTED"
+      },
+      "documents": [
+        {
+          "id": "vfd-1788881704676",
+          "name": "Pièces complémentaires",
+          "type": "Demande administrative",
+          "url": "",
+          "status": "REQUESTED",
+          "uploadedAt": ""
+        }
+      ],
+      "history": [
+        {
+          "id": "vfh-1788881704402",
+          "status": "DRAFT",
+          "message": "Brouillon créé.",
+          "createdAt": "2026-09-08T15:35:04.402Z",
+          "createdBy": "u-client-test"
+        },
+        {
+          "id": "vfh-1788881704580",
+          "status": "OWNER_ACCEPTED",
+          "message": "Le propriétaire a accepté la demande",
+          "createdAt": "2026-09-08T15:35:04.580Z",
+          "createdBy": "u1"
+        },
+        {
+          "id": "vfh-1788881704676",
+          "status": "DOCUMENTS_REQUIRED",
+          "message": "Documents demandés par l’administration.",
+          "createdAt": "2026-09-08T15:35:04.676Z",
+          "createdBy": "admin"
+        }
+      ],
+      "propertyLocation": "Kipé, Ratoma, Conakry",
+      "propertyImage": "",
+      "propertySlug": "terrain-a-louer",
+      "propertyReference": "",
+      "assignedAgentName": "",
+      "internalNotes": "",
+      "propertyHolderType": "OWNER",
+      "propertyHolderId": "u1",
+      "propertyHolderName": "Mamadou Diallo",
+      "agencyId": "",
+      "agencyName": "",
+      "recipientType": "OWNER",
+      "recipientId": "u1",
+      "recipientName": "Mamadou Diallo"
+    }
   ]
 }

@@ -28,6 +28,9 @@ export const routes = {
   contact: (id: string) => `/contacts/${id}`,
   roleRequests: "/demandes-role",
   roleRequest: (id: string) => `/demandes-role/${id}`,
+  fonciereVerifications: "/administration/verifications-foncieres",
+  fonciereVerification: (id: string) =>
+    `/administration/verifications-foncieres/${encodeURIComponent(id)}`,
   moderation: "/moderation",
   contents: "/contenus",
   audit: "/audit",
@@ -74,6 +77,7 @@ export const adminProtectedPrefixes = [
   "/signalements",
   "/contacts",
   "/demandes-role",
+  "/administration/verifications-foncieres",
   "/moderation",
   "/contenus",
   "/audit",

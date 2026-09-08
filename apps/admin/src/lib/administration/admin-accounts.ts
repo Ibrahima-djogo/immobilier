@@ -43,6 +43,7 @@ export type AdminSection =
   | "dashboard"
   | "utilisateurs"
   | "roles"
+  | "verifications-foncieres"
   | "annonces"
   | "biens"
   | "moderation"
@@ -124,6 +125,11 @@ export const SECTION_PERMISSIONS: Record<AdminSection, string[] | "any"> = {
   "mon-compte": "any",
   utilisateurs: ["UTILISATEURS_LECTURE", "UTILISATEURS_ECRITURE"],
   roles: ["VERIFICATIONS", "UTILISATEURS_LECTURE", "UTILISATEURS_ECRITURE"],
+  "verifications-foncieres": [
+    "VERIFICATIONS",
+    "UTILISATEURS_LECTURE",
+    "UTILISATEURS_ECRITURE",
+  ],
   annonces: [
     "ANNONCES",
     "ANNONCES_ECRITURE",

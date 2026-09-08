@@ -10,6 +10,7 @@ import {
   FileText,
   Heart,
   Home,
+  Landmark,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -56,6 +57,12 @@ const navigation = [
     href: "/proprietaire/contacts",
     label: "Contacts reçus",
     icon: MessageSquareText,
+  },
+  {
+    key: "verifications-foncieres" as const,
+    href: routes.ownerFonciereVerifications,
+    label: "Mes vérifications foncières",
+    icon: Landmark,
   },
   {
     key: "statistiques" as const,
