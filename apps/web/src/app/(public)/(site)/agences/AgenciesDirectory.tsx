@@ -11,6 +11,7 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import { Chip } from "@/components/ui";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { publicAgencies } from "@/lib/public/demo-data";
@@ -56,44 +57,35 @@ export default function AgenciesDirectory() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.intro}>
-        <div className={styles.container}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Accueil</Link>
-            <span>/</span>
-            <strong>Agences</strong>
-          </p>
-
-          <div className={styles.introGrid}>
-            <div>
-              <p className={styles.eyebrow}>Professionnels vérifiés</p>
-              <h1>Agences immobilières de confiance</h1>
-              <p className={styles.lead}>
-                Un annuaire clair des partenaires validés sur Demeure Guinée —
-                pour identifier un interlocuteur sérieux avant de contacter ou
-                visiter.
-              </p>
-            </div>
-
-            <ul className={styles.trustStrip}>
-              <li>
-                <ShieldCheck size={18} aria-hidden="true" />
-                <div>
-                  <strong>Rôles validés</strong>
-                  <span>Profils professionnels contrôlés</span>
-                </div>
-              </li>
-              <li>
-                <Building2 size={18} aria-hidden="true" />
-                <div>
-                  <strong>{publicAgencies.length} agences</strong>
-                  <span>Présentes dans l’annuaire</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <form
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { label: "Agences" },
+        ]}
+        eyebrow="Professionnels vérifiés"
+        title="Agences immobilières de confiance"
+        description="Un annuaire clair des partenaires validés sur Demeure Guinée — pour identifier un interlocuteur sérieux avant de contacter ou visiter."
+        containerClassName={styles.container}
+        aside={
+          <ul className={styles.trustStrip}>
+            <li>
+              <ShieldCheck size={18} aria-hidden="true" />
+              <div>
+                <strong>Rôles validés</strong>
+                <span>Profils professionnels contrôlés</span>
+              </div>
+            </li>
+            <li>
+              <Building2 size={18} aria-hidden="true" />
+              <div>
+                <strong>{publicAgencies.length} agences</strong>
+                <span>Présentes dans l’annuaire</span>
+              </div>
+            </li>
+          </ul>
+        }
+      >
+        <form
             className={styles.searchBar}
             onSubmit={(event) => event.preventDefault()}
             role="search"
@@ -151,8 +143,7 @@ export default function AgenciesDirectory() {
               {verifiedOnly ? <Chip>Vérifiées uniquement</Chip> : null}
             </div>
           )}
-        </div>
-      </section>
+      </PublicPageHeader>
 
       <section className={styles.listing}>
         <div className={styles.container}>
@@ -179,7 +170,7 @@ export default function AgenciesDirectory() {
                         </span>
                       ) : null}
                     </div>
-                    <p>
+                    <p className={styles.cardLocation}>
                       <MapPin size={14} aria-hidden="true" />
                       {agency.address}, {agency.city}
                     </p>

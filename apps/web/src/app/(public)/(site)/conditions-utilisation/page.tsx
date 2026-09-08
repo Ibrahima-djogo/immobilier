@@ -6,7 +6,7 @@ export default function Page() {
       eyebrow="Cadre d’utilisation"
       title="Conditions d’utilisation"
       introduction="Ces conditions définissent les règles générales d’accès et d’utilisation de la plateforme Demeure Guinée."
-      version="Version front-end 1.0 — 1er août 2026"
+      version="Version 1.0 — 1er août 2026"
       sections={[
         {
                 "title": "Objet de la plateforme",

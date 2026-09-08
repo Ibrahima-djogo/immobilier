@@ -58,7 +58,7 @@ export default function AdminAdsPage() {
       eyebrow="Modération"
       title="Annonces"
       description="Gérez et contrôlez les publications soumises à Demeure Guinée."
-      note="Annonces synchronisées via la Demo API partagée."
+      note="Annonces synchronisées."
       icon={FileText}
       stats={[
         { label: "Annonces", value: ads.length },
@@ -75,7 +75,7 @@ export default function AdminAdsPage() {
     >
       {error ? (
         <p className={styles.errorBanner} role="alert">
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 

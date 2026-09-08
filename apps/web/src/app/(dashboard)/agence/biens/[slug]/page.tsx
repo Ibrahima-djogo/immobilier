@@ -58,7 +58,7 @@ export default function AgencyPropertyDetailPage() {
           setError(
             err instanceof Error
               ? err.message
-              : "Impossible de charger le bien (Demo API).",
+              : "Impossible de charger le bien.",
           );
         }
       } finally {

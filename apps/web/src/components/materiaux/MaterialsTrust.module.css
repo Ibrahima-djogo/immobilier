@@ -1,0 +1,60 @@
+.section {
+  padding: 0.4rem 0 0.2rem;
+}
+
+.section h2 {
+  margin: 0 0 1.1rem;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+.card {
+  padding: 1.15rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-bottom: 0.7rem;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--forest-800);
+  background: var(--gold-100);
+}
+
+.card h3 {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 0.95rem;
+}
+
+.card p {
+  margin: 0.4rem 0 0;
+  color: var(--text-body);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 761px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

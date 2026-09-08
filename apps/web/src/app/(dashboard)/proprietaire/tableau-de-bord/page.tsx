@@ -21,6 +21,7 @@ import {
   KpiStrip,
 } from "@/components/dashboard";
 import OwnerPageHeader from "@/components/proprietaire/OwnerPageHeader";
+import { DashboardMaterialOrders } from "@/app/(dashboard)/tableau-de-bord/DashboardMaterialOrders";
 import { Button } from "@/components/ui";
 import { ownerViews30d } from "@/lib/demo-charts";
 import { useOwnerStorage } from "@/hooks/useOwnerStorage";
@@ -91,6 +92,8 @@ export default function OwnerDashboardPage() {
           },
         ]}
       />
+
+      <DashboardMaterialOrders />
 
       <div className={styles.grid}>
         <ChartCard

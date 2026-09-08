@@ -141,8 +141,7 @@ export default async function AgencyPublicProfilePage({ params }: PageProps) {
 
                 {matchedListings.length === 0 ? (
                   <p className={styles.listingsNote}>
-                    Sélection illustrative issue du catalogue de démonstration.
-                    Les annonces liées à l’agence seront branchées via l’API.
+                    Aucune annonce n’est actuellement publiée par cette agence.
                   </p>
                 ) : null}
               </section>

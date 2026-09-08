@@ -3,86 +3,85 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Heart, MapPin } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useMemo } from "react";
 
-import { DemoToast } from "@/components/ui";
 import { useFavorites } from "@/context/FavoritesContext";
+import { useDemoListings } from "@/hooks/useDemoListings";
+import { mapDemoListingToProperty } from "@/lib/demo-api/mapToProperty";
 import { skipImageOptimization } from "@/lib/imageOptimization";
 import { routes } from "@/lib/routes/app-routes";
 import styles from "./page.module.css";
 
-type FavoriteProperty = {
-  slug: string;
-  title: string;
-  location: string;
-  price: string;
-  image: string;
-};
+export function DashboardRecentFavorites() {
+  const { favorites, toggleFavorite } = useFavorites();
+  const { items: listings, loading } = useDemoListings({ publicOnly: true });
 
-type Props = {
-  items: FavoriteProperty[];
-};
+  const resolved = useMemo(() => {
+    return favorites.slice(0, 2).flatMap((slug) => {
+      const listing = listings.find((item) => item.slug === slug);
+      if (!listing) return [];
+      const property = mapDemoListingToProperty(listing);
+      return [
+        {
+          slug: property.slug,
+          title: property.title,
+          location: property.location,
+          price: `${property.price}${property.pricePeriod ? ` ${property.pricePeriod}` : ""}`,
+          image: property.image,
+        },
+      ];
+    });
+  }, [favorites, listings]);
 
-export function DashboardRecentFavorites({ items }: Props) {
-  const { toggleFavorite } = useFavorites();
-  const [visible, setVisible] = useState(items);
-  const [toast, setToast] = useState<string | null>(null);
-  const dismissToast = useCallback(() => setToast(null), []);
-
-  function removeFavorite(property: FavoriteProperty) {
-    toggleFavorite(property.slug);
-    setVisible((current) => current.filter((item) => item.slug !== property.slug));
-    setToast("Action simulée dans la démonstration frontend. Favori retiré.");
+  if (loading && favorites.length > 0 && resolved.length === 0) {
+    return <p className={styles.emptyFavorites}>Chargement de vos favoris…</p>;
   }
 
-  if (visible.length === 0) {
+  if (favorites.length === 0 || resolved.length === 0) {
     return (
       <p className={styles.emptyFavorites}>
-        Aucun favori récent.{" "}
-        <Link href={routes.favorites}>Voir tous mes favoris</Link>
+        Aucun favori enregistré.{" "}
+        <Link href={routes.listings}>Parcourir les annonces</Link>
       </p>
     );
   }
 
   return (
-    <>
-      <div className={styles.favoritesGrid}>
-        {visible.map((property) => (
-          <article key={property.slug} className={styles.propertyCard}>
-            <div className={styles.propertyImage}>
-              <Image
-                src={property.image}
-                alt={property.title}
-                fill
-                sizes="(max-width: 700px) 100vw, 240px"
-                className={styles.propertyPhoto}
-                unoptimized={skipImageOptimization(property.image)}
-              />
-              <button
-                type="button"
-                aria-label={`Retirer ${property.title} des favoris`}
-                onClick={() => removeFavorite(property)}
-              >
-                <Heart size={18} fill="currentColor" aria-hidden="true" />
-              </button>
-            </div>
+    <div className={styles.favoritesGrid}>
+      {resolved.map((property) => (
+        <article key={property.slug} className={styles.propertyCard}>
+          <div className={styles.propertyImage}>
+            <Image
+              src={property.image}
+              alt={property.title}
+              fill
+              sizes="(max-width: 700px) 100vw, 240px"
+              className={styles.propertyPhoto}
+              unoptimized={skipImageOptimization(property.image)}
+            />
+            <button
+              type="button"
+              aria-label={`Retirer ${property.title} des favoris`}
+              onClick={() => toggleFavorite(property.slug)}
+            >
+              <Heart size={18} fill="currentColor" aria-hidden="true" />
+            </button>
+          </div>
 
-            <div className={styles.propertyContent}>
-              <p>
-                <MapPin size={14} aria-hidden="true" />
-                {property.location}
-              </p>
-              <h3>{property.title}</h3>
-              <strong>{property.price}</strong>
-              <Link href={routes.publicProperty(property.slug)}>
-                Voir le bien
-                <ArrowRight size={15} aria-hidden="true" />
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
-      <DemoToast message={toast} onDismiss={dismissToast} />
-    </>
+          <div className={styles.propertyContent}>
+            <p>
+              <MapPin size={14} aria-hidden="true" />
+              {property.location}
+            </p>
+            <h3>{property.title}</h3>
+            <strong>{property.price}</strong>
+            <Link href={routes.publicProperty(property.slug)}>
+              Voir le bien
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </article>
+      ))}
+    </div>
   );
 }

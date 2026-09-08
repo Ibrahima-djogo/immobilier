@@ -43,7 +43,15 @@ import {
   type RoleRequest,
   type VerificationDocument,
 } from "@/lib/demo-api/role-requests";
+import { FieldError, fieldA11y } from "@/components/ui";
 import { formatRoleLabel, formatStatusLabel } from "@/lib/ui/status";
+import {
+  roleChoiceSchema,
+  roleRequestCompanySchema,
+  roleRequestIdentitySchema,
+  roleRequestOwnerAddressSchema,
+  safeParseFields,
+} from "@/lib/validation";
 import {
   ACTIVITY_TYPE_OPTIONS,
   getBlockingRequirements,
@@ -254,6 +262,7 @@ function RoleRequestForm() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<RoleRequest | null>(null);
   const [loadedRequest, setLoadedRequest] = useState<RoleRequest | null>(null);
   const [bootstrapping, setBootstrapping] = useState(true);
@@ -507,7 +516,7 @@ function RoleRequestForm() {
       setRequestId(updated.id);
       setLoadedRequest(updated);
       if (updated.documents) setDocuments(updated.documents);
-      setMessage("Brouillon enregistré sur la Demo API.");
+      setMessage("Brouillon enregistré.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Enregistrement impossible.");
     } finally {
@@ -564,22 +573,13 @@ function RoleRequestForm() {
   }
 
   function nextFromStep2() {
-    if (!personal.firstName.trim() || !personal.lastName.trim()) {
-      setError("Indiquez votre nom et votre prénom.");
+    const parsed = safeParseFields(roleRequestIdentitySchema, personal);
+    if (!parsed.ok) {
+      setFieldErrors(parsed.errors);
+      setError(Object.values(parsed.errors)[0] || "Corrigez les informations d’identité.");
       return;
     }
-    if (!personal.birthDate || !personal.nationality.trim()) {
-      setError("Date de naissance et nationalité sont obligatoires.");
-      return;
-    }
-    if (!personal.email.trim() || !personal.phone.trim()) {
-      setError("E-mail et téléphone sont obligatoires.");
-      return;
-    }
-    if (!personal.idType || !personal.idNumber.trim()) {
-      setError("Type et numéro de pièce d’identité sont obligatoires.");
-      return;
-    }
+    setFieldErrors({});
     setError("");
     setStep(3);
   }
@@ -614,17 +614,28 @@ function RoleRequestForm() {
       }
     }
     if (role === "AGENCE") {
-      if (!company.legalName.trim() || !company.rccm.trim()) {
-        setError("Raison sociale et RCCM sont obligatoires.");
+      const companyParsed = safeParseFields(roleRequestCompanySchema, {
+        companyName: company.legalName,
+        rccm: company.rccm,
+      });
+      if (!companyParsed.ok) {
+        const mapped = {
+          ...companyParsed.errors,
+          legalName: companyParsed.errors.companyName,
+        };
+        setFieldErrors(mapped);
+        setError(Object.values(companyParsed.errors)[0] || "Corrigez les informations d’entreprise.");
         return;
       }
     } else {
-      if (
-        !personal.address.trim() ||
-        !personal.city.trim() ||
-        !personal.commune.trim()
-      ) {
-        setError("Adresse, ville et commune sont obligatoires.");
+      const addressParsed = safeParseFields(roleRequestOwnerAddressSchema, {
+        address: personal.address,
+        city: personal.city,
+        commune: personal.commune,
+      });
+      if (!addressParsed.ok) {
+        setFieldErrors(addressParsed.errors);
+        setError(Object.values(addressParsed.errors)[0] || "Corrigez l’adresse.");
         return;
       }
     }
@@ -702,7 +713,8 @@ function RoleRequestForm() {
   }
 
   function nextFromStep1() {
-    if (!role) {
+    const parsed = safeParseFields(roleChoiceSchema, { requestedRole: role });
+    if (!parsed.ok) {
       setError("Sélectionnez Propriétaire ou Agence.");
       return;
     }
@@ -1049,7 +1061,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, lastName: e.target.value }))
                     }
+                    {...fieldA11y("lastName-error", fieldErrors.lastName)}
                   />
+                  <FieldError id="lastName-error" message={fieldErrors.lastName} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="firstName">
@@ -1061,7 +1075,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, firstName: e.target.value }))
                     }
+                    {...fieldA11y("firstName-error", fieldErrors.firstName)}
                   />
+                  <FieldError id="firstName-error" message={fieldErrors.firstName} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="birthDate">
@@ -1074,7 +1090,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, birthDate: e.target.value }))
                     }
+                    {...fieldA11y("birthDate-error", fieldErrors.birthDate)}
                   />
+                  <FieldError id="birthDate-error" message={fieldErrors.birthDate} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="birthPlace">Lieu de naissance</label>
@@ -1096,7 +1114,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, nationality: e.target.value }))
                     }
+                    {...fieldA11y("nationality-error", fieldErrors.nationality)}
                   />
+                  <FieldError id="nationality-error" message={fieldErrors.nationality} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="email">
@@ -1109,7 +1129,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, email: e.target.value }))
                     }
+                    {...fieldA11y("email-error", fieldErrors.email)}
                   />
+                  <FieldError id="email-error" message={fieldErrors.email} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="phone">
@@ -1121,7 +1143,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, phone: e.target.value }))
                     }
+                    {...fieldA11y("phone-error", fieldErrors.phone)}
                   />
+                  <FieldError id="phone-error" message={fieldErrors.phone} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="idType">
@@ -1150,7 +1174,9 @@ function RoleRequestForm() {
                     onChange={(e) =>
                       setPersonal((p) => ({ ...p, idNumber: e.target.value }))
                     }
+                    {...fieldA11y("idNumber-error", fieldErrors.idNumber)}
                   />
+                  <FieldError id="idNumber-error" message={fieldErrors.idNumber} />
                 </div>
                 <div className={styles.fieldGroup}>
                   <label htmlFor="idIssuedAt">Date de délivrance</label>
@@ -1254,7 +1280,9 @@ function RoleRequestForm() {
                                 [key]: e.target.value,
                               }))
                             }
+                            {...fieldA11y(`c-${key}-error`, fieldErrors[key])}
                           />
+                          <FieldError id={`c-${key}-error`} message={fieldErrors[key]} />
                         </div>
                       ))}
                     </div>
@@ -1507,7 +1535,9 @@ function RoleRequestForm() {
                             address: e.target.value,
                           }))
                         }
+                        {...fieldA11y("address-error", fieldErrors.address)}
                       />
+                      <FieldError id="address-error" message={fieldErrors.address} />
                     </div>
                     <div className={styles.fieldGroup}>
                       <label htmlFor="city">
@@ -1519,7 +1549,9 @@ function RoleRequestForm() {
                         onChange={(e) =>
                           setPersonal((p) => ({ ...p, city: e.target.value }))
                         }
+                        {...fieldA11y("city-error", fieldErrors.city)}
                       />
+                      <FieldError id="city-error" message={fieldErrors.city} />
                     </div>
                     <div className={styles.fieldGroup}>
                       <label htmlFor="commune">
@@ -1534,7 +1566,9 @@ function RoleRequestForm() {
                             commune: e.target.value,
                           }))
                         }
+                        {...fieldA11y("commune-error", fieldErrors.commune)}
                       />
+                      <FieldError id="commune-error" message={fieldErrors.commune} />
                     </div>
                     <div className={styles.fieldGroup}>
                       <label htmlFor="district">Quartier</label>

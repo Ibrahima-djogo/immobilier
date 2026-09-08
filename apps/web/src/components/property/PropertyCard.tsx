@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -16,8 +15,8 @@ import {
 
 import { Property } from "@/types/property";
 import { useFavorites } from "@/context/FavoritesContext";
-import { getSafeImageSrc, skipImageOptimization } from "@/lib/imageOptimization";
 import { routes } from "@/lib/routes/app-routes";
+import { PropertyPhoto } from "./PropertyPhoto";
 import styles from "./PropertyCard.module.css";
 
 type PropertyCardProps = {
@@ -31,7 +30,6 @@ export function PropertyCard({
 }: PropertyCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorite = isFavorite(property.slug);
-  const imageSrc = getSafeImageSrc(property.image);
 
   return (
     <article
@@ -40,17 +38,15 @@ export function PropertyCard({
       }`}
     >
       <div className={styles.propertyMedia}>
-        <Image
-          src={imageSrc}
+        <PropertyPhoto
+          imageUrl={property.image}
           alt={property.title}
-          fill
           sizes={
             viewMode === "list"
               ? "(max-width: 700px) 100vw, 280px"
               : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
           }
           className={styles.propertyMediaImage}
-          unoptimized={skipImageOptimization(imageSrc)}
         />
         <div className={styles.propertyMediaShade} aria-hidden="true" />
 

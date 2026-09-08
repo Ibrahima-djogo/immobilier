@@ -189,7 +189,7 @@
 .secondaryButton,
 .draftButton,
 .primaryButton {
-  min-height: 2.45rem;
+  min-height: 2.5rem;
   padding: 0.55rem 0.95rem;
   border-radius: 11px;
   font: inherit;
@@ -206,9 +206,9 @@
 }
 
 .primaryButton {
-  border: 1px solid var(--forest-800, #174b37);
-  color: var(--white, #fff);
-  background: var(--forest-800, #174b37);
+  border: 1px solid #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
 }
 
 .draftButton:disabled,

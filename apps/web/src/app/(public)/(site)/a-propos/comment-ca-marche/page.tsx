@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import styles from "../aboutSub.module.css";
 
 const steps = [
@@ -17,23 +18,17 @@ const steps = [
 export default function HowItWorksPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Accueil</Link>
-            <span>/</span>
-            <Link href="/a-propos">À propos</Link>
-            <span>/</span>
-            <strong>Comment ça marche</strong>
-          </p>
-          <p className={styles.eyebrow}>Parcours</p>
-          <h1>Comment fonctionne Demeure Guinée ?</h1>
-          <p className={styles.lead}>
-            Un parcours simple, de la découverte publique à la gestion
-            professionnelle après validation du rôle.
-          </p>
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { href: "/a-propos", label: "À propos" },
+          { label: "Comment ça marche" },
+        ]}
+        eyebrow="Parcours"
+        title="Comment fonctionne Demeure Guinée ?"
+        description="Un parcours simple, de la découverte publique à la gestion professionnelle après validation du rôle."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.section}>
         <div className={styles.container}>

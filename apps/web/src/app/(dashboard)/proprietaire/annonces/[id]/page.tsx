@@ -56,13 +56,13 @@ export default function AdDetailPage() {
       setError(
         bundle.listing
           ? null
-          : "Cette annonce n’existe pas dans la Demo API.",
+          : "Cette annonce n’existe pas.",
       );
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
-          : "Impossible de charger l’annonce (Demo API).",
+          : "Impossible de charger l’annonce.",
       );
       setListing(null);
     } finally {
@@ -101,7 +101,7 @@ export default function AdDetailPage() {
         <OwnerPageHeader
           eyebrow="Détail de l’annonce"
           title="Chargement..."
-          description="Récupération via la Demo API."
+          description="Chargement de l’annonce."
         />
         <p>Chargement...</p>
       </>

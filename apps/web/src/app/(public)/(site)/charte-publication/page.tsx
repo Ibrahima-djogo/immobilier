@@ -6,7 +6,7 @@ export default function Page() {
       eyebrow="Qualité et modération"
       title="Charte de publication"
       introduction="Cette charte encadre la création des biens, des annonces et des médias publiés sur Demeure Guinée."
-      version="Version front-end 1.0 — 1er août 2026"
+      version="Version 1.0 — 1er août 2026"
       sections={[
         {
                 "title": "Exactitude des informations",

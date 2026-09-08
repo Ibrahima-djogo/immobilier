@@ -43,7 +43,7 @@
 .actions { margin-top: 21px; padding-top: 17px; border-top: 1px solid #dce6df; display: flex; justify-content: space-between; gap: 12px; }
 .actions > div { display: flex; gap: 8px; }
 .actions button { min-height: 40px; padding: 0 12px; border: 1px solid #c9d7ce; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #246448; background: #fff; font-size: 0.67rem; font-weight: 850; }
-.actions .primary { color: #fff; border-color: #174b37; background: #174b37; }
+.actions .primary { color: #071f17; border-color: #e8bf4d; background: #e8bf4d; }
 .spin { animation:spin .8s linear infinite; } @keyframes spin{to{transform:rotate(360deg)}}
 .success {
   padding: 22px;
@@ -141,11 +141,14 @@
   text-decoration: none;
 }
 
-.successPrimary { color: #fff; border: 1px solid #174b37; background: #174b37; }
+.successPrimary { color: #071f17; border: 1px solid #e8bf4d; background: #e8bf4d; }
 .successPrimary:hover { background: #12613f; }
 .successSecondary { color: #246448; border: 1px solid #c9d7ce; background: #fff; }
 .videoBlock { margin-top: 22px; padding-top: 18px; border-top: 1px solid #dce6df; }
 .warn { margin: 16px 0 0; padding: 12px; border: 1px solid #ead8a8; border-radius: 10px; color: #9d6b10; background: #fff7df; font-size: 0.72rem; }
+.form input[aria-invalid="true"],
+.form select[aria-invalid="true"],
+.form textarea[aria-invalid="true"] { border-color: #9a3f39; }
 .linkButton {
   display: inline;
   margin: 0;

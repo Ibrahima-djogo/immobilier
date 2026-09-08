@@ -1,6 +1,6 @@
-import { Mail, MessageSquare, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
-import { PageHero } from "@/components/layout/PageHero";
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import { ContactForm } from "./ContactForm";
 import { siteContact, sitePhoneHref } from "@/lib/config/site-contact";
 import styles from "./page.module.css";
@@ -10,18 +10,17 @@ export default function ContactPage() {
 
   return (
     <main>
-      <section className={styles.heroSection}>
-        <div className={styles.container}>
-          <PageHero
-            variant="public"
-            eyebrow="Assistance et informations"
-            title="Contactez Demeure Guinée"
-            description="Décrivez clairement votre demande, la page concernée et le message affiché."
-            note="N’envoyez jamais de mot de passe ni de document sensible non demandé."
-            icon={<MessageSquare size={16} aria-hidden="true" />}
-          />
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { label: "Contact" },
+        ]}
+        eyebrow="Assistance et informations"
+        title="Contactez Demeure Guinée"
+        description="Décrivez clairement votre demande, la page concernée et le message affiché."
+        note="N’envoyez jamais de mot de passe ni de document sensible non demandé."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.content}>
         <div className={styles.container}>

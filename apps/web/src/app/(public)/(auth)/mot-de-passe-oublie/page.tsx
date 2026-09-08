@@ -22,6 +22,11 @@ import {
   useState,
 } from "react";
 
+import {
+  forgotPasswordSchema,
+  resetPasswordSchema,
+  safeParseFields,
+} from "@/lib/validation";
 import styles from "./page.module.css";
 
 type RecoveryStep = "request" | "verification" | "reset" | "success";
@@ -32,9 +37,6 @@ type PasswordCriteria = {
   lowercase: boolean;
   number: boolean;
 };
-
-const identifierPattern =
-  /^(?:[^\s@]+@[^\s@]+\.[^\s@]+|\+?[0-9\s().-]{8,20})$/;
 
 function getPasswordCriteria(password: string): PasswordCriteria {
   return {
@@ -89,25 +91,16 @@ export default function ForgotPasswordPage() {
     [newPassword],
   );
 
-  const passwordIsValid = Object.values(passwordCriteria).every(Boolean);
-
   async function handleRequestSubmit(
     event: FormEvent<HTMLFormElement>,
   ) {
     event.preventDefault();
 
-    const normalizedIdentifier = identifier.trim();
-
-    if (!normalizedIdentifier) {
+    const parsed = safeParseFields(forgotPasswordSchema, { identifier });
+    if (!parsed.ok) {
       setIdentifierError(
-        "Saisissez votre adresse e-mail ou votre numéro de téléphone.",
-      );
-      return;
-    }
-
-    if (!identifierPattern.test(normalizedIdentifier)) {
-      setIdentifierError(
-        "Le format saisi ne semble pas valide.",
+        parsed.errors.identifier ||
+          "Saisissez votre adresse e-mail ou votre numéro de téléphone.",
       );
       return;
     }
@@ -159,37 +152,17 @@ export default function ForgotPasswordPage() {
   ) {
     event.preventDefault();
 
-    let valid = true;
-
-    if (!newPassword) {
-      setPasswordError("Saisissez votre nouveau mot de passe.");
-      valid = false;
-    } else if (!passwordIsValid) {
-      setPasswordError(
-        "Le mot de passe doit respecter tous les critères indiqués.",
-      );
-      valid = false;
-    } else {
-      setPasswordError("");
-    }
-
-    if (!confirmPassword) {
-      setConfirmationError(
-        "Confirmez votre nouveau mot de passe.",
-      );
-      valid = false;
-    } else if (confirmPassword !== newPassword) {
-      setConfirmationError(
-        "Les deux mots de passe ne correspondent pas.",
-      );
-      valid = false;
-    } else {
-      setConfirmationError("");
-    }
-
-    if (!valid) {
+    const parsed = safeParseFields(resetPasswordSchema, {
+      password: newPassword,
+      confirmPassword,
+    });
+    if (!parsed.ok) {
+      setPasswordError(parsed.errors.password || "");
+      setConfirmationError(parsed.errors.confirmPassword || "");
       return;
     }
+    setPasswordError("");
+    setConfirmationError("");
 
     /*
      * TODO : connecter à l’API Spring Boot.
@@ -551,8 +524,7 @@ export default function ForgotPasswordPage() {
                       id="verification-help"
                       className={styles.fieldHelp}
                     >
-                      Démonstration front-end : aucun code réel n’est
-                      envoyé ou validé sans l’API.
+                      Saisissez le code à 6 chiffres reçu par e-mail ou SMS.
                     </p>
 
                     {verificationError && (
@@ -587,7 +559,7 @@ export default function ForgotPasswordPage() {
                     className={styles.secondaryButton}
                     onClick={() =>
                       setInformationMessage(
-                        "Le renvoi sécurisé sera disponible après l’intégration de l’API.",
+                        "Un nouveau code sera envoyé sous peu.",
                       )
                     }
                   >
@@ -820,9 +792,8 @@ export default function ForgotPasswordPage() {
                 <h2>Mot de passe prêt à être réinitialisé</h2>
 
                 <p>
-                  Cet aperçu confirme le fonctionnement du parcours
-                  front-end. La modification réelle sera effectuée par
-                  l’API après validation d’un code ou jeton non expiré.
+                  Votre mot de passe peut maintenant être mis à jour.
+                  Connectez-vous pour accéder à votre espace.
                 </p>
 
                 <Link href="/connexion" className={styles.primaryButton}>
@@ -834,7 +805,7 @@ export default function ForgotPasswordPage() {
                   className={styles.secondaryButton}
                   onClick={resetDemo}
                 >
-                  Recommencer la démonstration
+                  Recommencer
                 </button>
               </div>
             )}

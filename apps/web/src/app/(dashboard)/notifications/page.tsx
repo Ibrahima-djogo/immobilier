@@ -11,20 +11,25 @@ import {
   Eye,
   Heart,
   Info,
-  LockKeyhole,
   Mail,
   MessageSquareText,
+  Package,
   Search,
   Settings2,
   ShieldCheck,
   Trash2,
-  UserRound,
   UserRoundCog,
   X,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
+import {
+  loadMyNotifications,
+  markNotificationRead,
+  type MaterialNotification,
+} from "@/lib/commande/orders";
+import { routes } from "@/lib/routes/app-routes";
 
 import UserShell from "@/components/compte/UserShell";
 import { PageHero } from "@/components/layout/PageHero";
@@ -32,6 +37,7 @@ import styles from "./page.module.css";
 
 type NotificationCategory =
   | "Toutes"
+  | "Commandes"
   | "Compte"
   | "Favoris"
   | "Demandes"
@@ -39,7 +45,7 @@ type NotificationCategory =
   | "Rôle";
 
 type NotificationItem = {
-  id: number;
+  id: string | number;
   title: string;
   description: string;
   category: Exclude<NotificationCategory, "Toutes">;
@@ -58,83 +64,9 @@ type PreferenceKey =
   | "security"
   | "role";
 
-const initialNotifications: NotificationItem[] = [
-  {
-    id: 1,
-    title: "Nouvelle réponse à votre demande",
-    description:
-      "L’agence Habitat Conakry a répondu à votre demande concernant la villa contemporaine à Kipé.",
-    category: "Demandes",
-    date: "Aujourd’hui, 10:42",
-    read: false,
-    archived: false,
-    href: "/demandes-contact",
-    icon: MessageSquareText,
-  },
-  {
-    id: 2,
-    title: "Bien toujours disponible",
-    description:
-      "L’appartement moderne enregistré dans vos favoris est toujours disponible.",
-    category: "Favoris",
-    date: "Aujourd’hui, 08:15",
-    read: false,
-    archived: false,
-    href: "/favoris",
-    icon: Heart,
-  },
-  {
-    id: 3,
-    title: "Connexion depuis un nouvel appareil",
-    description:
-      "Une connexion a été détectée depuis Chrome Mobile à Conakry.",
-    category: "Sécurité",
-    date: "Hier, 18:27",
-    read: false,
-    archived: false,
-    href: "/securite",
-    icon: ShieldCheck,
-  },
-  {
-    id: 4,
-    title: "Votre profil est complété à 75 %",
-    description:
-      "Ajoutez une photo de profil pour améliorer la complétion de votre compte.",
-    category: "Compte",
-    date: "Hier, 09:05",
-    read: true,
-    archived: false,
-    href: "/profil",
-    icon: UserRound,
-  },
-  {
-    id: 5,
-    title: "Demande de rôle non commencée",
-    description:
-      "Vous pouvez demander le rôle Propriétaire ou Agence depuis votre espace.",
-    category: "Rôle",
-    date: "30 juillet 2026",
-    read: true,
-    archived: false,
-    href: "/demande-role",
-    icon: UserRoundCog,
-  },
-  {
-    id: 6,
-    title: "Modification du mot de passe",
-    description:
-      "Votre mot de passe a été modifié avec succès.",
-    category: "Sécurité",
-    date: "28 juillet 2026",
-    read: true,
-    archived: true,
-    href: "/securite",
-    icon: LockKeyhole,
-  },
-];
-
 const categoryOptions: NotificationCategory[] = [
   "Toutes",
+  "Commandes",
   "Compte",
   "Favoris",
   "Demandes",
@@ -142,9 +74,49 @@ const categoryOptions: NotificationCategory[] = [
   "Rôle",
 ];
 
+function formatNotificationDate(iso: string) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toLocaleString("fr-FR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+function categoryForRemoteType(
+  type: string,
+): Exclude<NotificationCategory, "Toutes"> {
+  if (type.startsWith("MATERIAL_")) return "Commandes";
+  if (type.startsWith("ROLE_")) return "Rôle";
+  return "Compte";
+}
+
+function iconForCategory(category: Exclude<NotificationCategory, "Toutes">) {
+  if (category === "Commandes") return Package;
+  if (category === "Rôle") return UserRoundCog;
+  return Bell;
+}
+
+function toRemoteNotification(item: MaterialNotification): NotificationItem {
+  const category = categoryForRemoteType(item.type);
+  return {
+    id: item.id,
+    title: item.title,
+    description: item.message,
+    category,
+    date: formatNotificationDate(item.createdAt),
+    read: item.read,
+    archived: false,
+    href:
+      item.href ||
+      (item.orderId ? routes.myOrder(item.orderId) : undefined),
+    icon: iconForCategory(category),
+  };
+}
+
 export default function NotificationsPage() {
-  const [notifications, setNotifications] =
-    useState<NotificationItem[]>(initialNotifications);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+  const [loaded, setLoaded] = useState(false);
   const [category, setCategory] =
     useState<NotificationCategory>("Toutes");
   const [query, setQuery] = useState("");
@@ -162,6 +134,34 @@ export default function NotificationsPage() {
     security: true,
     role: true,
   });
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadMyNotifications()
+      .then((items) => {
+        if (cancelled || !Array.isArray(items)) return;
+        setNotifications((current) => {
+          const archived = new Set(
+            current
+              .filter((item) => item.archived)
+              .map((item) => String(item.id)),
+          );
+          return items.map((item) => ({
+            ...toRemoteNotification(item),
+            archived: archived.has(String(item.id)),
+          }));
+        });
+      })
+      .catch(() => {
+        setNotifications([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoaded(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const visibleNotifications = useMemo(() => {
     const normalizedQuery = debouncedQuery.trim().toLowerCase();
@@ -190,7 +190,7 @@ export default function NotificationsPage() {
       !notification.archived && !notification.read,
   ).length;
 
-  function markAsRead(notificationId: number) {
+  function markAsRead(notificationId: string | number) {
     setNotifications((current) =>
       current.map((notification) =>
         notification.id === notificationId
@@ -198,25 +198,36 @@ export default function NotificationsPage() {
           : notification,
       ),
     );
+    if (typeof notificationId === "string") {
+      void markNotificationRead(notificationId).catch(() => undefined);
+    }
 
     setMessage("La notification a été marquée comme lue.");
   }
 
   function markAllAsRead() {
-    setNotifications((current) =>
-      current.map((notification) =>
+    setNotifications((current) => {
+      current
+        .filter(
+          (item) =>
+            !item.archived && !item.read && typeof item.id === "string",
+        )
+        .forEach((item) => {
+          void markNotificationRead(String(item.id)).catch(() => undefined);
+        });
+      return current.map((notification) =>
         notification.archived
           ? notification
           : { ...notification, read: true },
-      ),
-    );
+      );
+    });
 
     setMessage(
       "Toutes les notifications actives sont maintenant marquées comme lues.",
     );
   }
 
-  function archiveNotification(notificationId: number) {
+  function archiveNotification(notificationId: string | number) {
     setNotifications((current) =>
       current.map((notification) =>
         notification.id === notificationId
@@ -228,7 +239,7 @@ export default function NotificationsPage() {
     setMessage("La notification a été archivée.");
   }
 
-  function restoreNotification(notificationId: number) {
+  function restoreNotification(notificationId: string | number) {
     setNotifications((current) =>
       current.map((notification) =>
         notification.id === notificationId
@@ -240,16 +251,14 @@ export default function NotificationsPage() {
     setMessage("La notification a été restaurée.");
   }
 
-  function deleteNotification(notificationId: number) {
+  function deleteNotification(notificationId: string | number) {
     setNotifications((current) =>
       current.filter(
         (notification) => notification.id !== notificationId,
       ),
     );
 
-    setMessage(
-      "La notification a été supprimée dans cette démonstration.",
-    );
+    setMessage("La notification a été retirée de votre liste.");
   }
 
   function resetFilters() {
@@ -274,7 +283,7 @@ export default function NotificationsPage() {
             variant="dashboard"
             eyebrow="Centre de notifications"
             title="Notifications"
-            description="Consultez les informations importantes liées à votre compte, vos favoris et vos demandes."
+            description="Consultez les informations importantes liées à votre compte, vos commandes et vos demandes."
             icon={<Bell size={16} aria-hidden="true" />}
             backHref="/tableau-de-bord"
             backLabel="Tableau de bord"
@@ -363,8 +372,7 @@ export default function NotificationsPage() {
                   </span>
                   <h2>Choisir les notifications à recevoir</h2>
                   <p>
-                    Ces choix seront enregistrés par l’API lorsque les
-                    paramètres utilisateur seront connectés.
+                    Choisissez les alertes que vous souhaitez recevoir.
                   </p>
                 </div>
 
@@ -559,7 +567,14 @@ export default function NotificationsPage() {
 
                       <div className={styles.notificationActions}>
                         {notification.href && (
-                          <Link href={notification.href}>
+                          <Link
+                            href={notification.href}
+                            onClick={() => {
+                              if (!notification.read) {
+                                markAsRead(notification.id);
+                              }
+                            }}
+                          >
                             Ouvrir
                             <ChevronRight
                               size={15}
@@ -631,13 +646,17 @@ export default function NotificationsPage() {
               <h2>
                 {showArchived
                   ? "Aucune notification archivée"
-                  : "Aucune notification trouvée"}
+                  : loaded
+                    ? "Aucune notification"
+                    : "Chargement des notifications…"}
               </h2>
 
               <p>
                 {showArchived
                   ? "Les notifications archivées apparaîtront ici."
-                  : "Modifiez vos filtres ou revenez plus tard pour consulter les nouvelles informations."}
+                  : loaded
+                    ? "Les notifications de vos commandes et de votre compte apparaîtront ici."
+                    : "Récupération des notifications réelles de votre compte."}
               </p>
 
               {filtersAreActive && (

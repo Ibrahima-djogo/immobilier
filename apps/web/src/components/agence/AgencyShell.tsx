@@ -5,6 +5,7 @@ import {
   Activity,
   BarChart3,
   Bell,
+  BrickWall,
   Building2,
   FileText,
   Home,
@@ -12,9 +13,11 @@ import {
   LogOut,
   Menu,
   MessageSquareText,
+  Package,
   PanelLeftClose,
   PanelLeftOpen,
   ShieldCheck,
+  ShoppingBag,
   Store,
   UserRound,
   X,
@@ -24,6 +27,7 @@ import { type ReactNode, useState } from "react";
 import { DashboardPageHeader } from "@/components/dashboard";
 import styles from "@/components/dashboard/dashboardShell.module.css";
 import { useSidebarCollapsed } from "@/hooks/useSidebarCollapsed";
+import { routes } from "@/lib/routes/app-routes";
 
 export type AgencySection =
   | "dashboard"
@@ -178,6 +182,32 @@ export default function AgencyShell({
               >
                 <Bell size={18} />
                 <span className={styles.navText}>Activité</span>
+              </Link>
+
+              <span className={styles.navLabel}>Matériaux</span>
+              <Link
+                href={routes.materials}
+                className={styles.navLink}
+                title="Catalogue matériaux"
+              >
+                <BrickWall size={18} />
+                <span className={styles.navText}>Catalogue matériaux</span>
+              </Link>
+              <Link
+                href={routes.cart}
+                className={styles.navLink}
+                title="Mon panier"
+              >
+                <ShoppingBag size={18} />
+                <span className={styles.navText}>Mon panier</span>
+              </Link>
+              <Link
+                href={routes.myOrders}
+                className={styles.navLink}
+                title="Mes commandes"
+              >
+                <Package size={18} />
+                <span className={styles.navText}>Mes commandes</span>
               </Link>
             </nav>
           </div>

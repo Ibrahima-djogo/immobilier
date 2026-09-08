@@ -3,7 +3,9 @@
 import { BadgeCheck, CheckCircle2, Save, ShieldCheck } from "lucide-react";
 import { type FormEvent, useEffect, useState } from "react";
 
+import { FieldError, fieldA11y } from "@/components/ui";
 import OwnerPageHeader from "@/components/proprietaire/OwnerPageHeader";
+import { profileSchema, safeParseFields } from "@/lib/validation";
 import {
   getOwnerProfile,
   setOwnerProfile,
@@ -14,6 +16,7 @@ import styles from "./page.module.css";
 export default function OwnerProfilPage() {
   const [ready, setReady] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<OwnerProfile>({
     firstName: "",
     lastName: "",
@@ -31,7 +34,13 @@ export default function OwnerProfilPage() {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    setOwnerProfile(form);
+    const parsed = safeParseFields(profileSchema, form);
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return;
+    }
+    setErrors({});
+    setOwnerProfile({ ...form, ...parsed.data });
     setSaved(true);
   }
 
@@ -67,7 +76,7 @@ export default function OwnerProfilPage() {
         <p>Chargement...</p>
       ) : (
         <div className={styles.layout}>
-          <form className={`${styles.card} ${styles.form}`} onSubmit={onSubmit}>
+          <form className={`${styles.card} ${styles.form}`} onSubmit={onSubmit} noValidate>
             <div className={styles.grid}>
               <label>
                 Prénom
@@ -76,8 +85,9 @@ export default function OwnerProfilPage() {
                   onChange={(e) =>
                     setForm((v) => ({ ...v, firstName: e.target.value }))
                   }
-                  required
+                  {...fieldA11y("owner-first-error", errors.firstName)}
                 />
+                <FieldError id="owner-first-error" message={errors.firstName} />
               </label>
               <label>
                 Nom
@@ -86,8 +96,9 @@ export default function OwnerProfilPage() {
                   onChange={(e) =>
                     setForm((v) => ({ ...v, lastName: e.target.value }))
                   }
-                  required
+                  {...fieldA11y("owner-last-error", errors.lastName)}
                 />
+                <FieldError id="owner-last-error" message={errors.lastName} />
               </label>
               <label>
                 E-mail
@@ -97,17 +108,21 @@ export default function OwnerProfilPage() {
                   onChange={(e) =>
                     setForm((v) => ({ ...v, email: e.target.value }))
                   }
-                  required
+                  {...fieldA11y("owner-email-error", errors.email)}
                 />
+                <FieldError id="owner-email-error" message={errors.email} />
               </label>
               <label>
                 Téléphone
                 <input
+                  type="tel"
                   value={form.phone}
                   onChange={(e) =>
                     setForm((v) => ({ ...v, phone: e.target.value }))
                   }
+                  {...fieldA11y("owner-phone-error", errors.phone)}
                 />
+                <FieldError id="owner-phone-error" message={errors.phone} />
               </label>
               <label>
                 Ville

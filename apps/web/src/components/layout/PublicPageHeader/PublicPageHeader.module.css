@@ -1,0 +1,36 @@
+.band {
+  background: var(--white);
+}
+
+.wrap {
+  padding: 1.15rem 0 1.25rem;
+}
+
+.container {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.overlap .wrap {
+  padding-bottom: 0;
+}
+
+.extra {
+  margin-top: 0.85rem;
+}
+
+.overlap .extra {
+  margin-bottom: -1.75rem;
+  position: relative;
+  z-index: 5;
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    padding-top: 0.95rem;
+  }
+
+  .overlap .extra {
+    margin-bottom: -1.25rem;
+  }
+}

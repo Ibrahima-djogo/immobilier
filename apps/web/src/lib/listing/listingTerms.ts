@@ -12,6 +12,7 @@
  * Contrat miroir de `listing-terms.js` dans immo-demo-api.
  */
 
+import { listingFieldMessages } from "@/lib/validation/listing";
 import {
   labelPropertyType,
   normalizePropertyTypeKey,
@@ -294,54 +295,30 @@ export function validateListingTerms(
   values: ListingTermsFormValues,
   price: string,
 ): ListingTermsErrors {
-  const errors: ListingTermsErrors = {};
-
-  if (config.sections.rentalTerms) {
-    const rent = parseAmount(values.rentAmount);
-    if (config.required.rentAmount && !(rent !== null && rent > 0)) {
-      errors.rentAmount = "Indiquez le loyer demandé.";
-    }
-    if (config.required.period && !values.period) {
-      errors.period = "Choisissez une périodicité.";
-    }
-    if (values.period === "OTHER" && !values.periodLabel.trim()) {
-      errors.periodLabel = "Précisez la périodicité.";
-    }
-    if (values.depositRequired) {
-      const deposit = parseAmount(values.depositAmount);
-      if (!(deposit !== null && deposit > 0)) {
-        errors.depositAmount = "Indiquez le montant de la caution.";
-      }
-    }
-    const duration = resolveMinimumDurationMonths(values);
-    if (values.minimumDurationChoice === "OTHER" && !(duration && duration > 0)) {
-      errors.minimumDurationCustom = "Indiquez une durée en mois.";
-    }
-    if (config.required.availableFrom && !values.availableFrom) {
-      errors.availableFrom = "Indiquez la date de disponibilité.";
-    }
-  }
-
-  if (config.sections.allowedUses) {
-    if (config.required.allowedUses && values.allowedUses.length === 0) {
-      errors.allowedUses = "Sélectionnez au moins un usage autorisé.";
-    }
-    if (
-      values.allowedUses.includes("OTHER") &&
-      !values.allowedUsesOther.trim()
-    ) {
-      errors.allowedUsesOther = "Précisez l’usage « Autre ».";
-    }
-  }
-
-  if (config.required.salePrice) {
-    const amount = parseAmount(price);
-    if (!(amount !== null && amount > 0)) {
-      errors.price = "Indiquez le prix de vente.";
-    }
-  }
-
-  return errors;
+  return listingFieldMessages({
+    requireRent: Boolean(config.sections.rentalTerms && config.required.rentAmount),
+    requirePeriod: Boolean(config.sections.rentalTerms && config.required.period),
+    requireSalePrice: Boolean(config.required.salePrice),
+    requireAvailableFrom: Boolean(
+      config.sections.rentalTerms && config.required.availableFrom,
+    ),
+    requireAllowedUses: Boolean(
+      config.sections.allowedUses && config.required.allowedUses,
+    ),
+    values: {
+      rentAmount: values.rentAmount,
+      period: values.period,
+      periodLabel: values.periodLabel,
+      depositRequired: values.depositRequired,
+      depositAmount: values.depositAmount,
+      minimumDurationChoice: values.minimumDurationChoice,
+      minimumDurationCustom: values.minimumDurationCustom,
+      availableFrom: values.availableFrom,
+      allowedUses: values.allowedUses,
+      allowedUsesOther: values.allowedUsesOther,
+      salePrice: price,
+    },
+  });
 }
 
 /* ------------------------------------------------------------------ */

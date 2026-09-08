@@ -9,7 +9,8 @@ import {
   PropertyLocationMap,
   type PropertyLocationValue,
 } from "@/components/property/PropertyLocationMap";
-import { DemoToast, EmptyState } from "@/components/ui";
+import { DemoToast, EmptyState, FieldError, fieldA11y } from "@/components/ui";
+import { validatePropertyPublish } from "@/lib/validation";
 import { canWriteProperties } from "@/lib/administration/admin-accounts";
 import { useAdminSession } from "@/lib/auth/admin-session";
 import {
@@ -51,6 +52,7 @@ export default function AdminPropertyEditPage() {
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!ready) return;
@@ -97,6 +99,30 @@ export default function AdminPropertyEditPage() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!admin || !property) return;
+    if (status !== "BROUILLON") {
+      const parsed = validatePropertyPublish({
+        type,
+        operation,
+        title,
+        price,
+        area,
+        bedrooms,
+        bathrooms,
+        description,
+        city: location.city,
+        commune: location.commune,
+        quarter: location.quarter,
+        landmark: location.landmark,
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      if (!parsed.ok) {
+        setFieldErrors(parsed.errors);
+        setToast(Object.values(parsed.errors)[0] || "Corrigez les champs indiqués.");
+        return;
+      }
+    }
+    setFieldErrors({});
     setSaving(true);
     try {
       console.log("PROPERTY FORM VALUES", {
@@ -249,20 +275,27 @@ export default function AdminPropertyEditPage() {
             </select>
           </div>
           <div>
-            <span>Prix</span>
+            <span>Prix (GNF)</span>
             <input
               type="number"
+              min={1}
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              {...fieldA11y("admin-price-error", fieldErrors.price)}
             />
+            <FieldError id="admin-price-error" message={fieldErrors.price} />
           </div>
           <div>
-            <span>Surface</span>
+            <span>Surface (m²)</span>
             <input
               type="number"
+              min={0.01}
+              step="0.01"
               value={area}
               onChange={(e) => setArea(e.target.value)}
+              {...fieldA11y("admin-area-error", fieldErrors.area)}
             />
+            <FieldError id="admin-area-error" message={fieldErrors.area} />
           </div>
           {!isTerrainType(type) ? (
             <>

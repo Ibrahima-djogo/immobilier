@@ -23,6 +23,7 @@ export function Footer() {
             <Link href="/annonces?operation=vente">Biens à vendre</Link>
             <Link href="/annonces?operation=location">Biens à louer</Link>
             <Link href="/agences">Agences</Link>
+            <Link href="/materiaux">Matériaux</Link>
             <Link href="/a-propos">À propos</Link>
           </div>
 
@@ -40,6 +41,8 @@ export function Footer() {
             <Link href="/inscription">Créer un compte</Link>
             <Link href="/demande-role">Publier un bien</Link>
             <Link href="/favoris">Mes favoris</Link>
+            <Link href="/mes-commandes">Mes commandes</Link>
+            <Link href="/commande/suivi">Suivre une commande</Link>
           </div>
         </div>
 

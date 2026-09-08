@@ -21,66 +21,6 @@
   border: 0;
 }
 
-.intro {
-  padding: 2.25rem 0 1.5rem;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--white), var(--surface));
-}
-
-.breadcrumb {
-  margin: 0 0 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-soft);
-  font-size: 0.8rem;
-}
-
-.breadcrumb a {
-  color: var(--forest-700);
-  font-weight: 650;
-  text-decoration: none;
-}
-
-.breadcrumb strong {
-  color: var(--forest-900);
-}
-
-.introGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.7fr);
-  gap: 1.5rem;
-  align-items: end;
-}
-
-.eyebrow {
-  margin: 0 0 0.4rem;
-  color: var(--forest-600);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.intro h1 {
-  margin: 0;
-  max-width: 16ch;
-  color: var(--forest-900);
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.12;
-}
-
-.lead {
-  max-width: 38rem;
-  margin: 0.75rem 0 0;
-  color: var(--text-body);
-  font-size: 0.96rem;
-  line-height: 1.65;
-}
-
 .trustStrip {
   margin: 0;
   padding: 0;
@@ -116,7 +56,6 @@
 }
 
 .searchBar {
-  margin-top: 1.5rem;
   padding: 0.75rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
@@ -176,8 +115,136 @@
   gap: 0.45rem;
 }
 
+.listing,
 .results {
-  padding: 2.25rem 0 4rem;
+  padding: 1.75rem 0 4rem;
+}
+
+.resultCount {
+  margin: 0 0 1.25rem;
+  color: var(--text-soft);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.resultCount strong {
+  margin-right: 0.2rem;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.card {
+  height: 100%;
+  min-height: 100%;
+  padding: 1.2rem 1.25rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  color: inherit;
+  background: var(--white);
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(7, 31, 23, 0.04);
+  transition:
+    border-color var(--duration-fast) ease,
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) ease;
+}
+
+.card:hover {
+  border-color: rgba(36, 100, 72, 0.22);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.cardMedia {
+  width: 3.1rem;
+  height: 3.1rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--forest-800);
+  background: var(--forest-50);
+  border: 1px solid rgba(36, 100, 72, 0.12);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.cardBody {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+}
+
+.cardTitleRow h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.cardLocation {
+  margin: 0.65rem 0 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.cardLocation svg {
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  color: var(--forest-600);
+}
+
+.cardCta {
+  margin-top: auto;
+  min-height: 2.35rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--forest-800);
+  background: var(--white);
+  font-size: 0.8rem;
+  font-weight: 750;
+  width: 100%;
+}
+
+.card:hover .cardCta {
+  border-color: var(--forest-600);
+  background: var(--forest-50);
 }
 
 .resultsHead {
@@ -296,7 +363,8 @@
 }
 
 .tags {
-  margin-top: 0.7rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.15rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -386,8 +454,13 @@
   font-weight: 750;
 }
 
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
-  .introGrid,
   .resultsHead {
     grid-template-columns: 1fr;
     display: grid;
@@ -418,6 +491,10 @@
 }
 
 @media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
   .searchBar {
     grid-template-columns: 1fr;
   }

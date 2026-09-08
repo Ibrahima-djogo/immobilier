@@ -38,6 +38,26 @@ export const routes = {
   referenceDistricts: "/referentiels/quartiers",
   referenceCategories: "/referentiels/categories",
   referenceAmenities: "/referentiels/equipements",
+  materials: "/materiaux",
+  materialCategories: "/materiaux/categories",
+  materialProducts: "/materiaux/produits",
+  materialProductNew: "/materiaux/produits/nouveau",
+  materialProduct: (id: string) => `/materiaux/produits/${id}`,
+  materialProductEdit: (id: string) => `/materiaux/produits/${id}/modifier`,
+  materialUnits: "/materiaux/unites",
+  materialSuppliers: "/materiaux/fournisseurs",
+  materialSupplierNew: "/materiaux/fournisseurs/nouveau",
+  materialSupplier: (id: string) => `/materiaux/fournisseurs/${id}`,
+  materialSupplierEdit: (id: string) => `/materiaux/fournisseurs/${id}/modifier`,
+  materialStock: "/materiaux/stock",
+  materialStockMovements: "/materiaux/stock/mouvements",
+  materialStockMovementNew: "/materiaux/stock/mouvements/nouveau",
+  materialStockReservations: "/materiaux/stock/reservations",
+  materialStockReservationNew: "/materiaux/stock/reservations/nouveau",
+  materialOrders: "/materiaux/commandes",
+  materialOrder: (id: string) => `/materiaux/commandes/${id}`,
+  materialQuotes: "/materiaux/devis",
+  materialQuote: (id: string) => `/materiaux/devis/${id}`,
 } as const;
 
 /**
@@ -60,4 +80,5 @@ export const adminProtectedPrefixes = [
   "/statistiques",
   "/parametres",
   "/referentiels",
+  "/materiaux",
 ] as const;

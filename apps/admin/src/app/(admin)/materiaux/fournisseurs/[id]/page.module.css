@@ -1,0 +1,268 @@
+.error,
+.loading {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 0.8125rem;
+}
+
+.error {
+  border: 1px solid #e3c8c5;
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.loading {
+  border: 1px solid #dce6df;
+  color: #647169;
+  background: #f8f6f0;
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.column > .card:last-child {
+  flex: 1;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #dce6df;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(7, 31, 23, 0.05);
+}
+
+.card h2 {
+  margin: 0 0 10px;
+  color: #0f3527;
+  font-size: 1.125rem !important;
+  font-weight: 750;
+  line-height: 1.25 !important;
+}
+
+.note {
+  margin: 0 0 10px;
+  color: #647169;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.compactGrid {
+  gap: 6px 10px !important;
+}
+
+.lines {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #dce6df;
+  border-radius: 10px;
+}
+
+.lineGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-top: 1px solid #dce6df;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.orderGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border-top: 1px solid #dce6df;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.lineGrid:first-child,
+.orderGrid:first-child {
+  border-top: 0;
+}
+
+.lineHead {
+  min-height: 32px;
+  color: #7b8780;
+  background: #f2f7f3;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.lineGrid strong,
+.orderGrid strong {
+  color: #0f3527;
+  font-size: 0.8125rem;
+}
+
+.lineGrid a,
+.orderGrid a {
+  color: #174b37;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.lineGrid a:hover,
+.orderGrid a:hover {
+  text-decoration: underline;
+}
+
+.amount {
+  color: #0f3527;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.history {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+  color: #647169;
+  font-size: 0.8125rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.primary,
+.secondary,
+.danger {
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  border: 1px solid #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
+}
+
+.secondary {
+  border: 1px solid #dce6df;
+  color: #246448;
+  background: #fff;
+}
+
+.danger {
+  border: 1px solid #9a3f39;
+  color: #9a3f39;
+  background: #fff;
+}
+
+.headerBadges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 12px;
+  }
+
+  .compactGrid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .lineHead {
+    display: none;
+  }
+
+  .lines {
+    border: 0;
+    background: transparent;
+    gap: 8px;
+  }
+
+  .lineGrid,
+  .orderGrid {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    padding: 10px 12px;
+    border: 1px solid #dce6df;
+    border-radius: 10px;
+    background: #f9fbfa;
+  }
+
+  .lineGrid span[data-label],
+  .orderGrid span[data-label] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .lineGrid span[data-label]::before,
+  .orderGrid span[data-label]::before {
+    content: attr(data-label);
+    color: #7b8780;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .primary,
+  .secondary,
+  .danger {
+    width: 100%;
+  }
+}

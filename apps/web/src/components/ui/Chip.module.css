@@ -4,6 +4,7 @@
   gap: 0.4rem;
   min-height: 2rem;
   padding: 0 0.75rem;
+  cursor: pointer;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
   font-size: 0.78rem;

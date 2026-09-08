@@ -16,6 +16,7 @@ import {
   isAllowedImageMime,
   VERIFICATION_MAX_FILE_BYTES,
 } from "@/lib/demo-api/verification-limits";
+import { extensionOf, validateUploadFile } from "@/lib/validation";
 import styles from "./DocumentUploadField.module.css";
 
 export type UploadedDocPreview = {
@@ -87,20 +88,28 @@ export function DocumentUploadField({
     if (!file) return;
     setLocalError("");
 
-    const mimeOk = acceptImagesOnly
-      ? isAllowedImageMime(file.type)
-      : isAllowedDocMime(file.type);
-    if (!mimeOk) {
-      setLocalError(
-        acceptImagesOnly
-          ? "Format non accepté. Utilisez JPG ou PNG."
-          : "Format non accepté. Utilisez JPG, PNG ou PDF.",
-      );
+    const uploadError = validateUploadFile(
+      file,
+      acceptImagesOnly ? "image" : "document",
+    );
+    if (uploadError) {
+      setLocalError(uploadError);
       return;
     }
-    if (file.size > VERIFICATION_MAX_FILE_BYTES) {
+    if (acceptImagesOnly && extensionOf(file.name) === ".webp") {
+      setLocalError("Format non accepté. Utilisez JPG ou PNG.");
+      return;
+    }
+    const mimeOk = acceptImagesOnly
+      ? isAllowedImageMime(file.type) && file.type !== "image/webp"
+      : isAllowedDocMime(file.type);
+    if (!mimeOk || file.size > VERIFICATION_MAX_FILE_BYTES) {
       setLocalError(
-        `Le fichier dépasse la taille maximale autorisée (${formatMaxFileSizeLabel()}).`,
+        file.size > VERIFICATION_MAX_FILE_BYTES
+          ? `Le fichier dépasse la taille maximale autorisée (${formatMaxFileSizeLabel()}).`
+          : acceptImagesOnly
+            ? "Format non accepté. Utilisez JPG ou PNG."
+            : "Format non accepté. Utilisez JPG, PNG ou PDF.",
       );
       return;
     }

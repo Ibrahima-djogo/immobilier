@@ -1,29 +1,23 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import styles from "../aboutSub.module.css";
 
 export default function TeamGovernancePage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Accueil</Link>
-            <span>/</span>
-            <Link href="/a-propos">À propos</Link>
-            <span>/</span>
-            <strong>Équipe & gouvernance</strong>
-          </p>
-          <p className={styles.eyebrow}>Organisation</p>
-          <h1>Notre équipe & gouvernance</h1>
-          <p className={styles.lead}>
-            Demeure Guinée s’organise autour de responsabilités claires :
-            produit, métier, administration, support et partenaires
-            professionnels. Aucun nom personnel n’est inventé ici.
-          </p>
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { href: "/a-propos", label: "À propos" },
+          { label: "Équipe & gouvernance" },
+        ]}
+        eyebrow="Organisation"
+        title="Notre équipe & gouvernance"
+        description="Demeure Guinée s’organise autour de responsabilités claires : produit, métier, administration, support et partenaires professionnels. Aucun nom personnel n’est inventé ici."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.section}>
         <div className={styles.container}>

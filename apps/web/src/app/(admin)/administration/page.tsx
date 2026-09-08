@@ -133,25 +133,6 @@ export default function AdministrationDashboard() {
 
       <div className={styles.grid}>
         <DashboardPanel
-          title="État de la plateforme"
-          description="Indicateurs front-end de démonstration."
-        >
-          {(
-            [
-              ["API", "À connecter", "warning"],
-              ["Base de données", "À connecter", "warning"],
-              ["Médias", "URLs de démonstration", "warning"],
-              ["Audit", "Interface prête", "ok"],
-            ] as const
-          ).map(([label, value, state]) => (
-            <div key={label} className={styles.healthRow}>
-              <span>{label}</span>
-              <strong className={styles[state]}>{value}</strong>
-            </div>
-          ))}
-        </DashboardPanel>
-
-        <DashboardPanel
           title="Accès rapides"
           description="Principaux modules administratifs."
         >

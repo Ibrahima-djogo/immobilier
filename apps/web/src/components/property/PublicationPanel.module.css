@@ -146,7 +146,7 @@
 }
 
 .secondary {
-  border-color: #c9d7ce;
+  border-color: #246448;
   color: #174b37;
   background: #fff;
 }
@@ -157,14 +157,14 @@
 }
 
 .primary {
-  border-color: #174b37;
-  color: #fff;
-  background: #174b37;
+  border-color: #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
 }
 
 .primary:hover {
-  border-color: #0f3527;
-  background: #0f3527;
+  border-color: #d8aa34;
+  background: #d8aa34;
 }
 
 .danger {

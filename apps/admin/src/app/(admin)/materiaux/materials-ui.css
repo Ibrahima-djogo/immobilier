@@ -1,0 +1,82 @@
+/* Échelle typographique du module Matériaux uniquement. */
+[data-materials-ui] h1 {
+  font-size: 1.25rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+}
+
+[data-materials-ui] header p {
+  font-size: 0.8125rem !important;
+  line-height: 1.4 !important;
+}
+
+[data-materials-ui] h2 {
+  font-size: 1.0625rem !important;
+  line-height: 1.3 !important;
+}
+
+[data-materials-ui] [class*="colActions"] {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+[data-materials-ui] [class*="colStatus"],
+[data-materials-ui] [class*="colLevel"],
+[data-materials-ui] [class*="colVerification"],
+[data-materials-ui] [class*="colType"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-materials-ui] [class*="colQty"],
+[data-materials-ui] [class*="colReserved"],
+[data-materials-ui] [class*="colStock"],
+[data-materials-ui] [class*="colAmount"],
+[data-materials-ui] [class*="colUsage"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-materials-ui] [class*="colActions"] a,
+[data-materials-ui] [class*="colActions"] button,
+[data-materials-ui] [class*="actions"] button,
+[data-materials-ui] a[class*="action"],
+[data-materials-ui] button[class*="primary"],
+[data-materials-ui] a[class*="view"],
+[data-materials-ui] a[class*="secondary"],
+[data-materials-ui] button[class*="secondary"] {
+  min-height: 40px;
+  min-width: 4.75rem;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+[data-materials-ui] button[class*="primary"],
+[data-materials-ui] a[class*="primary"] {
+  border-color: #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
+}
+
+[data-materials-ui] a[class*="secondary"],
+[data-materials-ui] button[class*="secondary"] {
+  border-color: #246448;
+  color: #174b37;
+  background: #fff;
+}
+
+@media (max-width: 430px) {
+  [data-materials-ui] [class*="colActions"] a,
+  [data-materials-ui] [class*="colActions"] button,
+  [data-materials-ui] [class*="actions"] button,
+  [data-materials-ui] a[class*="action"],
+  [data-materials-ui] button[class*="primary"],
+  [data-materials-ui] a[class*="view"],
+  [data-materials-ui] a[class*="secondary"],
+  [data-materials-ui] button[class*="secondary"] {
+    white-space: normal;
+    text-align: center;
+  }
+}

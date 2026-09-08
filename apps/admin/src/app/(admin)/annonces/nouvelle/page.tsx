@@ -1,12 +1,24 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Plus } from "lucide-react";
+import {
+  BadgeCheck,
+  Building2,
+  FileText,
+  Home,
+  MapPin,
+  Plus,
+  UserRound,
+} from "lucide-react";
 import { FormEvent, Suspense, useEffect, useState } from "react";
 
 import AdminShell from "@/components/administration/AdminShell";
+import {
+  WorkspaceFormCard,
+  WorkspaceMeta,
+} from "@/components/administration/WorkspaceForm";
 import ListingTermsFields from "@/components/listing/ListingTermsFields";
-import { DemoToast } from "@/components/ui";
+import { Button, DemoToast } from "@/components/ui";
 import {
   canPublishListings,
   canWriteListings,
@@ -27,7 +39,7 @@ import {
   type ListingTermsFormValues,
 } from "@/lib/listing/listingTerms";
 import { routes } from "@/lib/routes/app-routes";
-import styles from "../[id]/page.module.css";
+import styles from "@/components/administration/WorkspaceForm.module.css";
 
 function NewListingForm() {
   const router = useRouter();
@@ -131,7 +143,7 @@ function NewListingForm() {
       router.push(routes.ad(created.id));
     } catch (err) {
       setToast(
-        err instanceof Error ? err.message : "Création refusée par la Demo API.",
+        err instanceof Error ? err.message : "Création refusée.",
       );
     } finally {
       setSaving(false);
@@ -151,124 +163,194 @@ function NewListingForm() {
       backLabel="Retour aux annonces"
     >
 
-      <form className={styles.panel} onSubmit={onSubmit}>
-        <header className={styles.panelHead}>
-          <h2>Bien existant</h2>
-        </header>
-        <div className={styles.kv}>
-          <div className={styles.full}>
-            <span>Bien (propriétaire ou agence)</span>
-            <select
-              value={propertyId}
-              onChange={(e) => {
-                const id = e.target.value;
-                setPropertyId(id);
-                const p = properties.find((x) => x.id === id);
-                if (p) {
-                  setTitle(p.title);
-                  setOperation(
-                    p.operation === "LOCATION" ? "LOCATION" : "VENTE",
-                  );
-                  setPrice(String(p.price || ""));
+      <form className={styles.form} onSubmit={onSubmit}>
+        <div className={styles.layout}>
+          <div className={styles.main}>
+            <WorkspaceFormCard
+              icon={FileText}
+              title="Données commerciales"
+              subtitle="Ces informations concernent l’annonce. Le bien reste la source technique."
+            >
+              <div className={styles.grid}>
+                <label className={`${styles.field} ${styles.wide}`}>
+                  <span>Titre public</span>
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </label>
+                <label className={styles.field}>
+                  <span>Opération</span>
+                  <select
+                    value={operation}
+                    onChange={(e) =>
+                      setOperation(e.target.value as "VENTE" | "LOCATION")
+                    }
+                  >
+                    <option value="VENTE">Vente</option>
+                    <option value="LOCATION">Location</option>
+                  </select>
+                </label>
+                {!config.sections.rentalTerms ? (
+                  <label className={styles.field}>
+                    <span>{config.labels.priceLabel} (GNF)</span>
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
+                    {termsErrors.price ? (
+                      <small className={styles.error}>{termsErrors.price}</small>
+                    ) : null}
+                  </label>
+                ) : null}
+                <label className={`${styles.field} ${styles.wide}`}>
+                  <span>Description de l’annonce</span>
+                  <textarea
+                    rows={4}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </label>
+              </div>
+              <ListingTermsFields
+                config={config}
+                values={termsValues}
+                errors={termsErrors}
+                onChange={(patch) =>
+                  setTermsValues((current) => ({ ...current, ...patch }))
                 }
-              }}
-              required
-            >
-              {properties.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.title} · {p.reference} ·{" "}
-                  {p.agencyId ? `Agence ${p.agencyId}` : `Proprio ${p.ownerId}`}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <header className={styles.panelHead} style={{ marginTop: 18 }}>
-          <h2>Données commerciales</h2>
-        </header>
-        <div className={styles.kv}>
-          <div className={styles.full}>
-            <span>Titre public</span>
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <span>Opération</span>
-            <select
-              value={operation}
-              onChange={(e) =>
-                setOperation(e.target.value as "VENTE" | "LOCATION")
-              }
-            >
-              <option value="VENTE">Vente</option>
-              <option value="LOCATION">Location</option>
-            </select>
-          </div>
-          {!config.sections.rentalTerms ? (
-            <div>
-              <span>{config.labels.priceLabel} (GNF)</span>
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                formatAmount={formatGnf}
               />
-              {termsErrors.price ? (
-                <small className={styles.missing}>{termsErrors.price}</small>
+              {canDirectPublish ? (
+                <label className={styles.check}>
+                  <input
+                    type="checkbox"
+                    checked={publishNow}
+                    onChange={(e) => setPublishNow(e.target.checked)}
+                  />
+                  <span>
+                    Publier directement (ANNONCES_PUBLICATION) — sans file
+                    EN_ATTENTE
+                  </span>
+                </label>
               ) : null}
-            </div>
-          ) : null}
-          <div className={styles.full}>
-            <span>Description de l’annonce</span>
-            <textarea
-              rows={4}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            </WorkspaceFormCard>
           </div>
-          <div className={styles.full}>
-            <ListingTermsFields
-              config={config}
-              values={termsValues}
-              errors={termsErrors}
-              onChange={(patch) =>
-                setTermsValues((current) => ({ ...current, ...patch }))
-              }
-              formatAmount={formatGnf}
-            />
-          </div>
-          {canDirectPublish ? (
-            <div className={styles.full}>
-              <label
-                style={{
-                  display: "flex",
-                  gap: 8,
-                  alignItems: "center",
-                  fontSize: "0.8rem",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={publishNow}
-                  onChange={(e) => setPublishNow(e.target.checked)}
-                />
-                Publier directement (ANNONCES_PUBLICATION) — sans file EN_ATTENTE
+
+          <aside className={styles.side}>
+            <WorkspaceFormCard
+              icon={Home}
+              title="Bien existant"
+              subtitle="Choisissez le bien à publier. Les données techniques restent inchangées."
+              aside
+            >
+              <label className={styles.field}>
+                <span>Bien (propriétaire ou agence)</span>
+                <select
+                  value={propertyId}
+                  onChange={(e) => {
+                    const id = e.target.value;
+                    setPropertyId(id);
+                    const p = properties.find((x) => x.id === id);
+                    if (p) {
+                      setTitle(p.title);
+                      setOperation(
+                        p.operation === "LOCATION" ? "LOCATION" : "VENTE",
+                      );
+                      setPrice(String(p.price || ""));
+                    }
+                  }}
+                  required
+                >
+                  {properties.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.title} · {p.reference} ·{" "}
+                      {p.agencyId
+                        ? `Agence ${p.agencyId}`
+                        : `Proprio ${p.ownerId}`}
+                    </option>
+                  ))}
+                </select>
               </label>
-            </div>
-          ) : null}
+
+              {selectedProperty ? (
+                <div className={styles.summary}>
+                  <div>
+                    <h3 className={styles.summaryTitle}>
+                      {selectedProperty.title}
+                    </h3>
+                    <p className={styles.summaryRef}>
+                      {selectedProperty.reference}
+                    </p>
+                  </div>
+                  <div className={styles.metaList}>
+                    <WorkspaceMeta
+                      icon={
+                        selectedProperty.agencyId ? Building2 : UserRound
+                      }
+                      label={selectedProperty.agencyId ? "Agence" : "Propriétaire"}
+                      value={
+                        selectedProperty.agencyId
+                          ? `Agence ${selectedProperty.agencyId}`
+                          : selectedProperty.ownerId
+                            ? `Proprio ${selectedProperty.ownerId}`
+                            : null
+                      }
+                    />
+                    <WorkspaceMeta
+                      icon={Home}
+                      label="Type"
+                      value={selectedProperty.type}
+                    />
+                    <WorkspaceMeta
+                      icon={BadgeCheck}
+                      label="Opération"
+                      value={
+                        selectedProperty.operation === "LOCATION"
+                          ? "Location"
+                          : selectedProperty.operation === "VENTE"
+                            ? "Vente"
+                            : selectedProperty.operation
+                      }
+                    />
+                    <WorkspaceMeta
+                      icon={MapPin}
+                      label="Localisation"
+                      value={[
+                        selectedProperty.district,
+                        selectedProperty.commune,
+                        selectedProperty.city,
+                      ]
+                        .filter(Boolean)
+                        .join(", ")}
+                    />
+                    {selectedProperty.price ? (
+                      <WorkspaceMeta
+                        icon={FileText}
+                        label="Prix indicatif"
+                        value={formatGnf(selectedProperty.price)}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
+            </WorkspaceFormCard>
+          </aside>
         </div>
 
-        <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
-          <button type="submit" className={styles.save} disabled={saving}>
+        <div className={styles.actions}>
+          <Button href={routes.ads} variant="secondary">
+            Retour
+          </Button>
+          <Button type="submit" disabled={saving}>
             {saving
               ? "Création…"
               : publishNow && canDirectPublish
                 ? "Créer et publier"
                 : "Créer en brouillon"}
-          </button>
+          </Button>
         </div>
       </form>
 

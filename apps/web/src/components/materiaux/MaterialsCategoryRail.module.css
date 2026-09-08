@@ -1,0 +1,60 @@
+.section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.heading h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.more {
+  border: 0;
+  min-height: 2.5rem;
+  padding: 0 0.2rem;
+  background: none;
+  color: var(--forest-700);
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--forest-800);
+  background: var(--white);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip:hover,
+.active {
+  border-color: rgba(36, 100, 72, 0.28);
+  background: var(--forest-50);
+}
+
+.active {
+  color: var(--forest-950);
+  background: var(--gold-100);
+  border-color: rgba(216, 170, 52, 0.4);
+}

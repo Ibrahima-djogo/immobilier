@@ -233,7 +233,7 @@ export default function AdminPropertyDetailPage() {
         active="biens"
         eyebrow="Portefeuille immobilier"
         title="Bien introuvable"
-        description={error || "Ce bien n’existe pas dans la Demo API."}
+        description={error || "Ce bien n’existe pas."}
         icon={Home}
         heroVariant="compact"
         backHref={routes.properties}
@@ -241,7 +241,7 @@ export default function AdminPropertyDetailPage() {
       >
         <EmptyState
           title="Bien introuvable"
-          description={error || "Ce bien n’existe pas dans la Demo API."}
+          description={error || "Ce bien n’existe pas."}
         />
       </AdminShell>
     );
@@ -261,16 +261,7 @@ export default function AdminPropertyDetailPage() {
       backLabel="Retour aux biens"
       badge={formatStatusLabel((property.status as string) || "ACTIF")}
       badgeTone={statusTone((property.status as string) || "ACTIF")}
-      meta={[
-        { label: "Référence", value: property.reference, icon: Hash },
-        { label: "Type", value: property.type, icon: Home },
-        {
-          label: "Rattachement",
-          value: property.agencyId ? "Agence" : "Propriétaire",
-          icon: UserCog,
-        },
-      ]}
-      stats={[{ label: "Annonces liées", value: linkedListings.length }]}
+      meta={[{ label: "Référence", value: property.reference, icon: Hash }]}
       actions={
         <>
           {canEdit ? (

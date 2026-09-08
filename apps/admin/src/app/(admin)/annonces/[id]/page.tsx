@@ -116,7 +116,7 @@ export default function AdminAdDetailPage() {
       setLoadError(
         err instanceof Error
           ? err.message
-          : "Impossible de charger l’annonce (Demo API).",
+          : "Impossible de charger l’annonce.",
       );
       setBundle(null);
       setListing(null);
@@ -155,7 +155,7 @@ export default function AdminAdDetailPage() {
         active="annonces"
         eyebrow="Modération"
         title="Annonce introuvable"
-        description="Cette annonce n’existe pas dans la Demo API partagée."
+        description="Cette annonce n’existe pas."
         icon={FileText}
         heroVariant="compact"
         backHref={routes.ads}
@@ -337,7 +337,7 @@ export default function AdminAdDetailPage() {
       setToast(
         err instanceof Error
           ? err.message
-          : "Échec de la décision — Demo API indisponible.",
+          : "Échec de la décision. Réessayez dans un instant.",
       );
     } finally {
       setPendingSave(false);
@@ -384,24 +384,7 @@ export default function AdminAdDetailPage() {
       backLabel="Retour aux annonces"
       badge={formatStatusLabel(currentStatus)}
       badgeTone={statusTone(currentStatus)}
-      meta={[
-        { label: "Référence", value: ad.reference, icon: Hash },
-        {
-          label: "Annonceur",
-          value: ad.advertiserType === "AGENCE" ? "Agence" : "Propriétaire",
-          icon: UserCog,
-        },
-        {
-          label: "Type de bien",
-          value: labelPropertyType(ad.type),
-          icon: Building2,
-        },
-        {
-          label: "Opération",
-          value: ad.operation === "LOCATION" ? "Location" : "Vente",
-          icon: Tag,
-        },
-      ]}
+      meta={[{ label: "Référence", value: ad.reference, icon: Hash }]}
     >
 
       {alerts.length > 0 ? (

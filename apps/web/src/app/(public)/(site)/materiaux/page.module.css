@@ -1,0 +1,8 @@
+.error {
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  border: 1px solid #e3c8c5;
+  color: #9a3f39;
+  background: #fff2f0;
+}

@@ -5,7 +5,9 @@ import { ArrowLeft, CheckCircle2, Save } from "lucide-react";
 import { useParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
+import { FieldError, fieldA11y } from "@/components/ui";
 import OwnerPageHeader from "@/components/proprietaire/OwnerPageHeader";
+import { validatePropertyPublish } from "@/lib/validation";
 import {
   PropertyLocationMap,
   type PropertyLocationValue,
@@ -48,7 +50,7 @@ export default function EditPropertyPage() {
           setLoadError(
             err instanceof Error
               ? err.message
-              : "Impossible de charger le bien (Demo API).",
+              : "Impossible de charger le bien.",
           );
         }
       } finally {
@@ -107,6 +109,7 @@ function EditPropertyForm({
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [videos, setVideos] = useState<PropertyVideo[]>(
     () => (property.videos ?? []) as PropertyVideo[],
   );
@@ -125,6 +128,30 @@ function EditPropertyForm({
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    if ((property.status as string) !== "BROUILLON") {
+      const parsed = validatePropertyPublish({
+        type: property.type,
+        operation: property.operation,
+        title: form.title,
+        price: form.price,
+        area: form.area,
+        bedrooms: form.bedrooms,
+        bathrooms: form.bathrooms,
+        description: form.description,
+        city: location.city,
+        commune: location.commune,
+        quarter: location.quarter,
+        landmark: location.landmark,
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      if (!parsed.ok) {
+        setFieldErrors(parsed.errors);
+        setError("Corrigez les champs indiqués avant d’enregistrer.");
+        return;
+      }
+    }
+    setFieldErrors({});
     setSaving(true);
     setError(null);
     try {
@@ -169,7 +196,7 @@ function EditPropertyForm({
       setError(
         err instanceof Error
           ? err.message
-          : "Enregistrement impossible — démarrez la Demo API (port 4000).",
+          : "Enregistrement impossible. Réessayez dans un instant.",
       );
     } finally {
       setSaving(false);
@@ -203,23 +230,32 @@ function EditPropertyForm({
             <input
               value={form.title}
               onChange={(e) => setForm((v) => ({ ...v, title: e.target.value }))}
+              {...fieldA11y("title-error", fieldErrors.title)}
             />
+            <FieldError id="title-error" message={fieldErrors.title} />
           </label>
           <label>
-            Prix
+            Prix (GNF)
             <input
               type="number"
+              min={1}
               value={form.price}
               onChange={(e) => setForm((v) => ({ ...v, price: e.target.value }))}
+              {...fieldA11y("price-error", fieldErrors.price)}
             />
+            <FieldError id="price-error" message={fieldErrors.price} />
           </label>
           <label>
-            Surface
+            Surface (m²)
             <input
               type="number"
+              min={0.01}
+              step="0.01"
               value={form.area}
               onChange={(e) => setForm((v) => ({ ...v, area: e.target.value }))}
+              {...fieldA11y("area-error", fieldErrors.area)}
             />
+            <FieldError id="area-error" message={fieldErrors.area} />
           </label>
           {typeFields.bedrooms ? (
             <label>
@@ -267,8 +303,8 @@ function EditPropertyForm({
 
         <div className={styles.footer}>
           <p>
-            Les modifications sont envoyées à la Demo API. Les fichiers vidéo
-            uploadés restent en aperçu de session jusqu’au backend.
+            Les fichiers vidéo restent en aperçu jusqu’à l’enregistrement
+            définitif.
           </p>
           <button type="submit" disabled={saving}>
             <Save size={16} />

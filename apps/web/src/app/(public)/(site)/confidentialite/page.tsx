@@ -6,7 +6,7 @@ export default function Page() {
       eyebrow="Protection des données"
       title="Politique de confidentialité"
       introduction="Cette page présente les principes de collecte, d’utilisation, de protection et de gestion des données personnelles."
-      version="Version front-end 1.0 — 1er août 2026"
+      version="Version 1.0 — 1er août 2026"
       sections={[
         {
                 "title": "Données concernées",

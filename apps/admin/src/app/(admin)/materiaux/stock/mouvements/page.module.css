@@ -1,0 +1,275 @@
+.action {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #071f17;
+  background: #e8bf4d;
+  font-size: 0.8125rem;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error,
+.loading {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 0.8125rem;
+}
+
+.error {
+  border: 1px solid #e3c8c5;
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.loading {
+  border: 1px solid #dce6df;
+  color: #647169;
+  background: #f8f6f0;
+}
+
+.filters {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border: 1px solid #dce6df;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(140px, 0.8fr)
+    minmax(120px, 0.7fr)
+    minmax(120px, 0.7fr)
+    auto;
+  gap: 8px;
+  align-items: center;
+  background: #fff;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.search svg {
+  position: absolute;
+  left: 10px;
+  color: #246448;
+}
+
+.search input,
+.filters select,
+.filters input[type="date"] {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  border: 1px solid #c9d7ce;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.8125rem;
+  background: #fff;
+}
+
+.search input {
+  padding: 0 10px 0 34px;
+}
+
+.filters select,
+.filters input[type="date"] {
+  padding: 0 10px;
+}
+
+.count {
+  min-height: 28px;
+  padding: 0 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  color: #246448;
+  background: #e3eee7;
+  font-size: 0.75rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.table {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  border: 1px solid #dce6df;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.tableGrid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(0, 1.6fr)
+    minmax(0, 1fr)
+    minmax(0, 0.8fr)
+    minmax(0, 1fr)
+    minmax(0, 1.3fr);
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 12px;
+  font-size: 0.8125rem;
+}
+
+.head {
+  min-height: 32px;
+  color: #7b8780;
+  background: #f2f7f3;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.row {
+  min-height: 44px;
+  padding-block: 6px;
+  border-top: 1px solid #dce6df;
+}
+
+.muted {
+  color: #647169;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.product {
+  color: #0f3527;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.colType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colQty {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.head > *:nth-child(3) {
+  text-align: center;
+}
+
+.head > *:nth-child(4) {
+  text-align: right;
+}
+
+.deltaPlus,
+.deltaMinus {
+  font-size: 0.8125rem;
+  font-weight: 850;
+}
+
+.deltaPlus {
+  color: #174b37;
+}
+
+.deltaMinus {
+  color: #9a3f39;
+}
+
+.secondary {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #dce6df;
+  border-radius: 8px;
+  color: #246448;
+  background: #fff;
+  font-size: 0.8125rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.tableGrid > * {
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search {
+    grid-column: 1 / -1;
+  }
+
+  .head {
+    display: none;
+  }
+
+  .table {
+    border: 0;
+    background: transparent;
+    display: grid;
+    gap: 8px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    min-height: 0;
+    padding: 10px 12px;
+    border: 1px solid #dce6df;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .colDate,
+  .colProduct,
+  .colType,
+  .colQty,
+  .colUser,
+  .colReason {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .colDate::before,
+  .colProduct::before,
+  .colType::before,
+  .colQty::before,
+  .colUser::before,
+  .colReason::before {
+    content: attr(data-label);
+    color: #7b8780;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (max-width: 620px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .action {
+    width: 100%;
+  }
+}

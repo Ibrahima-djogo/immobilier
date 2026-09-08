@@ -477,7 +477,7 @@ function NewAdForm() {
         />
         <section className={`${styles.card} ${styles.form}`}>
           <p className={styles.warn} role="alert">
-            {error} — lancez `npm start` dans immo-demo-api.
+            {error}
           </p>
         </section>
       </>

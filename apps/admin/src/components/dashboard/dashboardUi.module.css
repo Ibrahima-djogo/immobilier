@@ -5,6 +5,10 @@
   margin-bottom: 1.35rem;
 }
 
+.panelBody .kpiStrip {
+  margin-bottom: 0;
+}
+
 .kpiStripHighlight {
   grid-template-columns: 1.35fr repeat(3, minmax(0, 1fr));
 }
@@ -19,6 +23,12 @@
   border-radius: 14px;
   background: var(--white, #fff);
   box-shadow: var(--shadow-soft, 0 12px 34px rgba(7, 31, 23, 0.06));
+  color: inherit;
+  text-decoration: none;
+}
+
+a.kpiCard:hover {
+  border-color: var(--forest-700, #174b37);
 }
 
 .kpiHero {
@@ -66,6 +76,17 @@
   color: var(--text-body, #5b6861);
   font-size: 0.72rem;
   line-height: 1.35;
+}
+
+.kpiAction {
+  margin-top: 0.2rem;
+  color: var(--forest-700, #246448);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.kpiHero .kpiAction {
+  color: var(--gold-400, #e8bf4d);
 }
 
 /* Carte de synthèse sur fond vert foncé. Déclarée après les règles claires

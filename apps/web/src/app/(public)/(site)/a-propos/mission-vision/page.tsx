@@ -1,29 +1,23 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import styles from "../aboutSub.module.css";
 
 export default function MissionVisionPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Accueil</Link>
-            <span>/</span>
-            <Link href="/a-propos">À propos</Link>
-            <span>/</span>
-            <strong>Mission & vision</strong>
-          </p>
-          <p className={styles.eyebrow}>Orientation</p>
-          <h1>Mission & vision</h1>
-          <p className={styles.lead}>
-            Demeure Guinée vise une recherche immobilière claire, utile et
-            digne de confiance, pour les particuliers comme pour les
-            professionnels.
-          </p>
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { href: "/a-propos", label: "À propos" },
+          { label: "Mission & vision" },
+        ]}
+        eyebrow="Orientation"
+        title="Mission & vision"
+        description="Demeure Guinée vise une recherche immobilière claire, utile et digne de confiance, pour les particuliers comme pour les professionnels."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.section}>
         <div className={styles.container}>

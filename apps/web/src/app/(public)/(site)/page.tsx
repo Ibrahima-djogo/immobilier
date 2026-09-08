@@ -5,8 +5,10 @@ import {
   BadgeCheck,
   Bath,
   BedDouble,
+  BrickWall,
   BriefcaseBusiness,
   Building2,
+  Handshake,
   House,
   LandPlot,
   MapPin,
@@ -14,23 +16,34 @@ import {
   Ruler,
   ShieldCheck,
   Store,
-  UserRoundCheck,
 } from "lucide-react";
 
+import { MaterialCard } from "@/components/materiaux/MaterialCard";
 import { PropertyCard } from "@/components/property/PropertyCard";
+import { PropertyPhoto } from "@/components/property/PropertyPhoto";
 import { HomeHeroSearch } from "@/components/search/HomeHeroSearch";
 import { Button, Chip, SectionHeading } from "@/components/ui";
-import {
-  agenciesData,
-  neighborhoodsData,
-  propertiesData,
-} from "@/data/properties";
+import { agenciesData, neighborhoodsData } from "@/data/properties";
+import { pickHomeListings } from "@/lib/home/featured-listings";
+import { listingService } from "@/lib/demo-api/listings";
 import { skipImageOptimization } from "@/lib/imageOptimization";
+import { loadPublicCatalog } from "@/lib/materiaux/catalog-source";
+import type { PublicMaterial } from "@/lib/materiaux/types";
 import { routes } from "@/lib/routes/app-routes";
+
 import styles from "./page.module.css";
+
+export const dynamic = "force-dynamic";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85";
+
+const HOME_MATERIAL_SLUGS = [
+  "ciment-42-5",
+  "fer-a-beton-12-mm",
+  "peinture-interieure-20-l",
+  "tuyau-pvc-100-mm",
+] as const;
 
 const categories = [
   { name: "Maisons", slug: "maison", count: "128", icon: House },
@@ -41,18 +54,49 @@ const categories = [
   { name: "Commerces", slug: "commerce", count: "41", icon: Store },
 ];
 
-const reasons = [
+const trustItems = [
   {
-    title: "Annonceurs contrôlés",
-    text: "La publication exige une validation de rôle Propriétaire ou Agence.",
+    icon: ShieldCheck,
+    title: "Vérification des biens",
+    text: "Des parcours de contrôle pour renforcer la confiance avant de s’engager.",
   },
   {
-    title: "Biens présentés clairement",
-    text: "Photos, critères et localisation utiles pour comparer sans confusion.",
+    icon: House,
+    title: "Large choix immobilier",
+    text: "Maisons, terrains et appartements présentés clairement, à vendre ou à louer.",
   },
   {
-    title: "Recherche locale précise",
-    text: "Filtrez par opération, typologie, quartier et budget en quelques gestes.",
+    icon: BrickWall,
+    title: "Matériaux sélectionnés",
+    text: "Un catalogue utile pour accompagner les constructions et les chantiers.",
+  },
+  {
+    icon: Handshake,
+    title: "Accompagnement local",
+    text: "Une plateforme pensée pour les projets habitat en Guinée.",
+  },
+];
+
+const journeySteps = [
+  {
+    step: "01",
+    title: "Trouver votre terrain ou logement",
+    text: "Explorez les annonces vérifiées pour acheter ou louer.",
+  },
+  {
+    step: "02",
+    title: "Vérifier votre projet",
+    text: "Comparez les fiches, la localisation et les informations utiles.",
+  },
+  {
+    step: "03",
+    title: "Choisir vos matériaux",
+    text: "Consultez le catalogue pour préparer votre chantier.",
+  },
+  {
+    step: "04",
+    title: "Construire votre habitat",
+    text: "Passez de la recherche à la réalisation, au même endroit.",
   },
 ];
 
@@ -71,9 +115,30 @@ const testimonials = [
   },
 ];
 
-export default function HomePage() {
-  const [spotlight, ...rest] = propertiesData;
-  const featuredGrid = rest.slice(0, 3);
+function pickHomeMaterials(materials: PublicMaterial[]) {
+  const featured = HOME_MATERIAL_SLUGS.map((slug) =>
+    materials.find((item) => item.slug === slug),
+  ).filter((item): item is PublicMaterial => Boolean(item));
+  return featured.length > 0 ? featured : materials.slice(0, 4);
+}
+
+export default async function HomePage() {
+  const [listingsResult, catalogResult] = await Promise.allSettled([
+    listingService.list({ publicOnly: true }),
+    loadPublicCatalog(),
+  ]);
+
+  const featuredProperties =
+    listingsResult.status === "fulfilled"
+      ? pickHomeListings(listingsResult.value)
+      : [];
+  const [spotlight, ...featuredGrid] = featuredProperties;
+
+  const homeMaterials =
+    catalogResult.status === "fulfilled"
+      ? pickHomeMaterials(catalogResult.value.materials)
+      : [];
+
   const [leadAgency, ...otherAgencies] = agenciesData;
 
   return (
@@ -93,13 +158,42 @@ export default function HomePage() {
         <div className={styles.heroContainer}>
           <p className={styles.heroBrand}>Demeure Guinée</p>
           <h1 className={styles.heroTitle}>
-            L’immobilier de confiance,
-            <span> au rythme de la Guinée</span>
+            Votre plateforme pour trouver, construire
+            <span> et sécuriser votre habitat en Guinée</span>
           </h1>
           <p className={styles.heroDescription}>
-            Maisons, appartements, terrains et bureaux — des annonces claires
-            pour acheter ou louer en toute sérénité.
+            Immobilier et matériaux de construction, réunis pour accompagner
+            tout votre projet habitat — de la recherche du bien jusqu’au
+            chantier.
           </p>
+
+          <div className={styles.heroEntries}>
+            <Link href={routes.listings} className={styles.heroEntry}>
+              <span className={styles.heroEntryIcon} aria-hidden="true">
+                <House size={22} />
+              </span>
+              <div>
+                <strong>Trouver un bien</strong>
+                <p>Maison · Terrain · Appartement</p>
+              </div>
+              <span className={styles.heroEntryLinks}>
+                <span>Acheter</span>
+                <span>Louer</span>
+              </span>
+            </Link>
+            <Link href={routes.materials} className={styles.heroEntry}>
+              <span className={styles.heroEntryIcon} aria-hidden="true">
+                <BrickWall size={22} />
+              </span>
+              <div>
+                <strong>Construire mon projet</strong>
+                <p>Matériaux · Fournisseurs · Solutions construction</p>
+              </div>
+              <span className={styles.heroEntryLinks}>
+                <span>Catalogue</span>
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -131,10 +225,11 @@ export default function HomePage() {
       <section className={styles.section}>
         <div className={styles.container}>
           <SectionHeading
-            eyebrow="Biens en vedette"
-            title="Sélection récente à découvrir"
+            eyebrow="Immobilier"
+            title="Les biens immobiliers populaires"
+            description="Une sélection récente issue des annonces publiées."
             action={
-              <Button href="/annonces" variant="ghost" size="sm">
+              <Button href={routes.listings} variant="ghost" size="sm">
                 Toutes les annonces
                 <ArrowRight size={16} aria-hidden="true" />
               </Button>
@@ -143,31 +238,28 @@ export default function HomePage() {
 
           {spotlight ? (
             <Link
-              href={`/annonces/${spotlight.slug}`}
+              href={routes.publicProperty(spotlight.slug)}
               className={styles.spotlight}
             >
               <div className={styles.spotlightMedia}>
-                <Image
-                  src={spotlight.image}
+                <PropertyPhoto
+                  imageUrl={spotlight.image}
                   alt={spotlight.title}
-                  fill
                   sizes="(max-width: 900px) 100vw, 58vw"
                   className={styles.spotlightImage}
-                  unoptimized={skipImageOptimization(spotlight.image)}
                 />
                 <span className={styles.spotlightShade} aria-hidden="true" />
                 <span className={styles.spotlightOp}>{spotlight.operation}</span>
               </div>
               <div className={styles.spotlightBody}>
                 <span className={styles.spotlightKicker}>
+                  {spotlight.category}
                   {spotlight.verified ? (
                     <>
                       <BadgeCheck size={15} aria-hidden="true" />
                       Annonce vérifiée
                     </>
-                  ) : (
-                    spotlight.category
-                  )}
+                  ) : null}
                 </span>
                 <h3>{spotlight.title}</h3>
                 <p className={styles.spotlightLocation}>
@@ -176,14 +268,18 @@ export default function HomePage() {
                 </p>
                 <p className={styles.spotlightPrice}>{spotlight.price}</p>
                 <ul className={styles.spotlightMeta}>
-                  <li>
-                    <BedDouble size={15} aria-hidden="true" />
-                    {spotlight.rooms} ch.
-                  </li>
-                  <li>
-                    <Bath size={15} aria-hidden="true" />
-                    {spotlight.bathrooms} sdb
-                  </li>
+                  {spotlight.rooms ? (
+                    <li>
+                      <BedDouble size={15} aria-hidden="true" />
+                      {spotlight.rooms} ch.
+                    </li>
+                  ) : null}
+                  {spotlight.bathrooms ? (
+                    <li>
+                      <Bath size={15} aria-hidden="true" />
+                      {spotlight.bathrooms} sdb
+                    </li>
+                  ) : null}
                   <li>
                     <Ruler size={15} aria-hidden="true" />
                     {spotlight.area}
@@ -195,60 +291,100 @@ export default function HomePage() {
                 </span>
               </div>
             </Link>
-          ) : null}
+          ) : (
+            <p className={styles.emptyNote}>
+              Les annonces publiées apparaîtront ici dès qu’elles seront
+              disponibles.
+            </p>
+          )}
 
-          <div className={styles.featuredGrid}>
-            {featuredGrid.map((property) => (
-              <PropertyCard
-                key={property.id}
-                property={property}
-                viewMode="grid"
-              />
-            ))}
+          {featuredGrid.length > 0 ? (
+            <div className={styles.featuredGrid}>
+              {featuredGrid.map((property) => (
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  viewMode="grid"
+                />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.materialsSection}`}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Construction"
+            title="Matériaux disponibles pour vos projets"
+            description="Une lecture du catalogue actuel, sans commande à ce stade."
+            action={
+              <Button href={routes.materials} variant="ghost" size="sm">
+                Voir tous les matériaux
+                <ArrowRight size={16} aria-hidden="true" />
+              </Button>
+            }
+          />
+
+          {homeMaterials.length > 0 ? (
+            <div className={styles.materialsGrid}>
+              {homeMaterials.map((material) => (
+                <MaterialCard key={material.id} material={material} />
+              ))}
+            </div>
+          ) : (
+            <p className={styles.emptyNote}>
+              Le catalogue matériaux n’est pas disponible pour le moment.
+            </p>
+          )}
+
+          <div className={styles.materialsCta}>
+            <Button href={routes.materials} variant="secondary">
+              Voir tous les matériaux
+              <ArrowRight size={16} aria-hidden="true" />
+            </Button>
           </div>
         </div>
       </section>
 
       <section className={`${styles.section} ${styles.whySection}`}>
         <div className={styles.container}>
-          <div className={styles.whyLayout}>
-            <div className={styles.whyCopy}>
-              <SectionHeading
-                eyebrow="Pourquoi Demeure Guinée"
-                title="Une plateforme conçue pour la confiance"
-                description="Moins de bruit, plus de clarté : des parcours simples pour les chercheurs de biens et des garde-fous pour les professionnels."
-              />
-              <ol className={styles.reasonList}>
-                {reasons.map((reason, index) => (
-                  <li key={reason.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <div>
-                      <strong>{reason.title}</strong>
-                      <p>{reason.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <aside className={styles.whyAside} aria-label="Engagements">
-              <article>
-                <ShieldCheck size={22} aria-hidden="true" />
-                <h3>Modération active</h3>
-                <p>Les contenus douteux peuvent être suspendus.</p>
+          <SectionHeading
+            eyebrow="Confiance"
+            title="Pourquoi choisir Demeure Guinée ?"
+            description="Une plateforme habitat : trouver un bien, sécuriser son projet, puis préparer la construction."
+            align="center"
+          />
+          <div className={styles.trustGrid}>
+            {trustItems.map(({ icon: Icon, title, text }) => (
+              <article key={title} className={styles.trustCard}>
+                <span className={styles.trustIcon} aria-hidden="true">
+                  <Icon size={22} />
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </article>
-              <article>
-                <UserRoundCheck size={22} aria-hidden="true" />
-                <h3>Profils validés</h3>
-                <p>Propriétaires et agences passent par une demande de rôle.</p>
-              </article>
-              <article>
-                <MapPin size={22} aria-hidden="true" />
-                <h3>Localisation utile</h3>
-                <p>Quartier visible, adresse exacte protégée.</p>
-              </article>
-            </aside>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Parcours"
+            title="Votre projet habitat de A à Z"
+            description="Quatre étapes simples, du premier bien jusqu’au chantier."
+          />
+          <ol className={styles.journey}>
+            {journeySteps.map((item) => (
+              <li key={item.step}>
+                <span>{item.step}</span>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -259,7 +395,7 @@ export default function HomePage() {
             title="Par type de bien ou par quartier"
             description="Commencez large, affinez ensuite. Les filtres restent disponibles sur la page annonces."
             action={
-              <Button href="/annonces" variant="secondary" size="sm">
+              <Button href={routes.listings} variant="secondary" size="sm">
                 Ouvrir la recherche
               </Button>
             }
@@ -269,7 +405,7 @@ export default function HomePage() {
             {categories.map(({ icon: Icon, ...category }) => (
               <Chip
                 key={category.slug}
-                href={`/annonces?categorie=${category.slug}`}
+                href={`${routes.listings}?categorie=${category.slug}`}
                 variant="forest"
                 className={styles.typeChip}
               >
@@ -284,7 +420,7 @@ export default function HomePage() {
             {neighborhoodsData.map((neighborhood, index) => (
               <Link
                 key={neighborhood.name}
-                href={`/annonces?quartier=${neighborhood.name.toLowerCase()}`}
+                href={`${routes.listings}?quartier=${neighborhood.name.toLowerCase()}`}
                 className={`${styles.place} ${
                   index === 0 ? styles.placeLead : ""
                 }`}
@@ -373,7 +509,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.trustSection}`}>
+      <section className={`${styles.section} ${styles.quotesSection}`}>
         <div className={styles.container}>
           <SectionHeading
             eyebrow="Ils nous font confiance"

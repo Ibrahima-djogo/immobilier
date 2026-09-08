@@ -570,24 +570,6 @@ export default function RoleRequestDetailPage() {
   const heroMeta = [
     { label: "Référence", value: request.reference, icon: Hash },
     { label: "Rôle demandé", value: roleWording, icon: UserCog },
-    ...(request.requestedRole === "AGENCE" && request.activityType
-      ? [
-          {
-            label: "Type d’activité",
-            value: activityTypeLabel(request.activityType),
-            icon: Building2,
-          },
-        ]
-      : []),
-    ...(request.submittedAt
-      ? [
-          {
-            label: "Soumis le",
-            value: new Date(request.submittedAt).toLocaleDateString("fr-FR"),
-            icon: CalendarDays,
-          },
-        ]
-      : []),
   ];
   // Récapitulatif d’activation : uniquement ce qui est réellement enregistré.
   const activation = request.savedConfiguration || null;

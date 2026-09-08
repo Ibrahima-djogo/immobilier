@@ -10,7 +10,8 @@ import {
   securityRoleLabel,
   type Administrator,
 } from "@/lib/administration/admin-accounts";
-import { DemoToast, PermissionSummary, StatusBadge } from "@/components/ui";
+import { DemoToast, FieldError, fieldA11y, PermissionSummary, StatusBadge } from "@/components/ui";
+import { adminProfileSchema, safeParseFields } from "@/lib/validation";
 import { useAdminSession } from "@/lib/auth/admin-session";
 import styles from "./page.module.css";
 
@@ -25,12 +26,19 @@ function MonCompteForm({
   const [phone, setPhone] = useState(admin.phone ?? "");
   const [saved, setSaved] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   function handleSaveProfile(event: FormEvent) {
     event.preventDefault();
+    const parsed = safeParseFields(adminProfileSchema, { name, phone });
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return;
+    }
+    setErrors({});
     updateCurrentAdmin({
-      name: name.trim() || admin.name,
-      phone: phone.trim() || undefined,
+      name: parsed.data.name,
+      phone: parsed.data.phone || undefined,
     });
     setSaved("Profil mis à jour (démonstration frontend).");
     window.setTimeout(() => setSaved(null), 3500);
@@ -51,7 +59,9 @@ function MonCompteForm({
               value={name}
               onChange={(event) => setName(event.target.value)}
               autoComplete="name"
+              {...fieldA11y("admin-name-error", errors.name)}
             />
+            <FieldError id="admin-name-error" message={errors.name} />
           </label>
           <label>
             E-mail
@@ -60,11 +70,14 @@ function MonCompteForm({
           <label>
             Téléphone
             <input
+              type="tel"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
               autoComplete="tel"
               placeholder="+224 …"
+              {...fieldA11y("admin-phone-error", errors.phone)}
             />
+            <FieldError id="admin-phone-error" message={errors.phone} />
           </label>
           <button type="submit" className={styles.save}>
             Enregistrer

@@ -26,6 +26,8 @@ import {
 } from "@/lib/config/site-contact";
 import { contactRequestService } from "@/lib/demo-api/contact-requests";
 import { env } from "@/lib/config/env";
+import { FieldError, fieldA11y } from "@/components/ui";
+import { safeParseFields, visitRequestSchema } from "@/lib/validation";
 
 import styles from "./ContactAgentCard.module.css";
 
@@ -71,6 +73,7 @@ export function ContactAgentCard({
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!session) return;
@@ -142,6 +145,12 @@ export function ContactAgentCard({
       setError("Connexion requise pour envoyer une demande.");
       return;
     }
+    const parsed = safeParseFields(visitRequestSchema, formData);
+    if (!parsed.ok) {
+      setFieldErrors(parsed.errors);
+      return;
+    }
+    setFieldErrors({});
     setSubmitting(true);
     setError(null);
     try {
@@ -276,7 +285,7 @@ export function ContactAgentCard({
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className={styles.visitForm}>
+          <form onSubmit={handleSubmit} className={styles.visitForm} noValidate>
             <div className={styles.formGroup}>
               <label htmlFor="agent-form-date">Date souhaitée</label>
               <div className={styles.inputWithIcon}>
@@ -288,8 +297,10 @@ export function ContactAgentCard({
                   onChange={(event) =>
                     setFormData({ ...formData, date: event.target.value })
                   }
+                  {...fieldA11y("agent-date-error", fieldErrors.date)}
                 />
               </div>
+              <FieldError id="agent-date-error" message={fieldErrors.date} />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="agent-form-slot">Créneau</label>
@@ -301,6 +312,7 @@ export function ContactAgentCard({
                   onChange={(event) =>
                     setFormData({ ...formData, timeSlot: event.target.value })
                   }
+                  {...fieldA11y("agent-slot-error", fieldErrors.timeSlot)}
                 >
                   {TIME_SLOTS.map((slot) => (
                     <option key={slot.value} value={slot.value}>
@@ -309,6 +321,7 @@ export function ContactAgentCard({
                   ))}
                 </select>
               </div>
+              <FieldError id="agent-slot-error" message={fieldErrors.timeSlot} />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="agent-form-message">Message</label>
@@ -319,8 +332,9 @@ export function ContactAgentCard({
                 onChange={(event) =>
                   setFormData({ ...formData, message: event.target.value })
                 }
-                required
+                {...fieldA11y("agent-message-error", fieldErrors.message)}
               />
+              <FieldError id="agent-message-error" message={fieldErrors.message} />
             </div>
             {error ? (
               <p className={styles.formError} role="alert">

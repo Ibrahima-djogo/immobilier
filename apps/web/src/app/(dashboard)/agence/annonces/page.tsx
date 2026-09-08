@@ -98,7 +98,7 @@ export default function AgencyAdsPage() {
       setToast(
         err instanceof Error
           ? err.message
-          : "Suppression impossible (Demo API).",
+          : "Suppression impossible.",
       );
     } finally {
       setPendingDelete(null);
@@ -165,7 +165,7 @@ export default function AgencyAdsPage() {
 
       {error ? (
         <p className={styles.errorBanner} role="alert">
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 
@@ -272,7 +272,7 @@ export default function AgencyAdsPage() {
       <ConfirmDialog
         open={Boolean(pendingDelete)}
         title="Archiver cette annonce ?"
-        description="L’annonce sera marquée archivée dans la Demo API."
+        description="L’annonce sera marquée comme archivée."
         subject={pendingDelete?.title}
         confirmLabel="Archiver l’annonce"
         onCancel={() => setPendingDelete(null)}

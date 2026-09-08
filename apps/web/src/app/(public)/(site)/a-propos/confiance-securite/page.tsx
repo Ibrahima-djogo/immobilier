@@ -1,29 +1,23 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import styles from "../aboutSub.module.css";
 
 export default function ConfidenceSecurityPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Accueil</Link>
-            <span>/</span>
-            <Link href="/a-propos">À propos</Link>
-            <span>/</span>
-            <strong>Confiance & sécurité</strong>
-          </p>
-          <p className={styles.eyebrow}>Protection</p>
-          <h1>Confiance & sécurité</h1>
-          <p className={styles.lead}>
-            La confiance sur Demeure Guinée repose sur la validation des rôles,
-            la modération des contenus et la protection des informations
-            sensibles.
-          </p>
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { href: "/a-propos", label: "À propos" },
+          { label: "Confiance & sécurité" },
+        ]}
+        eyebrow="Protection"
+        title="Confiance & sécurité"
+        description="La confiance sur Demeure Guinée repose sur la validation des rôles, la modération des contenus et la protection des informations sensibles."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.section}>
         <div className={styles.container}>

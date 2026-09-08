@@ -4,6 +4,10 @@
 export const PROPERTY_PLACEHOLDER =
   "/images/properties/property-placeholder.jpg";
 
+/** Fallback visible : le fichier PROPERTY_PLACEHOLDER n’existe pas dans public. */
+export const PROPERTY_IMAGE_FALLBACK =
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85";
+
 const ALLOWED_REMOTE_HOSTS = new Set(["images.unsplash.com"]);
 
 const BLOCKED_REMOTE_HOSTS = new Set([
@@ -37,13 +41,21 @@ export function isUnsplashImage(src: string): boolean {
  * Normalize any image value coming from Demo API / mocks.
  * Invalid or blocked hosts never reach next/image.
  */
+function resolveFallback(fallback: string) {
+  if (!fallback || fallback === PROPERTY_PLACEHOLDER) {
+    return PROPERTY_IMAGE_FALLBACK;
+  }
+  return fallback;
+}
+
 export function getSafeImageSrc(
   value: unknown,
-  fallback: string = PROPERTY_PLACEHOLDER,
+  fallback: string = PROPERTY_IMAGE_FALLBACK,
 ): string {
-  if (typeof value !== "string") return fallback;
+  const safeFallback = resolveFallback(fallback);
+  if (typeof value !== "string") return safeFallback;
   const src = value.trim();
-  if (!src) return fallback;
+  if (!src || src === PROPERTY_PLACEHOLDER) return safeFallback;
 
   // Local public path
   if (src.startsWith("/") && !src.startsWith("//")) return src;
@@ -54,15 +66,15 @@ export function getSafeImageSrc(
   try {
     const url = new URL(src);
     if (url.protocol !== "http:" && url.protocol !== "https:") {
-      return fallback;
+      return safeFallback;
     }
     const host = url.hostname.toLowerCase();
-    if (BLOCKED_REMOTE_HOSTS.has(host)) return fallback;
+    if (BLOCKED_REMOTE_HOSTS.has(host)) return safeFallback;
     if (ALLOWED_REMOTE_HOSTS.has(host)) return src;
     // Unknown remote host: do not feed next/image (avoids unconfigured-host crash)
-    return fallback;
+    return safeFallback;
   } catch {
-    return fallback;
+    return safeFallback;
   }
 }
 
@@ -92,7 +104,7 @@ function extractRawId(item: unknown, index: number, ownerId: string): string {
 export function toGalleryMedia(
   images: unknown,
   ownerId: string,
-  fallback: string = PROPERTY_PLACEHOLDER,
+  fallback: string = PROPERTY_IMAGE_FALLBACK,
 ): GalleryMedia[] {
   const raw = Array.isArray(images) ? images : [];
   const real: GalleryMedia[] = [];
@@ -131,7 +143,7 @@ export function toGalleryMedia(
 /** First safe image from a list, or fallback. */
 export function getSafeCoverImage(
   images: unknown,
-  fallback: string = PROPERTY_PLACEHOLDER,
+  fallback: string = PROPERTY_IMAGE_FALLBACK,
   ownerId = "cover",
 ): string {
   return toGalleryMedia(images, ownerId, fallback)[0]?.url ?? fallback;

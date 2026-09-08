@@ -1457,9 +1457,9 @@
 }
 
 .primaryButton {
-  border: 1px solid var(--forest-800);
-  color: var(--white);
-  background: var(--forest-800);
+  border: 1px solid var(--gold-400);
+  color: var(--forest-950);
+  background: var(--gold-400);
 }
 
 .submitButton {

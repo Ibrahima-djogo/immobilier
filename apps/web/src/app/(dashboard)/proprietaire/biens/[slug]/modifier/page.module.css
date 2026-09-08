@@ -22,5 +22,5 @@
 .mediaSection { margin-top: 20px; padding-top: 18px; border-top: 1px solid #dce6df; }
 .footer { margin-top: 18px; padding-top: 16px; border-top: 1px solid #dce6df; display: flex; align-items: center; justify-content: space-between; gap: 15px; }
 .footer p { margin: 0; color: #647169; font-size: 0.66rem; }
-.footer button { min-height: 40px; padding: 0 13px; border: 1px solid #174b37; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #fff; background: #174b37; font-size: 0.68rem; font-weight: 850; }
+.footer button { min-height: 40px; padding: 0 13px; border: 1px solid #e8bf4d; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #071f17; background: #e8bf4d; font-size: 0.68rem; font-weight: 850; }
 @media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.footer{align-items:stretch;flex-direction:column}.footer button{justify-content:center}}

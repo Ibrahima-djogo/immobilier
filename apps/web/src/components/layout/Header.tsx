@@ -12,7 +12,9 @@ import {
 } from "react";
 
 import { useFavorites } from "@/context/FavoritesContext";
+import { usePublicDemoSession } from "@/hooks/usePublicDemoSession";
 import { Button } from "@/components/ui";
+import { routes } from "@/lib/routes/app-routes";
 import { BrandLogo } from "./BrandLogo";
 import { MegaMenu, MobileMegaAccordion } from "./MegaMenu";
 import { publicNavigation, type MegaMenuId } from "./mega-menus";
@@ -25,6 +27,7 @@ type NavKey =
   | "acheter"
   | "louer"
   | "annonces"
+  | "materiaux"
   | "agences"
   | "a-propos"
   | "contact"
@@ -42,6 +45,14 @@ function resolveActive(
     return "annonces";
   }
   if (pathname.startsWith("/annonces/")) return "annonces";
+  if (
+    pathname === "/materiaux" ||
+    pathname.startsWith("/materiaux/") ||
+    pathname === "/panier" ||
+    pathname.startsWith("/commande")
+  ) {
+    return "materiaux";
+  }
   if (pathname === "/agences" || pathname.startsWith("/agences/")) {
     return "agences";
   }
@@ -102,12 +113,30 @@ function DesktopNavigation({
   );
 }
 
-function HeaderInner() {
-  const pathname = usePathname();
+function HeaderSearchSync({
+  onChange,
+}: {
+  onChange: (operation: string | null, searchKey: string) => void;
+}) {
   const searchParams = useSearchParams();
   const operation = searchParams.get("operation");
   const searchKey = searchParams.toString();
+
+  useEffect(() => {
+    onChange(operation, searchKey);
+  }, [onChange, operation, searchKey]);
+
+  return null;
+}
+
+function HeaderInner() {
+  const pathname = usePathname();
+  const [operation, setOperation] = useState<string | null>(null);
+  const [searchKey, setSearchKey] = useState("");
   const { favoritesCount } = useFavorites();
+  const { isLoggedIn, ready } = usePublicDemoSession();
+  const accountHref = isLoggedIn || !ready ? routes.userDashboard : "/connexion";
+  const accountLabel = isLoggedIn || !ready ? "Mon compte" : "Se connecter";
   const [menuOpen, setMenuOpen] = useState(false);
   const [openMega, setOpenMega] = useState<MegaMenuId | null>(null);
   const [mobileAccordion, setMobileAccordion] = useState<MegaMenuId | null>(
@@ -159,6 +188,14 @@ function HeaderInner() {
     <header
       className={`${styles.header}${menuOpen ? ` ${styles.headerMenuOpen}` : ""}`}
     >
+      <Suspense fallback={null}>
+        <HeaderSearchSync
+          onChange={(nextOperation, nextSearchKey) => {
+            setOperation(nextOperation);
+            setSearchKey(nextSearchKey);
+          }}
+        />
+      </Suspense>
       <div className={styles.headerContainer}>
         <BrandLogo />
 
@@ -185,12 +222,12 @@ function HeaderInner() {
             ) : null}
           </Link>
           <Button
-            href="/connexion"
+            href={accountHref}
             variant="secondary"
             size="sm"
             className={styles.loginButton}
           >
-            Se connecter
+            {accountLabel}
           </Button>
           <Button
             href="/demande-role"
@@ -303,12 +340,30 @@ function HeaderInner() {
               </Link>
 
               <Link
-                href="/connexion"
+                href={accountHref}
                 className={styles.mobileLink}
                 onClick={() => setMenuOpen(false)}
               >
-                Se connecter
+                {accountLabel}
               </Link>
+              {isLoggedIn ? (
+                <>
+                  <Link
+                    href={routes.cart}
+                    className={styles.mobileLink}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Mon panier
+                  </Link>
+                  <Link
+                    href={routes.myOrders}
+                    className={styles.mobileLink}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Mes commandes
+                  </Link>
+                </>
+              ) : null}
 
               <Link
                 href="/demande-role"
@@ -325,71 +380,6 @@ function HeaderInner() {
   );
 }
 
-function HeaderFallback() {
-  return (
-    <header className={styles.header}>
-      <div className={styles.headerContainer}>
-        <BrandLogo />
-        <nav className={styles.navigation} aria-label="Navigation principale">
-          <Link href="/" className={styles.navigationLink}>
-            Accueil
-          </Link>
-          <span className={styles.navigationLink}>À propos</span>
-          <span className={styles.navigationLink}>Acheter</span>
-          <span className={styles.navigationLink}>Louer</span>
-          <Link href="/annonces" className={styles.navigationLink}>
-            Toutes les annonces
-          </Link>
-          <span className={styles.navigationLink}>Agences</span>
-          <Link href="/contact" className={styles.navigationLink}>
-            Contact
-          </Link>
-        </nav>
-        <div className={styles.headerActions}>
-          <Link
-            href="/favoris"
-            className={styles.headerFavorite}
-            aria-label="Voir mes favoris"
-          >
-            <Heart size={20} aria-hidden="true" />
-          </Link>
-          <Button
-            href="/connexion"
-            variant="secondary"
-            size="sm"
-            className={styles.loginButton}
-          >
-            Se connecter
-          </Button>
-          <Button
-            href="/demande-role"
-            variant="primary"
-            size="sm"
-            className={styles.publishButton}
-          >
-            Publier un bien
-          </Button>
-          <button
-            type="button"
-            className={styles.menuButton}
-            aria-label="Menu en cours de chargement"
-            aria-expanded={false}
-            aria-controls={MOBILE_NAV_ID}
-            disabled
-            title="Chargement du menu…"
-          >
-            <Menu size={21} aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 export function Header() {
-  return (
-    <Suspense fallback={<HeaderFallback />}>
-      <HeaderInner />
-    </Suspense>
-  );
+  return <HeaderInner />;
 }

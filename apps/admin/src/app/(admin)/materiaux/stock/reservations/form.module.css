@@ -1,0 +1,142 @@
+.warning,
+.error,
+.loading {
+  margin-bottom: 16px;
+  padding: 11px;
+  border-radius: 9px;
+  font-size: 0.875rem;
+}
+
+.warning {
+  border: 1px solid #ead8a8;
+  color: #756847;
+  background: #fff7df;
+}
+
+.error {
+  border: 1px solid #e3c8c5;
+  color: #9a3f39;
+  background: #fff2f0;
+}
+
+.loading {
+  border: 1px solid #dce6df;
+  color: #647169;
+  background: #f8f6f0;
+}
+
+.form {
+  padding: 16px;
+  border: 1px solid #dce6df;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(7, 31, 23, 0.06);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.form label {
+  display: grid;
+  gap: 4px;
+  color: #0f3527;
+  font-size: 0.8125rem;
+  font-weight: 850;
+}
+
+.form input,
+.form select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #c9d7ce;
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+.preview {
+  margin: 16px 0 0;
+  padding: 14px;
+  border: 1px solid #dce6df;
+  border-radius: 12px;
+  background: #f2f7f3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.preview strong {
+  display: block;
+  margin-top: 4px;
+  color: #0f3527;
+  font-size: 0.86rem;
+}
+
+.preview span {
+  color: #647169;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.secondary,
+.primary {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.secondary {
+  border: 1px solid #dce6df;
+  color: #246448;
+  background: #fff;
+}
+
+.primary {
+  border: 1px solid #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
+}
+
+.primary:disabled,
+.secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+  .grid,
+  .preview,
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .secondary,
+  .primary {
+    width: 100%;
+    justify-content: center;
+  }
+}

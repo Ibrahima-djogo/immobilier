@@ -205,8 +205,7 @@ export default function RoleRequestTrackingPage() {
         <section className={styles.card}>
           <h2>Cette demande de rôle est introuvable.</h2>
           <p>
-            L’identifiant <code>{requestId}</code> ne correspond à aucun dossier
-            dans la Demo API.
+            L’identifiant <code>{requestId}</code> ne correspond à aucun dossier.
           </p>
           <Link href="/demande-role" className={styles.primaryButton}>
             Retour à la demande de rôle

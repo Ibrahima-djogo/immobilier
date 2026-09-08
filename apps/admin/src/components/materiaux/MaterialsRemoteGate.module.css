@@ -1,0 +1,6 @@
+.status {
+  margin: 0;
+  padding: 2rem 1.5rem;
+  color: var(--admin-muted, #5c5348);
+  font-size: 0.95rem;
+}

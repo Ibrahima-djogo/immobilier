@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   BarChart3,
   Bell,
+  BrickWall,
   Building2,
   FileText,
   Heart,
@@ -13,9 +14,11 @@ import {
   LogOut,
   Menu,
   MessageSquareText,
+  Package,
   PanelLeftClose,
   PanelLeftOpen,
   ShieldCheck,
+  ShoppingBag,
   UserRound,
   X,
 } from "lucide-react";
@@ -23,6 +26,7 @@ import { type ReactNode, useState } from "react";
 
 import styles from "@/components/dashboard/dashboardShell.module.css";
 import { useSidebarCollapsed } from "@/hooks/useSidebarCollapsed";
+import { routes } from "@/lib/routes/app-routes";
 
 type OwnerShellProps = {
   children: ReactNode;
@@ -76,6 +80,24 @@ const accountLinks = [
     href: "/proprietaire/notifications",
     label: "Notifications",
     icon: Bell,
+  },
+] as const;
+
+const materialsLinks = [
+  {
+    href: routes.materials,
+    label: "Catalogue matériaux",
+    icon: BrickWall,
+  },
+  {
+    href: routes.cart,
+    label: "Mon panier",
+    icon: ShoppingBag,
+  },
+  {
+    href: routes.myOrders,
+    label: "Mes commandes",
+    icon: Package,
   },
 ] as const;
 
@@ -203,6 +225,27 @@ export default function OwnerShell({ children }: OwnerShellProps) {
 
               <span className={styles.navLabel}>Compte personnel</span>
               {accountLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={
+                      isActive(pathname, item.href)
+                        ? styles.activeLink
+                        : styles.navLink
+                    }
+                    title={item.label}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <Icon size={18} aria-hidden="true" />
+                    <span className={styles.navText}>{item.label}</span>
+                  </Link>
+                );
+              })}
+
+              <span className={styles.navLabel}>Matériaux</span>
+              {materialsLinks.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link

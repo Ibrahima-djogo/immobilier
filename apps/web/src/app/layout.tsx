@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 
 import "./globals.css";
@@ -38,7 +39,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body>
-        <FavoritesProvider>{children}</FavoritesProvider>
+        <FavoritesProvider>
+          <CartProvider>{children}</CartProvider>
+        </FavoritesProvider>
       </body>
     </html>
   );

@@ -171,7 +171,7 @@ function OwnerPropertiesPageInner() {
       setToast(
         err instanceof Error
           ? err.message
-          : "Suppression impossible — Demo API indisponible.",
+          : "Suppression impossible. Réessayez dans un instant.",
       );
     } finally {
       setPendingDelete(null);
@@ -236,7 +236,7 @@ function OwnerPropertiesPageInner() {
 
       {error ? (
         <p className={styles.errorBanner} role="alert">
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 
@@ -437,7 +437,7 @@ function OwnerPropertiesPageInner() {
       <ConfirmDialog
         open={Boolean(pendingDelete)}
         title="Supprimer ce bien ?"
-        description="Cette action supprimera le bien via la Demo API."
+        description="Cette action supprimera définitivement le bien."
         subject={pendingDelete?.title}
         confirmLabel="Supprimer le bien"
         onCancel={() => setPendingDelete(null)}

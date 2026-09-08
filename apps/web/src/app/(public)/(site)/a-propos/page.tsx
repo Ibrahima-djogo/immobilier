@@ -9,31 +9,30 @@ import {
   Users,
 } from "lucide-react";
 
-import { PageHero } from "@/components/layout/PageHero";
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import styles from "./page.module.css";
 
 export default function AboutPage() {
   return (
     <main>
-      <section className={styles.heroSection}>
-        <div className={styles.container}>
-          <PageHero
-            variant="public"
-            eyebrow="Notre mission"
-            title="Rendre la recherche immobilière plus claire et plus fiable"
-            description="Demeure Guinée rapproche les personnes qui recherchent un bien des propriétaires et agences dont le rôle professionnel a été validé."
-            icon={<ShieldCheck size={16} aria-hidden="true" />}
-            actions={
-              <div className={styles.actions}>
-                <Link href="/annonces">
-                  Explorer les annonces <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-                <Link href="/inscription">Créer un compte</Link>
-              </div>
-            }
-          />
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { label: "À propos" },
+        ]}
+        eyebrow="Notre mission"
+        title="Rendre la recherche immobilière plus claire et plus fiable"
+        description="Demeure Guinée rapproche les personnes qui recherchent un bien des propriétaires et agences dont le rôle professionnel a été validé."
+        containerClassName={styles.container}
+        actions={
+          <div className={styles.actions}>
+            <Link href="/annonces">
+              Explorer les annonces <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <Link href="/inscription">Créer un compte</Link>
+          </div>
+        }
+      />
 
       <section className={styles.mission}>
         <div className={styles.container}>

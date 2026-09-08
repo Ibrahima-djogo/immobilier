@@ -125,13 +125,13 @@
 
 .searchRow button,
 .primaryBtn {
-  border: 1px solid #174b37;
-  color: #fff;
-  background: #174b37;
+  border: 1px solid #e8bf4d;
+  color: #071f17;
+  background: #e8bf4d;
 }
 
 .ghostBtn {
-  border: 1px solid #c9d7ce;
+  border: 1px solid #246448;
   color: #174b37;
   background: #fff;
 }

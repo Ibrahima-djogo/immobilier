@@ -4,12 +4,14 @@ import { Save, ShieldAlert, SlidersHorizontal } from "lucide-react";
 import { type FormEvent, useState } from "react";
 
 import AdminShell from "@/components/administration/AdminShell";
-import { ConfirmDialog, DemoToast } from "@/components/ui";
+import { ConfirmDialog, DemoToast, FieldError, fieldA11y } from "@/components/ui";
+import { platformSettingsSchema, safeParseFields } from "@/lib/validation";
 import styles from "./page.module.css";
 
 export default function SettingsPage() {
   const [toast, setToast] = useState<string | null>(null);
   const [pendingSave, setPendingSave] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [settings, setSettings] = useState({
     autoModeration: false,
     minImages: "3",
@@ -25,6 +27,12 @@ export default function SettingsPage() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    const parsed = safeParseFields(platformSettingsSchema, settings);
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return;
+    }
+    setErrors({});
     if (settings.maintenance) {
       setPendingSave(true);
       return;
@@ -58,21 +66,27 @@ export default function SettingsPage() {
               Nombre minimal d’images
               <input
                 type="number"
+                min={0}
                 value={settings.minImages}
                 onChange={(e) =>
                   setSettings((v) => ({ ...v, minImages: e.target.value }))
                 }
+                {...fieldA11y("min-images-error", errors.minImages)}
               />
+              <FieldError id="min-images-error" message={errors.minImages} />
             </label>
             <label>
               Nombre maximal d’images
               <input
                 type="number"
+                min={1}
                 value={settings.maxImages}
                 onChange={(e) =>
                   setSettings((v) => ({ ...v, maxImages: e.target.value }))
                 }
+                {...fieldA11y("max-images-error", errors.maxImages)}
               />
+              <FieldError id="max-images-error" message={errors.maxImages} />
             </label>
             <label>
               Taille maximale par image (Mo)

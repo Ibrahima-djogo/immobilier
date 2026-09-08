@@ -2,62 +2,9 @@
   background: var(--ivory);
 }
 
-.hero {
-  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 3.5rem);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(232, 191, 77, 0.16), transparent 40%),
-    linear-gradient(180deg, #fff 0%, var(--ivory) 100%);
-  border-bottom: 1px solid var(--border);
-}
-
 .container {
   width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
   margin-inline: auto;
-}
-
-.breadcrumb {
-  margin: 0 0 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-soft);
-  font-size: 0.78rem;
-  font-weight: 650;
-}
-
-.breadcrumb a {
-  color: var(--forest-700);
-  text-decoration: none;
-}
-
-.eyebrow {
-  display: inline-block;
-  margin: 0 0 0.7rem;
-  color: var(--gold-700);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.hero h1 {
-  margin: 0;
-  max-width: 18ch;
-  color: var(--forest-950);
-  font-family: var(--font-display, inherit);
-  font-size: clamp(1.9rem, 4vw, 2.75rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-}
-
-.lead {
-  margin: 1rem 0 0;
-  max-width: 54ch;
-  color: var(--text-body);
-  font-size: 1.02rem;
-  line-height: 1.6;
 }
 
 .section {

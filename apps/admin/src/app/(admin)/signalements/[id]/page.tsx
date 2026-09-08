@@ -73,18 +73,7 @@ export default function ReportDetailPage() {
             ? "warning"
             : "neutral"
       }
-      meta={[
-        { label: "Référence", value: report.reference, icon: Hash },
-        { label: "Motif", value: report.reason, icon: Flag },
-        { label: "Reçu le", value: report.createdAt, icon: CalendarDays },
-      ]}
-      stats={[
-        {
-          label: "Occurrences",
-          value: report.count,
-          tone: report.risk === "ELEVE" ? "danger" : "neutral",
-        },
-      ]}
+      meta={[{ label: "Référence", value: report.reference, icon: Hash }]}
     >
 
       <div className={styles.grid}>

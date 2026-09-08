@@ -68,7 +68,7 @@ export default function ModerationQueuePage() {
       eyebrow="File centralisée"
       title="File de modération"
       description="Traitez en priorité les éléments les plus risqués soumis à Demeure Guinée."
-      note="Annonces issues de la Demo API partagée, signalements et demandes de rôle."
+      note="Annonces, signalements et demandes de rôle."
       icon={ListChecks}
       stats={[
         { label: "En file", value: queue.length, icon: Clock3 },
@@ -82,7 +82,7 @@ export default function ModerationQueuePage() {
     >
       {error ? (
         <p role="alert" style={{ color: "#9d6b10", marginBottom: 12 }}>
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 

@@ -32,7 +32,7 @@
 .eyebrow { display: block; margin-bottom: 7px; color: var(--gold-700); font-size: 0.7rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
 .pageHeader h1 { margin: 0; color: var(--forest-950); font-size: clamp(2rem,3vw,2.8rem); line-height: 1.1; letter-spacing: -.04em; }
 .pageHeader p { margin: 10px 0 0; color: var(--text-body); font-size: .8rem; }
-.exploreButton { min-height: 45px; padding: 0 16px; border: 1px solid #174b37; border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; color: #ffffff; background: #174b37; font-size: 0.75rem; font-weight: 850; text-decoration: none; }
+.exploreButton { min-height: 45px; padding: 0 16px; border: 1px solid #e8bf4d; border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; color: #071f17; background: #e8bf4d; font-size: 0.75rem; font-weight: 850; text-decoration: none; }
 .summaryGrid { margin-bottom: 20px; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
 .summaryGrid article { padding: 17px; border: 1px solid var(--border); border-radius: 14px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; background: var(--white); box-shadow: var(--shadow-soft); }
 .summaryGrid article > span { width: 43px; height: 43px; border-radius: 12px; display: grid; place-items: center; color: var(--forest-800); background: var(--forest-100); }
@@ -75,7 +75,7 @@
 .features svg { color: var(--gold-700); }
 .propertyFooter { margin-top: 17px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
 .propertyFooter strong { color: var(--forest-950); font-size: .88rem; }
-.propertyFooter a { min-height: 38px; padding: 0 11px; border: 1px solid var(--forest-800); border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: var(--forest-800); font-size: 0.7rem; font-weight: 850; text-decoration: none; }
+.propertyFooter a { min-height: 40px; padding: 0 11px; border: 1px solid #246448; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; color: #174b37; background: #fff; font-size: 0.7rem; font-weight: 850; text-decoration: none; }
 .compareControl { position: relative; margin-top: 15px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-body); font-size: 0.7rem; }
 .compareControl input { position: absolute; opacity: 0; }
 .customCheckbox { width: 19px; height: 19px; border: 1px solid var(--border-strong); border-radius: 5px; display: grid; place-items: center; color: transparent; background: var(--white); }
@@ -84,7 +84,7 @@
 .emptyState > span { width: 72px; height: 72px; margin-inline: auto; border-radius: 20px; display: grid; place-items: center; color: var(--gold-700); background: var(--gold-100); }
 .emptyState h2 { margin: 19px 0 0; color: var(--forest-900); font-size: 1.2rem; }
 .emptyState p { max-width: 540px; margin: 10px auto 0; color: var(--text-body); font-size: .74rem; }
-.emptyState a, .emptyState button { min-height: 43px; margin-top: 20px; padding: 0 15px; border: 1px solid #174b37; border-radius: 9px; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; color: #ffffff; background: #174b37; font: inherit; font-size: 0.72rem; font-weight: 850; text-decoration: none; }
+.emptyState a, .emptyState button { min-height: 43px; margin-top: 20px; padding: 0 15px; border: 1px solid #e8bf4d; border-radius: 9px; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; color: #071f17; background: #e8bf4d; font: inherit; font-size: 0.72rem; font-weight: 850; text-decoration: none; }
 .compareBar { position: fixed; right: 24px; bottom: 24px; left: 284px; z-index: 70; min-height: 68px; padding: 12px 15px; border: 1px solid rgba(232,191,77,.32); border-radius: 15px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #ffffff; background: #071f17; box-shadow: 0 20px 50px rgba(7,31,23,.24); }
 .compareBar > div:first-child { display: flex; align-items: center; gap: 11px; }
 .compareIcon { width: 43px; height: 43px; border-radius: 12px; display: grid; place-items: center; color: var(--forest-950); background: var(--gold-400); }

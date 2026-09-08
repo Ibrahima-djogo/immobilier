@@ -1,0 +1,251 @@
+.page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text-dark);
+  background: var(--surface);
+}
+
+.container {
+  width: min(var(--container-wide), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+  padding: 1.25rem 0 4rem;
+}
+
+.notFound {
+  width: min(32rem, calc(100% - 2rem));
+  margin: 4rem auto;
+  padding: 2.5rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  background: var(--white);
+}
+
+.notFound svg {
+  color: var(--forest-700);
+  margin-bottom: 0.75rem;
+}
+
+.notFound h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.notFound p {
+  margin: 0.6rem 0 1.25rem;
+  color: var(--text-body);
+}
+
+.topRow {
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.breadcrumb {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.breadcrumb a {
+  color: var(--forest-700);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.breadcrumb strong {
+  color: var(--forest-900);
+  font-weight: 750;
+}
+
+.product {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "gallery"
+    "buy"
+    "extras";
+}
+
+.gallery {
+  grid-area: gallery;
+  min-width: 0;
+}
+
+.buy {
+  grid-area: buy;
+  min-width: 0;
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.category {
+  margin: 0;
+  color: var(--forest-600);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem 0.85rem;
+}
+
+.identity h1 {
+  margin: 0;
+  flex: 1 1 12rem;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 5vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ready {
+  color: var(--forest-950);
+  background: var(--gold-400);
+}
+
+.low {
+  color: #7a5a12;
+  background: #ffe7a3;
+}
+
+.rupture {
+  color: #fff;
+  background: #9a3f39;
+}
+
+.price {
+  margin: 0;
+  color: var(--forest-800);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3.4vw, 1.45rem);
+  font-weight: 650;
+}
+
+.packaging {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.88rem;
+}
+
+.extras {
+  grid-area: extras;
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.info,
+.quote {
+  min-width: 0;
+}
+
+.extras h2 {
+  margin: 0 0 0.85rem;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.copy {
+  margin: 0.85rem 0 0;
+  color: var(--text-body);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.supplierName {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.verified {
+  margin: 0.45rem 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--forest-700);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.quote .copy {
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 429px) {
+  .container {
+    width: min(100% - 1.5rem, var(--container-wide));
+    padding-top: 1rem;
+  }
+
+  .buy {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .product {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "gallery buy"
+      "extras extras";
+    gap: 1.15rem;
+    align-items: start;
+  }
+
+  .extras {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .info,
+  .quote {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 900px) {
+  .product {
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    gap: 1.35rem;
+  }
+
+  .buy {
+    position: sticky;
+    top: 5.5rem;
+    padding: 1.3rem;
+  }
+}

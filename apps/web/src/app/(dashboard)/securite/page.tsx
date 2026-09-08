@@ -32,6 +32,7 @@ import {
 
 import UserShell from "@/components/compte/UserShell";
 import { PageHero } from "@/components/layout/PageHero";
+import { changePasswordSchema, safeParseFields } from "@/lib/validation";
 import styles from "./page.module.css";
 
 type PasswordFormValues = {
@@ -151,12 +152,6 @@ export default function SecurityPage() {
     [passwordValues.newPassword],
   );
 
-  const passwordIsValid =
-    passwordCriteria.length &&
-    passwordCriteria.uppercase &&
-    passwordCriteria.lowercase &&
-    passwordCriteria.number;
-
   function updatePasswordField(
     field: keyof PasswordFormValues,
     value: string,
@@ -176,39 +171,13 @@ export default function SecurityPage() {
   }
 
   function validatePasswordForm() {
-    const nextErrors: PasswordFormErrors = {};
-
-    if (!passwordValues.currentPassword) {
-      nextErrors.currentPassword =
-        "Saisissez votre mot de passe actuel.";
+    const parsed = safeParseFields(changePasswordSchema, passwordValues);
+    if (!parsed.ok) {
+      setPasswordErrors(parsed.errors);
+      return false;
     }
-
-    if (!passwordValues.newPassword) {
-      nextErrors.newPassword =
-        "Saisissez votre nouveau mot de passe.";
-    } else if (!passwordIsValid) {
-      nextErrors.newPassword =
-        "Le nouveau mot de passe doit respecter tous les critères indiqués.";
-    } else if (
-      passwordValues.newPassword === passwordValues.currentPassword
-    ) {
-      nextErrors.newPassword =
-        "Le nouveau mot de passe doit être différent de l’ancien.";
-    }
-
-    if (!passwordValues.confirmPassword) {
-      nextErrors.confirmPassword =
-        "Confirmez votre nouveau mot de passe.";
-    } else if (
-      passwordValues.confirmPassword !== passwordValues.newPassword
-    ) {
-      nextErrors.confirmPassword =
-        "Les deux nouveaux mots de passe ne correspondent pas.";
-    }
-
-    setPasswordErrors(nextErrors);
-
-    return Object.keys(nextErrors).length === 0;
+    setPasswordErrors({});
+    return true;
   }
 
   async function handlePasswordSubmit(
@@ -235,7 +204,7 @@ export default function SecurityPage() {
     setIsSaving(false);
     setPasswordValues(initialPasswordValues);
     setSuccessMessage(
-      "Le formulaire est valide et prêt à être connecté à l’API.",
+      "Votre mot de passe a été mis à jour.",
     );
   }
 

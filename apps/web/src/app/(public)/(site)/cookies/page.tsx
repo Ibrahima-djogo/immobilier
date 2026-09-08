@@ -6,7 +6,7 @@ export default function Page() {
       eyebrow="Préférences et traceurs"
       title="Politique relative aux cookies"
       introduction="Cette page décrit les catégories de cookies et traceurs susceptibles d’être utilisés par la plateforme."
-      version="Version front-end 1.0 — 1er août 2026"
+      version="Version 1.0 — 1er août 2026"
       sections={[
         {
                 "title": "Cookies strictement nécessaires",

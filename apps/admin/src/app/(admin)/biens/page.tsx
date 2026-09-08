@@ -101,7 +101,7 @@ export default function AdminPropertiesPage() {
     >
       {error ? (
         <p className={styles.errorBanner} role="alert">
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 

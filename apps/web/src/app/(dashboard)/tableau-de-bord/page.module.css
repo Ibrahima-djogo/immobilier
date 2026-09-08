@@ -22,7 +22,9 @@
   --shadow-soft: 0 12px 34px rgba(7, 31, 23, 0.07);
   --shadow-medium: 0 22px 58px rgba(7, 31, 23, 0.11);
   min-width: 0;
-  padding: 38px;
+  padding: 24px;
+  display: grid;
+  gap: 14px;
   color: var(--text-dark);
 }
 
@@ -30,6 +32,10 @@
 .content *::before,
 .content *::after {
   box-sizing: border-box;
+}
+
+.content > :global(header) {
+  margin-bottom: 0;
 }
 
 .welcomeHeader {
@@ -168,22 +174,22 @@
 }
 
 .primaryButton {
-  color: #ffffff;
-  background: #174b37;
-  border: 1px solid #174b37;
+  color: #071f17;
+  background: #e8bf4d;
+  border: 1px solid #e8bf4d;
 }
 
 /* STATS */
 
 .statsGrid {
-  margin-bottom: 23px;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
+  gap: 12px;
 }
 
 .statCard {
-  padding: 18px;
+  padding: 14px;
   border: 1px solid var(--border);
   border-radius: 15px;
   display: grid;
@@ -237,20 +243,26 @@
 
 .mainGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  align-items: start;
-  gap: 22px;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
 }
 
 .mainColumn,
 .sideColumn {
   display: grid;
-  gap: 22px;
+  gap: 16px;
+}
+
+.sideColumn {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .sectionCard,
 .completionCard,
 .securityCard {
+  min-width: 0;
   border: 1px solid var(--border);
   border-radius: 17px;
   background: var(--white);
@@ -258,11 +270,11 @@
 }
 
 .sectionCard {
-  padding: 22px;
+  padding: 16px;
 }
 
 .sectionHeader {
-  margin-bottom: 19px;
+  margin-bottom: 12px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -420,6 +432,78 @@
   font-size: 0.73rem;
 }
 
+.activityItem strong a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.activityItem strong a:hover {
+  text-decoration: underline;
+}
+
+.dashboardHint {
+  margin: 0;
+  padding: 0 0 4px;
+  color: var(--text-body);
+  font-size: 0.8rem;
+}
+
+.dashboardHint a {
+  color: var(--forest-700);
+  font-weight: 750;
+}
+
+.materialsEmpty {
+  padding: 0;
+}
+
+.materialsEmpty p {
+  margin: 0 0 12px;
+  color: var(--text-body);
+  font-size: 0.84rem;
+}
+
+.materialsSummary {
+  padding: 0;
+}
+
+.materialsLatest {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.materialsLatest small {
+  display: block;
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.materialsLatest strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--forest-950);
+  font-size: 0.95rem;
+}
+
+.materialsLatest strong a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.materialsLatest strong a:hover {
+  text-decoration: underline;
+}
+
+.materialsLatest p {
+  margin: 4px 0 0;
+  color: var(--text-body);
+  font-size: 0.74rem;
+}
+
 .activityItem p {
   margin: 4px 0 0;
   color: var(--text-body);
@@ -434,9 +518,16 @@
 /* ROLE CARD */
 
 .roleCard {
-  padding: 24px;
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: 16px 18px;
   border: 1px solid #0f3527;
   border-radius: 17px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(12rem, 16rem);
+  align-items: center;
+  column-gap: 18px;
+  row-gap: 10px;
   color: #ffffff;
   background:
     radial-gradient(
@@ -445,18 +536,25 @@
       transparent 25%
     ),
     linear-gradient(145deg, #0f3527, #246448);
-  box-shadow: var(--shadow-soft, 0 12px 34px rgba(7, 31, 23, 0.07));
+  box-shadow: var(--shadow-soft);
 }
 
 .roleIcon {
+  grid-row: 1 / 3;
   width: 55px;
   height: 55px;
-  margin-bottom: 19px;
+  margin-bottom: 0;
   border-radius: 15px;
   display: grid;
   place-items: center;
   color: #071f17;
   background: #e8bf4d;
+}
+
+.roleEyebrow,
+.roleCard h2,
+.roleCard > p {
+  grid-column: 2;
 }
 
 .roleEyebrow {
@@ -471,17 +569,19 @@
 }
 
 .roleCard > p {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.72rem;
   line-height: 1.65;
 }
 
 .roleCard ul {
-  margin: 18px 0;
+  grid-column: 2;
+  margin: 8px 0 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 16px;
   list-style: none;
 }
 
@@ -499,6 +599,8 @@
 }
 
 .roleCard .primaryButton {
+  grid-column: 3;
+  grid-row: 1 / 3;
   width: 100%;
   color: #071f17;
   background: #e8bf4d;
@@ -511,17 +613,27 @@
 }
 
 .roleCard > small {
-  margin-top: 11px;
+  grid-column: 2 / -1;
+  margin-top: 0;
   display: block;
   color: rgba(255, 255, 255, 0.62);
   font-size: 0.66rem;
-  text-align: center;
+  text-align: left;
 }
 
 /* PROFILE COMPLETION */
 
 .completionCard {
-  padding: 21px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px;
+}
+
+.completionCard p {
+  margin: 14px 0 0;
+  color: var(--text-body);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .completionHeading {
@@ -602,7 +714,8 @@
 }
 
 .completionCard > a {
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 16px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -615,9 +728,10 @@
 /* SECURITY */
 
 .securityCard {
-  padding: 19px;
+  padding: 16px 18px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
   gap: 12px;
 }
 
@@ -657,8 +771,8 @@
 /* DISCOVER */
 
 .discoverBanner {
-  margin-top: 23px;
-  padding: 27px;
+  margin-top: 0;
+  padding: 16px 18px;
   border: 1px solid rgba(216, 170, 52, 0.28);
   border-radius: 17px;
   display: flex;
@@ -697,6 +811,13 @@
   font-size: 0.76rem;
 }
 
+.discoverActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1250px) {
@@ -709,15 +830,15 @@
   }
 
   .content {
-    padding: 30px;
+    padding: 22px;
   }
 
   .statsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .mainGrid {
-    grid-template-columns: minmax(0, 1fr) 290px;
+  .sideColumn {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -743,11 +864,11 @@
   }
 
   .content {
-    padding: 27px 22px;
+    padding: 20px 18px;
   }
 
   .mainGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sideColumn {
@@ -755,7 +876,17 @@
   }
 
   .roleCard {
-    grid-row: span 2;
+    grid-column: 1 / -1;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .roleCard .primaryButton {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .roleCard ul {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -797,7 +928,30 @@
 
   .favoritesGrid,
   .sideColumn {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .roleCard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .roleIcon,
+  .roleEyebrow,
+  .roleCard h2,
+  .roleCard > p,
+  .roleCard ul,
+  .roleCard .primaryButton,
+  .roleCard > small {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .roleCard ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .roleCard > small {
+    text-align: center;
   }
 
   .sectionHeader {

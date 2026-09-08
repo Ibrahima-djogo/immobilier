@@ -7,6 +7,7 @@ import {
   Bell,
   BookOpenText,
   Boxes,
+  BrickWall,
   ClipboardCheck,
   FileSearch,
   FileText,
@@ -83,6 +84,7 @@ const nav = [
   ["signalements", "/signalements", "Signalements", Flag],
   ["contacts", "/contacts", "Demandes contact", Inbox],
   ["referentiels", "/referentiels", "Référentiels", Boxes],
+  ["materiaux", "/materiaux", "Matériaux", BrickWall],
   ["statistiques", "/statistiques", "Statistiques", BarChart3],
   ["audit", "/audit", "Journal d’audit", FileSearch],
   ["contenus", "/contenus", "Contenus publics", BookOpenText],
@@ -104,7 +106,7 @@ export default function AdminShell({
   meta,
   stats,
   actions,
-  heroVariant = "default",
+  heroVariant = "compact",
   children,
   enforceAccess = true,
 }: Props) {
@@ -219,7 +221,6 @@ export default function AdminShell({
                 aria-label="Voir les signalements"
               >
                 <Bell size={19} />
-                <span>12</span>
               </Link>
             ) : null}
 

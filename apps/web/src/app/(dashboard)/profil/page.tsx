@@ -28,6 +28,7 @@ import {
 
 import UserShell from "@/components/compte/UserShell";
 import { PageHero } from "@/components/layout/PageHero";
+import { profileSchema, safeParseFields, validateUploadFile } from "@/lib/validation";
 import styles from "./page.module.css";
 
 type ProfileValues = {
@@ -53,9 +54,6 @@ const initialValues: ProfileValues = {
   neighborhood: "Kipé",
   bio: "Je recherche principalement des appartements et des villas à Conakry.",
 };
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phonePattern = /^\+?[0-9\s().-]{8,20}$/;
 
 export default function ProfilePage() {
   const [values, setValues] = useState<ProfileValues>(initialValues);
@@ -115,18 +113,11 @@ export default function ProfilePage() {
       return;
     }
 
-    if (!file.type.startsWith("image/")) {
+    const uploadError = validateUploadFile(file, "image");
+    if (uploadError) {
       setErrors((current) => ({
         ...current,
-        form: "Sélectionnez un fichier image valide.",
-      }));
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setErrors((current) => ({
-        ...current,
-        form: "L’image ne doit pas dépasser 5 Mo.",
+        form: uploadError,
       }));
       return;
     }
@@ -145,36 +136,13 @@ export default function ProfilePage() {
   }
 
   function validateForm() {
-    const nextErrors: ProfileErrors = {};
-
-    if (!values.firstName.trim()) {
-      nextErrors.firstName = "Saisissez votre prénom.";
+    const parsed = safeParseFields(profileSchema, values);
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return false;
     }
-
-    if (!values.lastName.trim()) {
-      nextErrors.lastName = "Saisissez votre nom.";
-    }
-
-    if (!values.email.trim()) {
-      nextErrors.email = "Saisissez votre adresse e-mail.";
-    } else if (!emailPattern.test(values.email.trim())) {
-      nextErrors.email = "Saisissez une adresse e-mail valide.";
-    }
-
-    if (!values.phone.trim()) {
-      nextErrors.phone = "Saisissez votre numéro de téléphone.";
-    } else if (!phonePattern.test(values.phone.trim())) {
-      nextErrors.phone = "Saisissez un numéro de téléphone valide.";
-    }
-
-    if (values.bio.length > 220) {
-      nextErrors.bio =
-        "La présentation ne doit pas dépasser 220 caractères.";
-    }
-
-    setErrors(nextErrors);
-
-    return Object.keys(nextErrors).length === 0;
+    setErrors({});
+    return true;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -197,7 +165,7 @@ export default function ProfilePage() {
 
     setIsSaving(false);
     setSavedMessage(
-      "Les modifications sont prêtes à être envoyées à l’API.",
+      "Vos informations ont été enregistrées.",
     );
   }
 
@@ -714,8 +682,8 @@ export default function ProfilePage() {
                   <div className={styles.deactivatePanel}>
                     <CircleAlert size={18} aria-hidden="true" />
                     <p>
-                      Fonction de démonstration uniquement. Aucune
-                      désactivation réelle n’est effectuée.
+                      Cette action n’est pas encore disponible. Votre compte
+                      reste actif.
                     </p>
                     <button
                       type="button"

@@ -11,6 +11,8 @@ export type KpiItem = {
   value: string | number;
   icon: LucideIcon;
   hint?: string;
+  href?: string;
+  actionLabel?: string;
   tone?: "default" | "accent" | "success" | "warning";
 };
 
@@ -36,23 +38,41 @@ export function KpiStrip({ items, highlightFirst = false }: KpiStripProps) {
       aria-label="Indicateurs"
     >
       {items.map(
-        ({ label, value, icon: Icon, hint, tone = "default" }, index) => (
-          <article
-            key={label}
-            className={`${styles.kpiCard} ${
-              highlightFirst && index === 0 ? styles.kpiHero : ""
-            } ${toneClass[tone]}`}
-          >
-            <span className={styles.kpiIcon} aria-hidden="true">
-              <Icon size={20} />
-            </span>
-            <div className={styles.kpiBody}>
-              <small>{label}</small>
-              <strong>{value}</strong>
-              {hint ? <span className={styles.kpiHint}>{hint}</span> : null}
-            </div>
-          </article>
-        ),
+        (
+          { label, value, icon: Icon, hint, href, actionLabel, tone = "default" },
+          index,
+        ) => {
+          const className = `${styles.kpiCard} ${
+            highlightFirst && index === 0 ? styles.kpiHero : ""
+          } ${toneClass[tone]}`;
+          const body = (
+            <>
+              <span className={styles.kpiIcon} aria-hidden="true">
+                <Icon size={20} />
+              </span>
+              <div className={styles.kpiBody}>
+                <small>{label}</small>
+                <strong>{value}</strong>
+                {hint ? <span className={styles.kpiHint}>{hint}</span> : null}
+                {href && actionLabel ? (
+                  <span className={styles.kpiAction}>{actionLabel}</span>
+                ) : null}
+              </div>
+            </>
+          );
+          if (href) {
+            return (
+              <Link key={label} href={href} className={className}>
+                {body}
+              </Link>
+            );
+          }
+          return (
+            <article key={label} className={className}>
+              {body}
+            </article>
+          );
+        },
       )}
     </section>
   );

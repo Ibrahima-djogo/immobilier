@@ -12,6 +12,7 @@ import {
   LogIn,
   Mail,
 } from "lucide-react";
+import { loginSchema, safeParseFields } from "@/lib/validation";
 import { authService } from "@/lib/demo-api/auth";
 import { DemoApiError } from "@/lib/demo-api/client";
 import {
@@ -72,14 +73,9 @@ export function LoginForm() {
   }
 
   function validate(current: LoginFormValues): LoginFormErrors {
-    const next: LoginFormErrors = {};
-    if (!current.identifier.trim()) {
-      next.identifier = "Saisissez votre e-mail ou votre numéro de téléphone.";
-    }
-    if (!current.password) {
-      next.password = "Saisissez votre mot de passe.";
-    }
-    return next;
+    const parsed = safeParseFields(loginSchema, current);
+    if (parsed.ok) return {};
+    return parsed.errors;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -136,7 +132,7 @@ export function LoginForm() {
       if (error instanceof DemoApiError) {
         if (error.status === 0) {
           message =
-            "Impossible de joindre le serveur. Vérifiez que la Demo API est démarrée.";
+            "Impossible de joindre le serveur. Réessayez dans un instant.";
         } else if (error.status === 401) {
           message = "Identifiant ou mot de passe incorrect.";
         } else if (error.status >= 500) {

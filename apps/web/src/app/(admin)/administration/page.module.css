@@ -25,7 +25,7 @@
 .grid {
   margin-bottom: 1.15rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  grid-template-columns: 1fr;
   gap: 1.1rem;
 }
 
@@ -73,7 +73,7 @@
 
 .shortcutGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.55rem;
   padding: 0.65rem 0.75rem 0.85rem;
 }

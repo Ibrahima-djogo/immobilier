@@ -447,7 +447,7 @@ export default function HelpPage() {
               <ol>
                 <li><span>1</span><div><strong>Renseignez vos informations</strong><p>Indiquez vos coordonnées et créez un mot de passe suffisamment robuste.</p></div></li>
                 <li><span>2</span><div><strong>Acceptez les documents obligatoires</strong><p>Les conditions et la confidentialité sont séparées du marketing facultatif.</p></div></li>
-                <li><span>3</span><div><strong>Vérifiez vos coordonnées</strong><p>Un code ou lien temporaire sera utilisé lors de l’intégration de l’API.</p></div></li>
+                <li><span>3</span><div><strong>Vérifiez vos coordonnées</strong><p>Un code ou lien temporaire vous est envoyé pour confirmer votre e-mail ou votre numéro.</p></div></li>
                 <li><span>4</span><div><strong>Accédez à votre espace</strong><p>Gérez votre profil, vos favoris, vos contacts et vos notifications.</p></div></li>
               </ol>
               <Link href="/inscription" className={styles.guideAction}>

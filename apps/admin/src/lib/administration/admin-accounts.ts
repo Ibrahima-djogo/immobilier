@@ -49,6 +49,7 @@ export type AdminSection =
   | "signalements"
   | "contacts"
   | "referentiels"
+  | "materiaux"
   | "statistiques"
   | "audit"
   | "contenus"
@@ -84,6 +85,7 @@ export const AVAILABLE_PERMISSIONS = [
   "ADMINISTRATEURS",
   "STATISTIQUES",
   "REFERENTIELS",
+  "MATERIAUX",
 ] as const;
 
 export type AdminPermission = (typeof AVAILABLE_PERMISSIONS)[number];
@@ -103,6 +105,7 @@ export const ROLE_DEFAULT_PERMISSIONS: Record<AdminAccountRole, string[]> = {
     "VERIFICATIONS",
     "STATISTIQUES",
     "AUDIT",
+    "MATERIAUX",
   ],
   /** Modération uniquement — pas de création/publication admin par défaut. */
   MODERATEUR: ["MODERATION", "SIGNALEMENTS", "ANNONCES"],
@@ -132,6 +135,7 @@ export const SECTION_PERMISSIONS: Record<AdminSection, string[] | "any"> = {
   signalements: ["SIGNALEMENTS", "MODERATION"],
   contacts: ["CONTACTS"],
   referentiels: ["REFERENTIELS", "PARAMETRES"],
+  materiaux: ["MATERIAUX", "REFERENTIELS", "PARAMETRES"],
   statistiques: ["STATISTIQUES", "AUDIT"],
   audit: ["AUDIT"],
   contenus: ["CONTENUS", "FAQ", "GUIDES"],

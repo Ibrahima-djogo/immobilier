@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Calendar, CheckCircle2, Clock, Mail, Phone, Send, User } from "lucide-react";
+import { FieldError, fieldA11y } from "@/components/ui";
+import { safeParseFields, visitSchema } from "@/lib/validation";
 import styles from "./VisitForm.module.css";
 
 export function VisitForm() {
@@ -15,9 +17,16 @@ export function VisitForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = safeParseFields(visitSchema, formData);
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return;
+    }
+    setErrors({});
     setSubmitted(true);
   };
 
@@ -40,7 +49,7 @@ export function VisitForm() {
           </small>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form} noValidate>
           <div className={styles.formGroup}>
             <label htmlFor="visit-name">Nom complet *</label>
             <div className={styles.inputControl}>
@@ -48,12 +57,13 @@ export function VisitForm() {
               <input
                 id="visit-name"
                 type="text"
-                required
                 placeholder="Ex. Alpha Diallo"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                {...fieldA11y("visit-name-error", errors.name)}
               />
             </div>
+            <FieldError id="visit-name-error" message={errors.name} />
           </div>
 
           <div className={styles.formGroup}>
@@ -63,12 +73,13 @@ export function VisitForm() {
               <input
                 id="visit-phone"
                 type="tel"
-                required
                 placeholder="Ex. +224 6XX XX XX XX"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                {...fieldA11y("visit-phone-error", errors.phone)}
               />
             </div>
+            <FieldError id="visit-phone-error" message={errors.phone} />
           </div>
 
           <div className={styles.formGroup}>
@@ -81,8 +92,10 @@ export function VisitForm() {
                 placeholder="exemple@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                {...fieldA11y("visit-email-error", errors.email)}
               />
             </div>
+            <FieldError id="visit-email-error" message={errors.email} />
           </div>
 
           <div className={styles.formGroup}>
@@ -94,8 +107,10 @@ export function VisitForm() {
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                {...fieldA11y("visit-date-error", errors.date)}
               />
             </div>
+            <FieldError id="visit-date-error" message={errors.date} />
           </div>
 
           <div className={styles.formGroup}>
@@ -116,12 +131,14 @@ export function VisitForm() {
 
           <div className={styles.formGroup}>
             <label htmlFor="visit-message">Message</label>
-            <textarea
+              <textarea
               id="visit-message"
               rows={3}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              {...fieldA11y("visit-message-error", errors.message)}
             />
+            <FieldError id="visit-message-error" message={errors.message} />
           </div>
 
           <button type="submit" className={styles.submitBtn}>

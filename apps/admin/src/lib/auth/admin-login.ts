@@ -1,3 +1,4 @@
+import { adminLoginSchema, safeParseFields } from "@/lib/validation";
 import type { AdminLoginPayload } from "./types";
 
 /**
@@ -30,24 +31,14 @@ export type FieldErrors = {
   password?: string;
 };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export function validateAdminLoginForm(
   email: string,
   password: string,
 ): FieldErrors {
-  const errors: FieldErrors = {};
-  const trimmedEmail = email.trim();
-
-  if (!trimmedEmail) {
-    errors.email = "L’adresse e-mail est requise.";
-  } else if (!EMAIL_PATTERN.test(trimmedEmail)) {
-    errors.email = "Saisissez une adresse e-mail valide.";
-  }
-
-  if (!password) {
-    errors.password = "Le mot de passe est requis.";
-  }
-
-  return errors;
+  const parsed = safeParseFields(adminLoginSchema, { email, password });
+  if (parsed.ok) return {};
+  return {
+    email: parsed.errors.email,
+    password: parsed.errors.password,
+  };
 }

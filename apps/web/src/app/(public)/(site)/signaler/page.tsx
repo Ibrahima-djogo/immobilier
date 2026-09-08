@@ -1,21 +1,22 @@
 import { EyeOff, ShieldCheck } from "lucide-react";
 
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import { ReportForm } from "./ReportForm";
 import styles from "./page.module.css";
 
 export default function ReportPublicPage() {
   return (
     <main>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <span className={styles.eyebrow}>Confiance et sécurité</span>
-          <h1>Signaler une annonce ou un contenu</h1>
-          <p>
-            Transmettez des informations factuelles afin que l’équipe de
-            modération puisse examiner la situation.
-          </p>
-        </div>
-      </section>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { label: "Signaler" },
+        ]}
+        eyebrow="Confiance et sécurité"
+        title="Signaler une annonce ou un contenu"
+        description="Transmettez des informations factuelles afin que l’équipe de modération puisse examiner la situation."
+        containerClassName={styles.container}
+      />
 
       <section className={styles.content}>
         <div className={styles.container}>

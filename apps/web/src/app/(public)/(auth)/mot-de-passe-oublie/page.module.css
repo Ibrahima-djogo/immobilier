@@ -613,15 +613,11 @@
 }
 
 .primaryButton {
-  border: 1px solid var(--forest-800);
+  border: 1px solid var(--gold-500);
   cursor: pointer;
-  color: var(--white);
-  background: linear-gradient(
-    135deg,
-    var(--forest-800),
-    var(--forest-950)
-  );
-  box-shadow: 0 12px 28px rgba(7, 31, 23, 0.18);
+  color: var(--forest-950);
+  background: var(--gold-500);
+  box-shadow: 0 8px 20px rgba(232, 191, 77, 0.28);
 }
 
 .primaryButton:hover:not(:disabled) {

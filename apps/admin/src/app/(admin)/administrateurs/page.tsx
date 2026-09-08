@@ -35,7 +35,10 @@ import {
   RoleBadge,
   RowOverflowMenu,
   StatusBadge,
+  FieldError,
+  fieldA11y,
 } from "@/components/ui";
+import { adminCreateSchema, safeParseFields } from "@/lib/validation";
 import { useAdminSession } from "@/lib/auth/admin-session";
 import styles from "./page.module.css";
 
@@ -75,6 +78,7 @@ export default function AdministratorsPage() {
     activateNow: true,
     permissions: [...ROLE_DEFAULT_PERMISSIONS.ADMIN] as string[],
   });
+  const [createErrors, setCreateErrors] = useState<Record<string, string>>({});
 
   const activeSuperAdmins = useMemo(
     () =>
@@ -401,16 +405,17 @@ export default function AdministratorsPage() {
   }
 
   function createAdministrator() {
-    if (!createForm.name.trim() || !createForm.email.trim()) {
-      openBlocked("Le nom et l’e-mail sont obligatoires pour créer un compte.");
+    const parsed = safeParseFields(adminCreateSchema, {
+      name: createForm.name,
+      email: createForm.email,
+      demoPassword: createForm.demoPassword,
+    });
+    if (!parsed.ok) {
+      setCreateErrors(parsed.errors);
+      openBlocked(Object.values(parsed.errors)[0] || "Corrigez le formulaire.");
       return;
     }
-    if (!createForm.demoPassword.trim()) {
-      openBlocked(
-        "Le mot de passe temporaire de démonstration est obligatoire.",
-      );
-      return;
-    }
+    setCreateErrors({});
     if (createForm.permissions.length === 0) {
       openBlocked("Sélectionnez au moins une permission.");
       return;
@@ -418,12 +423,12 @@ export default function AdministratorsPage() {
 
     try {
       const next = adminStorage.create({
-        name: createForm.name.trim(),
-        email: createForm.email.trim(),
+        name: parsed.data.name,
+        email: parsed.data.email,
         role: createForm.role,
         permissions: createForm.permissions,
         status: createForm.activateNow ? "ACTIF" : "EN_ATTENTE",
-        demoPassword: createForm.demoPassword.trim(),
+        demoPassword: parsed.data.demoPassword,
       });
       reloadFromStore();
       setCreating(false);
@@ -507,7 +512,9 @@ export default function AdministratorsPage() {
                   }))
                 }
                 placeholder="Nom complet"
+                {...fieldA11y("create-name-error", createErrors.name)}
               />
+              <FieldError id="create-name-error" message={createErrors.name} />
             </label>
             <label>
               E-mail
@@ -521,7 +528,9 @@ export default function AdministratorsPage() {
                   }))
                 }
                 placeholder="test.admin@demeureguinee.com"
+                {...fieldA11y("create-email-error", createErrors.email)}
               />
+              <FieldError id="create-email-error" message={createErrors.email} />
             </label>
             <label>
               Rôle

@@ -46,7 +46,7 @@
 }
 
 .sm {
-  min-height: 2.35rem;
+  min-height: 2.5rem;
   padding: 0 0.9rem;
   font-size: 0.8rem;
 }
@@ -77,7 +77,7 @@
 }
 
 .secondary {
-  border: 1px solid var(--border-strong);
+  border: 1px solid var(--forest-700);
   color: var(--forest-800);
   background: var(--white);
 }

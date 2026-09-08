@@ -16,11 +16,13 @@ import {
   type AccountScopeRequest,
   type PropertyScope,
 } from "@/lib/demo-api/account-scope";
+import { FieldError, fieldA11y } from "@/components/ui";
 import {
   labelPropertyType,
   normalizePropertyTypeKey,
   type PropertyTypeKey,
 } from "@/lib/property/typeFields";
+import { accountScopeRequestSchema, safeParseFields } from "@/lib/validation";
 import styles from "./AccountScopeExtensionDialog.module.css";
 
 type AccountScopeExtensionDialogProps = {
@@ -185,6 +187,19 @@ export function AccountScopeExtensionDialog({
       return;
     }
     if (!canSubmit) return;
+    const parsed = safeParseFields(accountScopeRequestSchema, {
+      requestedScopes,
+      reason,
+    });
+    if (!parsed.ok) {
+      setError(
+        parsed.errors.reason ||
+          parsed.errors.requestedScopes ||
+          Object.values(parsed.errors)[0] ||
+          "Corrigez la demande d’extension.",
+      );
+      return;
+    }
     setSubmitting(true);
     setError(null);
     try {
@@ -199,7 +214,7 @@ export function AccountScopeExtensionDialog({
       setError(
         err instanceof Error
           ? err.message
-          : "Envoi impossible — démarrez la Demo API (port 4000).",
+          : "Envoi impossible. Réessayez dans un instant.",
       );
     } finally {
       setSubmitting(false);
@@ -331,8 +346,14 @@ export function AccountScopeExtensionDialog({
                     id="scope-reason"
                     className={styles.textarea}
                     value={reason}
+                    maxLength={500}
                     onChange={(e) => setReason(e.target.value)}
                     placeholder="Précisez pourquoi vous souhaitez étendre votre périmètre (facultatif)."
+                    {...fieldA11y("scope-reason-error", error || undefined)}
+                  />
+                  <FieldError
+                    id="scope-reason-error"
+                    message={error && error.includes("motif") ? error : undefined}
                   />
                   <p className={styles.hint}>
                     Pas besoin de renvoyer une CNI — votre identité est déjà

@@ -1,29 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState, useSyncExternalStore } from "react";
 
 import {
-  readPublicDemoSession,
-  type PublicDemoSession,
+  parsePublicDemoSession,
+  readPublicDemoSessionRaw,
+  subscribePublicDemoSession,
 } from "@/lib/auth/public-demo-session";
 
+function getServerSnapshot(): string | null {
+  return null;
+}
+
 export function usePublicDemoSession() {
-  const [session, setSession] = useState<PublicDemoSession | null>(null);
-  const [ready, setReady] = useState(false);
+  const storeRaw = useSyncExternalStore(
+    subscribePublicDemoSession,
+    readPublicDemoSessionRaw,
+    getServerSnapshot,
+  );
+  const [clientRaw, setClientRaw] = useState<string | null | undefined>(
+    undefined,
+  );
 
-  useEffect(() => {
-    function sync() {
-      setSession(readPublicDemoSession());
-      setReady(true);
-    }
-    sync();
-    window.addEventListener("storage", sync);
-    window.addEventListener("dg-public-session", sync);
-    return () => {
-      window.removeEventListener("storage", sync);
-      window.removeEventListener("dg-public-session", sync);
-    };
-  }, []);
+  useLayoutEffect(() => {
+    setClientRaw(readPublicDemoSessionRaw());
+  }, [storeRaw]);
 
-  return { session, ready, isLoggedIn: Boolean(session?.authenticated) };
+  const ready = clientRaw !== undefined;
+  const session = parsePublicDemoSession(ready ? clientRaw : storeRaw);
+
+  return {
+    session,
+    ready,
+    isLoggedIn: Boolean(session?.authenticated),
+  };
 }

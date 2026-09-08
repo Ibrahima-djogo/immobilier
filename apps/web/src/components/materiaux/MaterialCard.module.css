@@ -1,0 +1,125 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(7, 31, 23, 0.04);
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) ease,
+    border-color var(--duration) ease;
+}
+
+.card:hover {
+  border-color: rgba(36, 100, 72, 0.22);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.mediaLink {
+  display: block;
+  text-decoration: none;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--forest-50);
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms var(--ease-out);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0.9rem 0.95rem 1rem;
+}
+
+.content h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.content h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.category {
+  margin: 0;
+  color: var(--forest-600);
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.price {
+  margin: 0.2rem 0 0;
+  color: var(--forest-800);
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.meta {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+}
+
+.stock {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.ready {
+  color: var(--forest-700);
+}
+
+.low {
+  color: #7a5a12;
+}
+
+.rupture {
+  color: #9a3f39;
+}
+
+.cta {
+  margin-top: auto;
+  padding-top: 0.55rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image {
+    transition: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+}

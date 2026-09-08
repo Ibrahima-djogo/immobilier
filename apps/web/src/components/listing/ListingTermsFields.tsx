@@ -29,10 +29,10 @@ type Props = {
   formatAmount: (value: number) => string;
 };
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ id, message }: { id?: string; message?: string }) {
   if (!message) return null;
   return (
-    <span className={styles.error} role="alert">
+    <span id={id} className={styles.error} role="alert">
       {message}
     </span>
   );
@@ -49,10 +49,14 @@ function AmountInput({
   value,
   onValueChange,
   placeholder,
+  invalid,
+  describedBy,
 }: {
   value: string;
   onValueChange: (next: string) => void;
   placeholder?: string;
+  invalid?: boolean;
+  describedBy?: string;
 }) {
   return (
     <span className={styles.amountInput}>
@@ -63,6 +67,8 @@ function AmountInput({
         value={groupDigits(value)}
         onChange={(e) => onValueChange(e.target.value.replace(/\D/g, ""))}
         placeholder={placeholder}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
       />
       <span className={styles.amountSuffix} aria-hidden="true">
         GNF
@@ -157,11 +163,13 @@ export default function ListingTermsFields({
                 value={values.rentAmount}
                 onValueChange={(next) => onChange({ rentAmount: next })}
                 placeholder="8 000 000"
+                invalid={Boolean(errors.rentAmount)}
+                describedBy={errors.rentAmount ? `${groupId}-rent` : undefined}
               />
               {rentPreview ? (
                 <small className={styles.assist}>{rentPreview}</small>
               ) : null}
-              <FieldError message={errors.rentAmount} />
+              <FieldError id={`${groupId}-rent`} message={errors.rentAmount} />
             </label>
 
             <label className={styles.field}>
@@ -171,6 +179,8 @@ export default function ListingTermsFields({
                 onChange={(e) =>
                   onChange({ period: e.target.value as RentPeriod })
                 }
+                aria-invalid={errors.period ? true : undefined}
+                aria-describedby={errors.period ? `${groupId}-period` : undefined}
               >
                 {RENT_PERIOD_OPTIONS.map((option) => (
                   <option key={option.key} value={option.key}>
@@ -178,7 +188,7 @@ export default function ListingTermsFields({
                   </option>
                 ))}
               </select>
-              <FieldError message={errors.period} />
+              <FieldError id={`${groupId}-period`} message={errors.period} />
             </label>
           </div>
 

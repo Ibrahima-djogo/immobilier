@@ -68,7 +68,7 @@ export default function AgencyAdDetailPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Impossible de charger l’annonce (Demo API).",
+          : "Impossible de charger l’annonce.",
       );
       setListing(null);
       setProperty(null);
@@ -120,7 +120,7 @@ export default function AgencyAdDetailPage() {
         active="annonces"
         eyebrow="Détail de l’annonce"
         title="Chargement..."
-        description="Récupération via la Demo API."
+        description="Chargement de l’annonce."
       >
         <p>Chargement...</p>
       </AgencyShell>
@@ -134,7 +134,7 @@ export default function AgencyAdDetailPage() {
         eyebrow="Détail de l’annonce"
         title="Annonce introuvable"
         description={
-          error || "Cette annonce n’existe pas dans la Demo API."
+          error || "Cette annonce n’existe pas."
         }
       >
         <Link href={routes.agencyAds} className={styles.back}>
@@ -154,7 +154,7 @@ export default function AgencyAdDetailPage() {
       active="annonces"
       eyebrow="Détail de l’annonce"
       title={listing.title}
-      description="Consultez le statut, les performances et la modération (Demo API)."
+      description="Consultez le statut, les performances et la modération."
       action={
         <Link className={styles.action} href={routes.editAgencyAd(listing.id)}>
           <Edit3 size={16} />

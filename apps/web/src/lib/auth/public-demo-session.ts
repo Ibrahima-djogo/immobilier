@@ -15,11 +15,20 @@ export type PublicDemoSession = {
 
 const STORAGE_KEY = "dg_demo_public_session";
 
-export function readPublicDemoSession(): PublicDemoSession | null {
+export function readPublicDemoSessionRaw(): string | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
+    return window.localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function parsePublicDemoSession(
+  raw: string | null,
+): PublicDemoSession | null {
+  if (!raw) return null;
+  try {
     const parsed = JSON.parse(raw) as Partial<PublicDemoSession>;
     if (!parsed?.id || !parsed?.name || !parsed?.email) return null;
     return {
@@ -36,6 +45,19 @@ export function readPublicDemoSession(): PublicDemoSession | null {
   }
 }
 
+export function subscribePublicDemoSession(onChange: () => void): () => void {
+  window.addEventListener("storage", onChange);
+  window.addEventListener("dg-public-session", onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener("dg-public-session", onChange);
+  };
+}
+
+export function readPublicDemoSession(): PublicDemoSession | null {
+  return parsePublicDemoSession(readPublicDemoSessionRaw());
+}
+
 export function writePublicDemoSession(session: PublicDemoSession): void {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
   window.dispatchEvent(new Event("dg-public-session"));
@@ -44,6 +66,15 @@ export function writePublicDemoSession(session: PublicDemoSession): void {
 export function clearPublicDemoSession(): void {
   window.localStorage.removeItem(STORAGE_KEY);
   window.dispatchEvent(new Event("dg-public-session"));
+}
+
+/** En-têtes d’identité Demo API — jamais un userId dans le corps. */
+export function publicSessionAuthHeaders(): Record<string, string> {
+  const session = readPublicDemoSession();
+  if (!session?.authenticated) return {};
+  const token = session.token || session.id;
+  if (!token) return {};
+  return { Authorization: `Bearer ${token}` };
 }
 
 /** Construit une session locale à partir d’un user Demo API. */

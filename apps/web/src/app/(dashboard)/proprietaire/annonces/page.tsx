@@ -111,7 +111,7 @@ export default function OwnerAdsPage() {
 
       {error ? (
         <p className={styles.errorBanner} role="alert">
-          {error} — lancez `npm start` dans immo-demo-api.
+          {error}
         </p>
       ) : null}
 

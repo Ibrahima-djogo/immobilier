@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 .successActions { margin-top: 14px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.successActions a { margin-top: 0 !important; padding: 0 12px; min-height: 40px; border: 1px solid #174b37; border-radius: 8px; display: inline-flex; align-items: center; color: #fff; background: #174b37; font-size: 0.68rem; font-weight: 850; text-decoration: none; }
+.successActions a { margin-top: 0 !important; padding: 0 12px; min-height: 40px; border: 1px solid #e8bf4d; border-radius: 8px; display: inline-flex; align-items: center; color: #071f17; background: #e8bf4d; font-size: 0.68rem; font-weight: 850; text-decoration: none; }
 .successActions a:last-child { color: #246448; border-color: #c9d7ce; background: #fff; }
 .contactCard {
   padding: 13px 14px;
@@ -87,13 +87,13 @@
 .footer button {
   min-height: 42px;
   padding: 0 15px;
-  border: 1px solid #174b37;
+  border: 1px solid #e8bf4d;
   border-radius: 9px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #fff;
-  background: #174b37;
+  color: #071f17;
+  background: #e8bf4d;
   font-size: 0.7rem;
   font-weight: 850;
 }

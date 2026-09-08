@@ -23,6 +23,7 @@ import {
   canAccessSection,
   isSuperAdmin,
 } from "@/lib/administration/admin-accounts";
+import { DashboardMaterialsSection } from "./DashboardMaterialsSection";
 import {
   adminAds,
   adminUsers,
@@ -52,6 +53,7 @@ export default function AdministrationDashboard() {
   const canRefs = admin ? canAccessSection(admin, "referentiels") : false;
   const canAudit = admin ? canAccessSection(admin, "audit") : false;
   const canStats = admin ? canAccessSection(admin, "statistiques") : false;
+  const canMaterials = admin ? canAccessSection(admin, "materiaux") : false;
   const showUserChart = canUsers || canStats || (admin ? isSuperAdmin(admin) : false);
 
   const kpiItems = [
@@ -106,42 +108,17 @@ export default function AdministrationDashboard() {
   if (canAudit) {
     shortcuts.push({ href: "/audit", label: "Consulter l’audit" });
   }
+  if (canMaterials) {
+    shortcuts.push({ href: "/materiaux", label: "Ouvrir les matériaux" });
+  }
 
   return (
     <AdminShell
       active="dashboard"
       eyebrow="Back-office central"
       title="Administration"
-      description="Pilotez les comptes, la modération, les référentiels et la traçabilité de la plateforme."
-      note={
-        admin
-          ? `Espace de ${admin.name} — accès selon le rôle ${admin.role} et ses permissions.`
-          : undefined
-      }
+      description="Pilotez les comptes, la modération, les référentiels et la traçabilité."
       icon={Gauge}
-      stats={[
-        {
-          label: "Dossiers de rôle",
-          value: pendingRoles,
-          tone: "warning",
-          icon: ClipboardCheck,
-          hint: "À traiter",
-        },
-        {
-          label: "Annonces",
-          value: pendingAds,
-          tone: "warning",
-          icon: FileText,
-          hint: "En attente",
-        },
-        {
-          label: "Signalements",
-          value: activeReports,
-          tone: activeReports > 0 ? "danger" : "neutral",
-          icon: Flag,
-          hint: "Actifs",
-        },
-      ]}
     >
       <section className={styles.alert}>
         <ShieldAlert size={22} />
@@ -156,6 +133,12 @@ export default function AdministrationDashboard() {
 
       {kpiItems.length > 0 ? (
         <KpiStrip highlightFirst items={kpiItems} />
+      ) : null}
+
+      {canMaterials ? (
+        <div className={styles.materialsBlock}>
+          <DashboardMaterialsSection />
+        </div>
       ) : null}
 
       <div className={styles.chartsGrid}>
@@ -224,25 +207,6 @@ export default function AdministrationDashboard() {
       </div>
 
       <div className={styles.grid}>
-        <DashboardPanel
-          title="État de la plateforme"
-          description="Indicateurs front-end de démonstration."
-        >
-          {(
-            [
-              ["API", "À connecter", "warning"],
-              ["Base de données", "À connecter", "warning"],
-              ["Médias", "URLs de démonstration", "warning"],
-              ["Audit", "Interface prête", "ok"],
-            ] as const
-          ).map(([label, value, state]) => (
-            <div key={label} className={styles.healthRow}>
-              <span>{label}</span>
-              <strong className={styles[state]}>{value}</strong>
-            </div>
-          ))}
-        </DashboardPanel>
-
         <DashboardPanel
           title="Accès rapides"
           description="Modules autorisés pour votre compte."

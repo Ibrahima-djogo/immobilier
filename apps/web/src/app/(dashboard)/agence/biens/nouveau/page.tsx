@@ -32,7 +32,15 @@ import {
   ConfirmationCheckbox,
   ConfirmationGroup,
   DemoToast,
+  FieldError,
+  fieldA11y,
 } from "@/components/ui";
+import {
+  MAX_PROPERTY_IMAGES,
+  propertyErrorStep,
+  validatePropertyPublish,
+  validateUploadFile,
+} from "@/lib/validation";
 import { useAccountScope } from "@/hooks/useAccountScope";
 import {
   addPropertyCtaLabel,
@@ -96,6 +104,8 @@ export default function NewAgencyPropertyPage() {
   const [videos, setVideos] = useState<PropertyVideo[]>([]);
   const [toast, setToast] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [mediaError, setMediaError] = useState<string | null>(null);
   const [scopeDenied, setScopeDenied] = useState(false);
   const [extensionOpen, setExtensionOpen] = useState(false);
   const dismissToast = useCallback(() => setToast(null), []);
@@ -172,9 +182,16 @@ export default function NewAgencyPropertyPage() {
   }
 
   async function addImages(e: ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(e.target.files ?? []).slice(0, 12 - images.length);
+    const remaining = MAX_PROPERTY_IMAGES - images.length;
+    const files = Array.from(e.target.files ?? []).slice(0, remaining);
     const next: Img[] = [];
+    setMediaError(null);
     for (const file of files) {
+      const uploadError = validateUploadFile(file, "image");
+      if (uploadError) {
+        setMediaError(uploadError);
+        continue;
+      }
       const url = await fileToDataUrl(file);
       next.push({
         id: `${file.name}-${file.lastModified}-${Math.random()}`,
@@ -182,7 +199,7 @@ export default function NewAgencyPropertyPage() {
         url,
       });
     }
-    setImages((v) => [...v, ...next]);
+    setImages((v) => [...v, ...next].slice(0, MAX_PROPERTY_IMAGES));
     e.target.value = "";
   }
 
@@ -229,6 +246,31 @@ export default function NewAgencyPropertyPage() {
   }
 
   async function persist(status: "ACTIF" | "BROUILLON") {
+    if (status === "ACTIF") {
+      const parsed = validatePropertyPublish({
+        type: form.type,
+        operation: form.operation,
+        title: form.title,
+        price: form.price,
+        area: form.area,
+        bedrooms: form.bedrooms,
+        bathrooms: form.bathrooms,
+        description: form.description,
+        city: location.city,
+        commune: location.commune,
+        quarter: location.quarter,
+        landmark: location.landmark,
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      if (!parsed.ok) {
+        setFieldErrors(parsed.errors);
+        setStep(propertyErrorStep(Object.keys(parsed.errors)[0] || "title"));
+        setSubmitError("Corrigez les champs indiqués avant d’enregistrer.");
+        return;
+      }
+      setFieldErrors({});
+    }
     setSaving(true);
     setSubmitError(null);
     setScopeDenied(false);
@@ -502,16 +544,26 @@ export default function NewAgencyPropertyPage() {
               </label>
               <label className={styles.full}>
                 Titre interne
-                <input name="title" value={form.title} onChange={update} />
+                <input
+                  name="title"
+                  value={form.title}
+                  onChange={update}
+                  {...fieldA11y("title-error", fieldErrors.title)}
+                />
+                <FieldError id="title-error" message={fieldErrors.title} />
               </label>
               <label>
-                Prix
+                Prix (GNF)
                 <input
                   name="price"
                   type="number"
+                  min={1}
+                  step="1"
                   value={form.price}
                   onChange={update}
+                  {...fieldA11y("price-error", fieldErrors.price)}
                 />
+                <FieldError id="price-error" message={fieldErrors.price} />
               </label>
             </div>
           </section>
@@ -520,6 +572,9 @@ export default function NewAgencyPropertyPage() {
           <section>
             <h2>Localisation</h2>
             <PropertyLocationMap value={location} onChange={setLocation} />
+            <FieldError id="city-error" message={fieldErrors.city} />
+            <FieldError id="lat-error" message={fieldErrors.latitude} />
+            <FieldError id="lng-error" message={fieldErrors.longitude} />
           </section>
         )}
         {step === 3 && (
@@ -527,13 +582,17 @@ export default function NewAgencyPropertyPage() {
             <h2>Caractéristiques</h2>
             <div className={styles.grid3}>
               <label>
-                Surface
+                Surface (m²)
                 <input
                   name="area"
                   type="number"
+                  min={0.01}
+                  step="0.01"
                   value={form.area}
                   onChange={update}
+                  {...fieldA11y("area-error", fieldErrors.area)}
                 />
+                <FieldError id="area-error" message={fieldErrors.area} />
               </label>
               {typeFields.bedrooms ? (
                 <label>
@@ -541,9 +600,13 @@ export default function NewAgencyPropertyPage() {
                   <input
                     name="bedrooms"
                     type="number"
+                    min={0}
+                    step="1"
                     value={form.bedrooms}
                     onChange={update}
+                    {...fieldA11y("bedrooms-error", fieldErrors.bedrooms)}
                   />
+                  <FieldError id="bedrooms-error" message={fieldErrors.bedrooms} />
                 </label>
               ) : null}
               {typeFields.bathrooms ? (
@@ -552,9 +615,13 @@ export default function NewAgencyPropertyPage() {
                   <input
                     name="bathrooms"
                     type="number"
+                    min={0}
+                    step="1"
                     value={form.bathrooms}
                     onChange={update}
+                    {...fieldA11y("bathrooms-error", fieldErrors.bathrooms)}
                   />
+                  <FieldError id="bathrooms-error" message={fieldErrors.bathrooms} />
                 </label>
               ) : null}
               <label className={styles.full}>
@@ -578,11 +645,12 @@ export default function NewAgencyPropertyPage() {
               <small>Maximum 12</small>
               <input
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/webp"
                 multiple
                 onChange={addImages}
               />
             </label>
+            {mediaError ? <FieldError id="media-error" message={mediaError} /> : null}
             <div className={styles.images}>
               {images.map((img) => (
                 <article key={img.id}>

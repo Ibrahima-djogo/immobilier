@@ -164,7 +164,7 @@ export function PropertyLocationMap({
       setError(
         err instanceof Error
           ? err.message
-          : "La recherche de lieu a échoué. Vérifiez que la Demo API (port 4000) est démarrée.",
+          : "La recherche de lieu a échoué. Réessayez dans un instant.",
       );
     } finally {
       setSearching(false);

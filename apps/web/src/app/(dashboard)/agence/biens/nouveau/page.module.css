@@ -11,7 +11,7 @@
 .successBar p{margin:0;color:#647169;font-size:0.72rem;font-weight:600}
 .successActions{display:flex;gap:8px;flex-wrap:wrap}
 .successPrimary,.successSecondary{min-height:42px;padding:0 15px;border-radius:9px;display:inline-flex;align-items:center;font-size:0.7rem;font-weight:850;text-decoration:none}
-.successPrimary{color:#fff;border:1px solid #174b37;background:#174b37}
+.successPrimary{color:#071f17;border:1px solid #e8bf4d;background:#e8bf4d}
 .successPrimary:hover{background:#12613f}
 .successSecondary{color:#246448;border:1px solid #c9d7ce;background:#fff}.warn{margin:16px 0 0;padding:12px;border:1px solid #ead8a8;border-radius:10px;color:#9d6b10;background:#fff7df;font-size:0.72rem}.linkButton{display:inline;margin:0;padding:0;border:0;background:none;color:#174b37;font:inherit;font-weight:850;text-decoration:underline;cursor:pointer}.spin{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}@media(max-width:760px){.steps small{display:none}.steps{grid-template-columns:repeat(5,auto)}.grid2,.grid3,.review{grid-template-columns:1fr}.images{grid-template-columns:repeat(2,1fr)}.actions{align-items:stretch;flex-direction:column-reverse}.actions>div{flex-direction:column}.actions button{width:100%;justify-content:center}}
 @media(max-width:620px){.success{padding:18px}.successBar{align-items:stretch;flex-direction:column}.successActions a{flex:1 1 auto;justify-content:center}}

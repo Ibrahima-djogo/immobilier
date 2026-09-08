@@ -15,13 +15,41 @@ export const routes = {
   publicProperty: (slug: string) => `/annonces/${slug}`,
   agencies: "/agences",
   agency: (slug: string) => `/agences/${slug}`,
+  materials: "/materiaux",
+  material: (slug: string) => `/materiaux/${slug}`,
+  cart: "/panier",
+  checkoutInformation: "/commande/informations",
+  checkoutConfirmation: "/commande/confirmation",
+  checkoutTrack: "/commande/suivi",
+  checkoutPay: (id: string, accessToken?: string) => {
+    const params = new URLSearchParams({ commande: id });
+    if (accessToken) params.set("acces", accessToken);
+    return `/commande/paiement?${params.toString()}`;
+  },
+  checkoutPayReturn: (id: string, accessToken?: string) => {
+    const params = new URLSearchParams({ commande: id });
+    if (accessToken) params.set("acces", accessToken);
+    return `/commande/paiement/retour?${params.toString()}`;
+  },
+  checkoutOrder: (id: string, accessToken?: string) => {
+    const params = new URLSearchParams({ commande: id });
+    if (accessToken) params.set("acces", accessToken);
+    return `/commande/confirmation?${params.toString()}`;
+  },
   about: "/a-propos",
   help: "/aide",
   contact: "/contact",
   favorites: "/favoris",
   login: "/connexion",
+  loginWithReturn: (path: string) =>
+    `/connexion?retour=${encodeURIComponent(path)}`,
   register: "/inscription",
   userDashboard: "/tableau-de-bord",
+  myOrders: "/mes-commandes",
+  myOrder: (id: string) => `/mes-commandes/${encodeURIComponent(id)}`,
+  myQuotes: "/mes-devis",
+  myQuote: (id: string) => `/mes-devis/${encodeURIComponent(id)}`,
+  myQuoteNew: "/mes-devis/nouveau",
   ownerDashboard: "/proprietaire/tableau-de-bord",
   ownerProperties: "/proprietaire/biens",
   ownerProperty: (slug: string) => `/proprietaire/biens/${slug}`,
@@ -60,6 +88,32 @@ export const appRoutes: RouteDefinition[] = [
   { path: "/", label: "Accueil", public: true, indexable: true },
   { path: "/annonces", label: "Annonces", public: true, indexable: true },
   { path: "/agences", label: "Agences", public: true, indexable: true },
+  { path: "/materiaux", label: "Matériaux", public: true, indexable: true },
+  { path: "/panier", label: "Panier", public: true, indexable: false },
+  {
+    path: "/commande/informations",
+    label: "Informations de commande",
+    public: true,
+    indexable: false,
+  },
+  {
+    path: "/commande/confirmation",
+    label: "Confirmation de commande",
+    public: true,
+    indexable: false,
+  },
+  {
+    path: "/commande/suivi",
+    label: "Suivi de commande",
+    public: true,
+    indexable: false,
+  },
+  {
+    path: "/commande/paiement",
+    label: "Paiement de commande",
+    public: true,
+    indexable: false,
+  },
   { path: "/a-propos", label: "À propos", public: true, indexable: true },
   { path: "/aide", label: "Aide", public: true, indexable: true },
   { path: "/faq", label: "FAQ", public: true, indexable: true },
@@ -87,6 +141,20 @@ export const appRoutes: RouteDefinition[] = [
   {
     path: "/tableau-de-bord",
     label: "Tableau de bord",
+    public: false,
+    indexable: false,
+    roles: ["UTILISATEUR", "PROPRIETAIRE", "AGENCE", "ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    path: "/mes-commandes",
+    label: "Mes commandes",
+    public: false,
+    indexable: false,
+    roles: ["UTILISATEUR", "PROPRIETAIRE", "AGENCE", "ADMIN", "SUPER_ADMIN"],
+  },
+  {
+    path: "/mes-devis",
+    label: "Mes devis",
     public: false,
     indexable: false,
     roles: ["UTILISATEUR", "PROPRIETAIRE", "AGENCE", "ADMIN", "SUPER_ADMIN"],

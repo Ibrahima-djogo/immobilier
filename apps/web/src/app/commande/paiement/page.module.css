@@ -1,0 +1,432 @@
+.layout {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.breadcrumb {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.breadcrumb a {
+  color: var(--forest-700);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--forest-900);
+}
+
+.trust {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  width: fit-content;
+  border: 1px solid var(--gold-100);
+  border-radius: var(--radius-pill);
+  background: var(--gold-100);
+  color: var(--gold-700);
+  font-size: 0.7rem;
+  font-weight: 750;
+}
+
+.trust svg {
+  flex-shrink: 0;
+}
+
+.card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.05rem 1.05rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.cardHead {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.cardEyebrow {
+  margin: 0;
+  color: var(--gold-700);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.card h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cardLead {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.meta {
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.meta div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.meta dt {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+}
+
+.meta dd {
+  margin: 0;
+  color: var(--forest-900);
+  font-weight: 750;
+  text-align: right;
+}
+
+.reference {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.totals {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--text-dark);
+  font-size: 0.84rem;
+}
+
+.totalRow strong {
+  color: var(--forest-900);
+  font-weight: 750;
+}
+
+.grandTotal {
+  margin-top: 0.1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+  color: var(--forest-950);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.grandTotal strong {
+  color: var(--forest-950);
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (min-width: 720px) {
+  .methodGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.methodCard,
+.agentCard {
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.8rem 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--ivory);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) ease,
+    background var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.methodCard {
+  justify-items: center;
+  text-align: center;
+  min-height: 6.5rem;
+}
+
+.agentCard {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  background: var(--white);
+}
+
+.methodCard[data-selected="true"],
+.agentCard[data-selected="true"] {
+  border-color: var(--forest-700);
+  background: var(--forest-50);
+  box-shadow: 0 0 0 1px var(--forest-700);
+}
+
+.methodCard[data-disabled="true"] {
+  opacity: 0.55;
+  cursor: default;
+  pointer-events: none;
+  background: var(--ivory);
+  box-shadow: none;
+}
+
+.methodCard[data-disabled="true"] .methodState {
+  color: var(--text-soft);
+  font-weight: 650;
+}
+
+.methodCard input,
+.agentCard input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: block;
+}
+
+.agentCard .logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.methodName,
+.agentTitle {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.methodState {
+  margin: 0;
+  color: var(--forest-700);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.check {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  color: var(--forest-700);
+}
+
+.unavailable {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--ivory);
+  color: var(--text-body);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.agentCopy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.agentCopy p {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.phoneLabel {
+  margin: 0.25rem 0 0;
+  color: var(--gold-700);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.phoneValue {
+  margin: 0;
+  color: var(--forest-900);
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.steps {
+  margin: 0;
+  padding: 0 0 0 1.05rem;
+  display: grid;
+  gap: 0.32rem;
+  color: var(--text-dark);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.note,
+.error,
+.success {
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.note {
+  color: var(--text-body);
+  background: var(--ivory);
+  border: 1px solid var(--border);
+}
+
+.error {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid #f0b8b4;
+  font-weight: 650;
+}
+
+.success {
+  color: var(--forest-800);
+  background: var(--success-soft);
+  border: 1px solid #c5ddc8;
+  font-weight: 650;
+}
+
+.security {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text-body);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.security svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--forest-700);
+}
+
+.payBar {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.payBarTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--forest-900);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.payBarTotal strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.actions a,
+.actions button {
+  min-height: 2.5rem;
+}
+
+.actions:has(:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.status {
+  margin: 0;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+@media (max-width: 640px) {
+  .methodGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .methodCard {
+    min-height: 6.2rem;
+  }
+
+  .methodCard .logo {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .actions a,
+  .actions button {
+    min-height: 2.55rem;
+  }
+
+  .meta div {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta dd {
+    text-align: left;
+  }
+
+  .grandTotal strong,
+  .payBarTotal strong {
+    font-size: 1.12rem;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}

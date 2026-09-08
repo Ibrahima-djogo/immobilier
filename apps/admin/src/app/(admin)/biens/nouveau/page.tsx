@@ -1,15 +1,31 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Plus } from "lucide-react";
+import {
+  AlignLeft,
+  Building2,
+  Home,
+  Mail,
+  MapPin,
+  Phone,
+  Plus,
+  Ruler,
+  UserRound,
+} from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 
 import AdminShell from "@/components/administration/AdminShell";
 import {
+  WorkspaceFormCard,
+  WorkspaceMeta,
+  initialsFromName,
+} from "@/components/administration/WorkspaceForm";
+import {
   PropertyLocationMap,
   type PropertyLocationValue,
 } from "@/components/property/PropertyLocationMap";
-import { DemoToast } from "@/components/ui";
+import { Button, DemoToast, FieldError, fieldA11y } from "@/components/ui";
+import { validatePropertyPublish } from "@/lib/validation";
 import { canWriteProperties } from "@/lib/administration/admin-accounts";
 import { useAdminSession } from "@/lib/auth/admin-session";
 import {
@@ -20,7 +36,7 @@ import {
 } from "@/lib/demo-api/listings";
 import { isTerrainType } from "@/lib/property/display";
 import { routes } from "@/lib/routes/app-routes";
-import styles from "../../annonces/[id]/page.module.css";
+import styles from "@/components/administration/WorkspaceForm.module.css";
 
 type AdvertiserKind = "PROPRIETAIRE" | "AGENCE";
 
@@ -55,6 +71,7 @@ export default function AdminNewPropertyPage() {
   const [location, setLocation] = useState<PropertyLocationValue>(EMPTY_LOCATION);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!ready) return;
@@ -75,18 +92,39 @@ export default function AdminNewPropertyPage() {
         if (users[0]) setOwnerId(users[0].id);
         if (ags[0]) setAgencyId(ags[0].id);
       } catch {
-        setToast("Impossible de charger les annonceurs (Demo API).");
+        setToast("Impossible de charger les annonceurs.");
       }
     })();
   }, []);
 
+  const selectedOwner = owners.find((item) => item.id === ownerId) ?? null;
+  const selectedAgency = agencies.find((item) => item.id === agencyId) ?? null;
+
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!admin) return;
-    if (!title.trim()) {
-      setToast("Le titre du bien est obligatoire.");
+    const parsed = validatePropertyPublish({
+      type,
+      operation,
+      title,
+      price,
+      area,
+      bedrooms,
+      bathrooms,
+      description,
+      city: location.city,
+      commune: location.commune,
+      quarter: location.quarter,
+      landmark: location.landmark,
+      latitude: location.latitude,
+      longitude: location.longitude,
+    });
+    if (!parsed.ok) {
+      setFieldErrors(parsed.errors);
+      setToast(Object.values(parsed.errors)[0] || "Corrigez les champs indiqués.");
       return;
     }
+    setFieldErrors({});
     if (!location.city.trim() || !location.commune.trim()) {
       setToast("Ville et commune sont obligatoires.");
       return;
@@ -170,7 +208,7 @@ export default function AdminNewPropertyPage() {
       router.push(routes.property(created.id));
     } catch (err) {
       setToast(
-        err instanceof Error ? err.message : "Création refusée par la Demo API.",
+        err instanceof Error ? err.message : "Création refusée.",
       );
     } finally {
       setSaving(false);
@@ -190,144 +228,262 @@ export default function AdminNewPropertyPage() {
       backLabel="Retour aux biens"
     >
 
-      <form className={styles.panel} onSubmit={onSubmit}>
-        <header className={styles.panelHead}>
-          <h2>Annonceur</h2>
-        </header>
-        <div className={styles.kv}>
-          <div className={styles.full}>
-            <span>Type d’annonceur</span>
-            <select
-              value={kind}
-              onChange={(e) => setKind(e.target.value as AdvertiserKind)}
-              aria-label="Type d’annonceur"
+      <form className={styles.form} onSubmit={onSubmit}>
+        <div className={styles.layout}>
+          <div className={styles.main}>
+            <WorkspaceFormCard
+              icon={Home}
+              title="Informations du bien"
+              subtitle="Identifiez le bien avant de préciser ses caractéristiques."
             >
-              <option value="PROPRIETAIRE">Propriétaire</option>
-              <option value="AGENCE">Agence</option>
-            </select>
+              <div className={styles.grid}>
+                <label className={`${styles.field} ${styles.wide}`}>
+                  <span>Titre</span>
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    {...fieldA11y("admin-title-error", fieldErrors.title)}
+                  />
+                  <FieldError id="admin-title-error" message={fieldErrors.title} />
+                </label>
+                <label className={styles.field}>
+                  <span>Type</span>
+                  <select value={type} onChange={(e) => setType(e.target.value)}>
+                    <option>Villa</option>
+                    <option>Appartement</option>
+                    <option>Terrain</option>
+                    <option>Bureau</option>
+                    <option>Commerce</option>
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>Opération indicative</span>
+                  <select
+                    value={operation}
+                    onChange={(e) =>
+                      setOperation(e.target.value as "VENTE" | "LOCATION")
+                    }
+                  >
+                    <option value="VENTE">Vente</option>
+                    <option value="LOCATION">Location</option>
+                  </select>
+                </label>
+              </div>
+            </WorkspaceFormCard>
+
+            <WorkspaceFormCard
+              icon={MapPin}
+              title="Localisation"
+              subtitle="Ville, commune et position enregistrées pour le bien."
+            >
+              <PropertyLocationMap value={location} onChange={setLocation} />
+            </WorkspaceFormCard>
+
+            <WorkspaceFormCard
+              icon={Ruler}
+              title="Caractéristiques"
+              subtitle="Valeurs indicatives reprises ensuite dans l’annonce."
+            >
+              <div className={styles.grid}>
+                <label className={styles.field}>
+                  <span>Prix indicatif (GNF)</span>
+                  <input
+                    type="number"
+                    min={1}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    {...fieldA11y("admin-price-error", fieldErrors.price)}
+                  />
+                  <FieldError id="admin-price-error" message={fieldErrors.price} />
+                </label>
+                <label className={styles.field}>
+                  <span>Surface (m²)</span>
+                  <input
+                    type="number"
+                    min={0.01}
+                    step="0.01"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
+                    {...fieldA11y("admin-area-error", fieldErrors.area)}
+                  />
+                  <FieldError id="admin-area-error" message={fieldErrors.area} />
+                </label>
+                {!isTerrainType(type) ? (
+                  <>
+                    <label className={styles.field}>
+                      <span>Chambres</span>
+                      <input
+                        type="number"
+                        value={bedrooms}
+                        onChange={(e) => setBedrooms(e.target.value)}
+                      />
+                    </label>
+                    <label className={styles.field}>
+                      <span>Salles d’eau</span>
+                      <input
+                        type="number"
+                        value={bathrooms}
+                        onChange={(e) => setBathrooms(e.target.value)}
+                      />
+                    </label>
+                  </>
+                ) : null}
+              </div>
+            </WorkspaceFormCard>
+
+            <WorkspaceFormCard
+              icon={AlignLeft}
+              title="Description"
+              subtitle="Présentez le bien avec les informations déjà collectées."
+            >
+              <label className={styles.field}>
+                <span>Description</span>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  rows={4}
+                />
+              </label>
+            </WorkspaceFormCard>
           </div>
-          {kind === "PROPRIETAIRE" ? (
-            <div className={styles.full}>
-              <span>Compte propriétaire</span>
-              <select
-                value={ownerId}
-                onChange={(e) => setOwnerId(e.target.value)}
-                aria-label="Propriétaire"
-              >
-                {owners.map((o) => (
-                  <option key={o.id} value={o.id}>
-                    {o.name} ({o.id})
-                  </option>
-                ))}
-              </select>
-            </div>
-          ) : (
-            <div className={styles.full}>
-              <span>Compte agence</span>
-              <select
-                value={agencyId}
-                onChange={(e) => setAgencyId(e.target.value)}
-                aria-label="Agence"
-              >
-                {agencies.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.name} ({a.id})
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+
+          <aside className={styles.side}>
+            <WorkspaceFormCard
+              icon={kind === "AGENCE" ? Building2 : UserRound}
+              title="Annonceur"
+              subtitle="Le bien appartient au compte sélectionné, jamais à l’administrateur."
+              aside
+            >
+              <div className={styles.segment} role="group" aria-label="Type d’annonceur">
+                <button
+                  type="button"
+                  className={
+                    kind === "PROPRIETAIRE"
+                      ? styles.segmentActive
+                      : styles.segmentBtn
+                  }
+                  aria-pressed={kind === "PROPRIETAIRE"}
+                  onClick={() => setKind("PROPRIETAIRE")}
+                >
+                  Propriétaire
+                </button>
+                <button
+                  type="button"
+                  className={
+                    kind === "AGENCE" ? styles.segmentActive : styles.segmentBtn
+                  }
+                  aria-pressed={kind === "AGENCE"}
+                  onClick={() => setKind("AGENCE")}
+                >
+                  Agence
+                </button>
+              </div>
+
+              {kind === "PROPRIETAIRE" ? (
+                <label className={styles.field}>
+                  <span>Compte propriétaire</span>
+                  <select
+                    value={ownerId}
+                    onChange={(e) => setOwnerId(e.target.value)}
+                    aria-label="Propriétaire"
+                  >
+                    {owners.map((o) => (
+                      <option key={o.id} value={o.id}>
+                        {o.name} ({o.id})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <label className={styles.field}>
+                  <span>Compte agence</span>
+                  <select
+                    value={agencyId}
+                    onChange={(e) => setAgencyId(e.target.value)}
+                    aria-label="Agence"
+                  >
+                    {agencies.map((a) => (
+                      <option key={a.id} value={a.id}>
+                        {a.name} ({a.id})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              )}
+
+              {kind === "PROPRIETAIRE" && selectedOwner ? (
+                <>
+                  <div className={styles.identity}>
+                    <span className={styles.avatar} aria-hidden="true">
+                      {initialsFromName(selectedOwner.name)}
+                    </span>
+                    <div>
+                      <strong>{selectedOwner.name}</strong>
+                      <small>{selectedOwner.id}</small>
+                    </div>
+                  </div>
+                  <div className={styles.metaList}>
+                    <WorkspaceMeta
+                      icon={Phone}
+                      label="Téléphone"
+                      value={selectedOwner.phone}
+                    />
+                    <WorkspaceMeta
+                      icon={Mail}
+                      label="Email"
+                      value={selectedOwner.email}
+                    />
+                  </div>
+                </>
+              ) : null}
+
+              {kind === "AGENCE" && selectedAgency ? (
+                <>
+                  <div className={styles.identity}>
+                    <span className={styles.avatar} aria-hidden="true">
+                      {selectedAgency.initials ||
+                        initialsFromName(selectedAgency.name)}
+                    </span>
+                    <div>
+                      <strong>{selectedAgency.name}</strong>
+                      <small>{selectedAgency.id}</small>
+                    </div>
+                  </div>
+                  <div className={styles.metaList}>
+                    <WorkspaceMeta
+                      icon={Phone}
+                      label="Téléphone"
+                      value={selectedAgency.phone}
+                    />
+                    <WorkspaceMeta
+                      icon={Mail}
+                      label="Email"
+                      value={selectedAgency.email}
+                    />
+                    <WorkspaceMeta
+                      icon={MapPin}
+                      label="Ville"
+                      value={selectedAgency.city}
+                    />
+                    <WorkspaceMeta
+                      icon={UserRound}
+                      label="Responsable"
+                      value={selectedAgency.managerName}
+                    />
+                  </div>
+                </>
+              ) : null}
+            </WorkspaceFormCard>
+          </aside>
         </div>
 
-        <header className={styles.panelHead} style={{ marginTop: 18 }}>
-          <h2>Informations du bien</h2>
-        </header>
-        <div className={styles.kv}>
-          <div className={styles.full}>
-            <span>Titre</span>
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <span>Type</span>
-            <select value={type} onChange={(e) => setType(e.target.value)}>
-              <option>Villa</option>
-              <option>Appartement</option>
-              <option>Terrain</option>
-              <option>Bureau</option>
-              <option>Commerce</option>
-            </select>
-          </div>
-          <div>
-            <span>Opération indicative</span>
-            <select
-              value={operation}
-              onChange={(e) =>
-                setOperation(e.target.value as "VENTE" | "LOCATION")
-              }
-            >
-              <option value="VENTE">Vente</option>
-              <option value="LOCATION">Location</option>
-            </select>
-          </div>
-          <div>
-            <span>Prix indicatif (GNF)</span>
-            <input
-              type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
-          <div>
-            <span>Surface (m²)</span>
-            <input
-              type="number"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
-            />
-          </div>
-          {!isTerrainType(type) ? (
-            <>
-              <div>
-                <span>Chambres</span>
-                <input
-                  type="number"
-                  value={bedrooms}
-                  onChange={(e) => setBedrooms(e.target.value)}
-                />
-              </div>
-              <div>
-                <span>Salles d’eau</span>
-                <input
-                  type="number"
-                  value={bathrooms}
-                  onChange={(e) => setBathrooms(e.target.value)}
-                />
-              </div>
-            </>
-          ) : null}
-          <div className={styles.full}>
-            <span>Description</span>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={4}
-            />
-          </div>
-        </div>
-
-        <header className={styles.panelHead} style={{ marginTop: 18 }}>
-          <h2>Localisation</h2>
-        </header>
-        <PropertyLocationMap value={location} onChange={setLocation} />
-
-        <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
-          <button type="submit" className={styles.save} disabled={saving}>
+        <div className={styles.actions}>
+          <Button href={routes.properties} variant="secondary">
+            Retour
+          </Button>
+          <Button type="submit" disabled={saving}>
             {saving ? "Création…" : "Créer le bien"}
-          </button>
+          </Button>
         </div>
       </form>
 

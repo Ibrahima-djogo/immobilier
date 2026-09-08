@@ -3,7 +3,9 @@
 import Link from "next/link";
 import {
   Bell,
+  BrickWall,
   ChevronRight,
+  FileSpreadsheet,
   Heart,
   HelpCircle,
   Home,
@@ -11,9 +13,11 @@ import {
   LogOut,
   Menu,
   MessageSquareText,
+  Package,
   PanelLeftClose,
   PanelLeftOpen,
   Search,
+  ShoppingBag,
   UserRound,
   UserRoundCog,
   X,
@@ -32,6 +36,10 @@ export type UserSection =
   | "dashboard"
   | "profil"
   | "securite"
+  | "commandes"
+  | "devis"
+  | "catalogue"
+  | "panier"
   | "favoris"
   | "demandes"
   | "notifications"
@@ -45,52 +53,90 @@ type UserShellProps = {
   notificationsCount?: number;
 };
 
-const mainNav = [
+type NavItem = {
+  key: UserSection;
+  href: string;
+  label: string;
+  icon: typeof Home;
+  badgeKey?: "favorites" | "notifications";
+};
+
+const spaceNav: NavItem[] = [
   {
-    key: "dashboard" as const,
+    key: "dashboard",
     href: "/tableau-de-bord",
     label: "Tableau de bord",
     icon: Home,
   },
   {
-    key: "profil" as const,
+    key: "profil",
     href: "/profil",
     label: "Mon profil",
     icon: UserRound,
   },
   {
-    key: "securite" as const,
+    key: "favoris",
+    href: "/favoris",
+    label: "Mes favoris",
+    icon: Heart,
+    badgeKey: "favorites",
+  },
+  {
+    key: "commandes",
+    href: routes.myOrders,
+    label: "Mes commandes",
+    icon: Package,
+  },
+  {
+    key: "devis",
+    href: routes.myQuotes,
+    label: "Mes devis",
+    icon: FileSpreadsheet,
+  },
+  {
+    key: "demandes",
+    href: "/demandes-contact",
+    label: "Mes demandes",
+    icon: MessageSquareText,
+  },
+];
+
+const materiauxNav: NavItem[] = [
+  {
+    key: "catalogue",
+    href: routes.materials,
+    label: "Catalogue matériaux",
+    icon: BrickWall,
+  },
+  {
+    key: "panier",
+    href: routes.cart,
+    label: "Mon panier",
+    icon: ShoppingBag,
+  },
+];
+
+const compteNav: NavItem[] = [
+  {
+    key: "securite",
     href: "/securite",
     label: "Sécurité",
     icon: LockKeyhole,
   },
   {
-    key: "favoris" as const,
-    href: "/favoris",
-    label: "Mes favoris",
-    icon: Heart,
-    badgeKey: "favorites" as const,
-  },
-  {
-    key: "demandes" as const,
-    href: "/demandes-contact",
-    label: "Mes demandes",
-    icon: MessageSquareText,
-  },
-  {
-    key: "notifications" as const,
+    key: "notifications",
     href: "/notifications",
     label: "Notifications",
     icon: Bell,
-    badgeKey: "notifications" as const,
+    badgeKey: "notifications",
   },
 ];
 
 export default function UserShell({
   active,
   children,
-  favoritesCount = 2,
-  notificationsCount = 3,
+  favoritesCount = 0,
+  notificationsCount = 0,
 }: UserShellProps) {
   const router = useRouter();
   const { session, ready, isLoggedIn } = usePublicDemoSession();
@@ -114,11 +160,40 @@ export default function UserShell({
         ? "Agence"
         : "Compte standard";
 
+  function renderNavGroup(items: NavItem[]) {
+    return items.map((item) => {
+      const Icon = item.icon;
+      const badge =
+        item.badgeKey === "favorites"
+          ? favoritesCount
+          : item.badgeKey === "notifications"
+            ? notificationsCount
+            : null;
+      const isActive = active === item.key;
+
+      return (
+        <Link
+          key={item.key}
+          href={item.href}
+          className={isActive ? styles.activeLink : styles.navLink}
+          title={item.label}
+          onClick={() => setMobileOpen(false)}
+        >
+          <Icon size={18} aria-hidden="true" />
+          <span className={styles.navText}>{item.label}</span>
+          {badge != null && badge > 0 ? (
+            <span className={styles.navBadge}>{badge}</span>
+          ) : null}
+        </Link>
+      );
+    });
+  }
+
   function submitSearch(event: FormEvent) {
     event.preventDefault();
     const q = search.trim();
     const params = new URLSearchParams();
-    if (q) params.set("localisation", q);
+    if (q) params.set("q", q);
     router.push(
       params.toString() ? `${routes.listings}?${params}` : routes.listings,
     );
@@ -130,7 +205,7 @@ export default function UserShell({
         <div
           className={`${styles.headerInner} ${styles.headerInnerWithSearch}`}
         >
-          <Link href="/" className={styles.logo}>
+          <Link href={routes.userDashboard} className={styles.logo}>
             <span>
               <Home size={21} aria-hidden="true" />
             </span>
@@ -144,8 +219,8 @@ export default function UserShell({
             <Search size={18} aria-hidden="true" />
             <input
               type="search"
-              placeholder="Rechercher une annonce..."
-              aria-label="Rechercher une annonce"
+              placeholder="Rechercher un bien ou un matériau…"
+              aria-label="Rechercher un bien ou un matériau"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
@@ -158,7 +233,7 @@ export default function UserShell({
               aria-label="Voir les notifications"
             >
               <Bell size={19} aria-hidden="true" />
-              <span>{notificationsCount}</span>
+              {notificationsCount > 0 ? <span>{notificationsCount}</span> : null}
             </Link>
 
             <div className={styles.account}>
@@ -212,7 +287,7 @@ export default function UserShell({
           </div>
 
           <div className={styles.sidebarContent}>
-            <Link href="/" className={styles.sidebarBrand} title="Demeure Guinée">
+            <Link href={routes.userDashboard} className={styles.sidebarBrand} title="Mon espace">
               <span>
                 <Home size={18} aria-hidden="true" />
               </span>
@@ -224,35 +299,13 @@ export default function UserShell({
 
             <nav aria-label="Navigation du compte">
               <span className={styles.navLabel}>Mon espace</span>
-              {mainNav.map((item) => {
-                const Icon = item.icon;
-                const badge =
-                  item.badgeKey === "favorites"
-                    ? favoritesCount
-                    : item.badgeKey === "notifications"
-                      ? notificationsCount
-                      : null;
+              {renderNavGroup(spaceNav)}
 
-                return (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    className={
-                      active === item.key
-                        ? styles.activeLink
-                        : styles.navLink
-                    }
-                    title={item.label}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <Icon size={18} aria-hidden="true" />
-                    <span className={styles.navText}>{item.label}</span>
-                    {badge != null && badge > 0 && (
-                      <span className={styles.navBadge}>{badge}</span>
-                    )}
-                  </Link>
-                );
-              })}
+              <span className={styles.navLabel}>Matériaux</span>
+              {renderNavGroup(materiauxNav)}
+
+              <span className={styles.navLabel}>Compte</span>
+              {renderNavGroup(compteNav)}
 
               <span className={styles.navLabel}>Évolution du compte</span>
               <Link
@@ -294,7 +347,7 @@ export default function UserShell({
               title="Se déconnecter"
               onClick={() => {
                 clearPublicDemoSession();
-                window.location.assign("/connexion");
+                window.location.assign(routes.home);
               }}
             >
               <LogOut size={17} aria-hidden="true" />

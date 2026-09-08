@@ -3,13 +3,12 @@
 import Link from "next/link";
 import {
   ChevronDown,
-  CircleHelp,
   LifeBuoy,
   Search,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
-import { PageHero } from "@/components/layout/PageHero";
+import { PublicPageHeader } from "@/components/layout/PublicPageHeader";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { faqItems } from "@/lib/public/demo-data";
 import styles from "./page.module.css";
@@ -31,27 +30,26 @@ export default function FaqPage() {
 
   return (
     <main>
-      <section className={styles.heroSection}>
-        <div className={styles.container}>
-          <PageHero
-            variant="public"
-            eyebrow="Questions fréquentes"
-            title="Comment pouvons-nous vous aider ?"
-            description="Recherchez une réponse sur les comptes, les rôles, les annonces et la sécurité."
-            icon={<CircleHelp size={16} aria-hidden="true" />}
-          >
-            <div className={styles.search}>
-              <Search size={18} aria-hidden="true" />
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Rechercher dans la FAQ..."
-                aria-label="Rechercher dans la FAQ"
-              />
-            </div>
-          </PageHero>
+      <PublicPageHeader
+        crumbs={[
+          { href: "/", label: "Accueil" },
+          { label: "FAQ" },
+        ]}
+        eyebrow="Questions fréquentes"
+        title="Comment pouvons-nous vous aider ?"
+        description="Recherchez une réponse sur les comptes, les rôles, les annonces et la sécurité."
+        containerClassName={styles.container}
+      >
+        <div className={styles.search}>
+          <Search size={18} aria-hidden="true" />
+          <input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Rechercher dans la FAQ..."
+            aria-label="Rechercher dans la FAQ"
+          />
         </div>
-      </section>
+      </PublicPageHeader>
 
       <section className={styles.content}>
         <div className={styles.container}>

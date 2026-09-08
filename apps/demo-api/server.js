@@ -42,6 +42,11 @@ const listingTerms = require("./listing-terms");
 const {
   ensureDemoVerificationScenarios,
 } = require("./demo-verification-scenarios");
+const {
+  ensureMaterialCollections,
+  registerMaterialRoutes,
+} = require("./materials");
+const { readAuthToken, resolveAuthenticatedUser } = require("./auth-request");
 
 function httpsGetJson(url) {
   return new Promise((resolve, reject) => {
@@ -743,6 +748,7 @@ function readDb() {
   ) {
     changed = true;
   }
+  if (ensureMaterialCollections(db)) changed = true;
   if (changed) writeDb(db);
   return db;
 }
@@ -1108,6 +1114,21 @@ function buildPropertyFromBody(db, body, admin) {
 
 const app = express();
 app.use(cors({ origin: true }));
+app.use(
+  "/webhooks/moneroo",
+  express.raw({ type: "application/json" }),
+  (req, _res, next) => {
+    req.rawBody = Buffer.isBuffer(req.body)
+      ? req.body.toString("utf8")
+      : String(req.body || "");
+    try {
+      req.body = req.rawBody ? JSON.parse(req.rawBody) : {};
+    } catch {
+      req.body = {};
+    }
+    next();
+  },
+);
 app.use(express.json({ limit: "8mb" }));
 
 /** Placeholders démo pour fileUrl des documents de vérification (jamais publics côté annonces). */
@@ -1153,6 +1174,8 @@ function publicUserView(user) {
     verificationMethod: user.verificationMethod || null,
     verificationStatus: user.verificationStatus || null,
     reportsCount: user.reportsCount || 0,
+    createdAt: user.createdAt || null,
+    updatedAt: user.updatedAt || null,
   };
 }
 
@@ -1460,6 +1483,7 @@ function registerAuthRoutes(pathPrefix = "") {
     }
 
     const stamp = nowIso();
+    // Compte standard : pas de rôle professionnel, aucune roleRequest.
     const user = {
       id: verificationUid("user"),
       firstName,
@@ -1481,7 +1505,6 @@ function registerAuthRoutes(pathPrefix = "") {
     };
     db.users.push(user);
     writeDb(db);
-    // Aucune roleRequest créée à l'inscription
     res.status(201).json({
       user: publicUserView(user),
       token: user.id,
@@ -1533,18 +1556,12 @@ function registerAuthRoutes(pathPrefix = "") {
 
   app.get(`${base}/auth/me`, (req, res) => {
     const db = readDb();
-    const token =
-      String(req.headers["x-user-id"] || "").trim() ||
-      String(req.query.userId || "").trim() ||
-      String(req.headers.authorization || "")
-        .replace(/^Bearer\s+/i, "")
-        .trim();
-    if (!token) {
-      return res.status(401).json({ error: "Non authentifié." });
-    }
-    const user = (db.users || []).find((u) => u.id === token);
+    const token = readAuthToken(req) || String(req.query.userId || "").trim();
+    const user = token
+      ? (db.users || []).find((u) => u.id === token)
+      : resolveAuthenticatedUser(req, db);
     if (!user) {
-      return res.status(401).json({ error: "Session invalide." });
+      return res.status(401).json({ error: token ? "Session invalide." : "Non authentifié." });
     }
     res.json({
       user: publicUserView(user),
@@ -1552,6 +1569,61 @@ function registerAuthRoutes(pathPrefix = "") {
       otpRequired: !DEMO_MODE,
     });
   });
+
+  function applyProfilePatch(req, res) {
+    const db = readDb();
+    const user = resolveAuthenticatedUser(req, db);
+    if (!user) {
+      return res.status(401).json({ error: "Non authentifié." });
+    }
+    const body = req.body || {};
+    if (body.firstName !== undefined) {
+      user.firstName = String(body.firstName || "").trim();
+    }
+    if (body.lastName !== undefined) {
+      user.lastName = String(body.lastName || "").trim();
+    }
+    if (body.name !== undefined) {
+      const name = String(body.name || "").trim();
+      if (name.length < 2) {
+        return res.status(400).json({ error: "Nom invalide." });
+      }
+      user.name = name;
+    } else if (body.firstName !== undefined || body.lastName !== undefined) {
+      user.name = `${user.firstName || ""} ${user.lastName || ""}`.trim() || user.name;
+    }
+    if (body.email !== undefined) {
+      const email = normalizeEmail(body.email);
+      if (!email || !email.includes("@")) {
+        return res.status(400).json({ error: "E-mail invalide." });
+      }
+      const taken = (db.users || []).some(
+        (item) => item.id !== user.id && normalizeEmail(item.email) === email,
+      );
+      if (taken) {
+        return res.status(409).json({
+          error: "Un compte existe déjà avec cette adresse e-mail.",
+          code: "EMAIL_EXISTS",
+        });
+      }
+      user.email = email;
+    }
+    if (body.phone !== undefined) {
+      user.phone = String(body.phone || "").trim();
+      if (!user.phone) {
+        return res.status(400).json({ error: "Téléphone requis." });
+      }
+    }
+    user.updatedAt = nowIso();
+    writeDb(db);
+    return res.json({
+      user: publicUserView(user),
+      demoMode: DEMO_MODE,
+    });
+  }
+
+  app.patch(`${base}/auth/me`, applyProfilePatch);
+  app.patch(`${base}/users/me`, applyProfilePatch);
 
   app.get(`${base}/auth/config`, (_req, res) => {
     res.json({
@@ -4346,6 +4418,8 @@ app.patch(
     });
   },
 );
+
+registerMaterialRoutes(app, { readDb, writeDb });
 
 app.get("/meta/verification-rules", (_req, res) => {
   res.json({

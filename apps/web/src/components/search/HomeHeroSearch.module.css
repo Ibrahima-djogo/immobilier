@@ -15,6 +15,65 @@
   backdrop-filter: blur(14px);
 }
 
+.searchIntro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.searchHeading {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.universeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.universeActive,
+.universeLink {
+  min-height: 2.1rem;
+  padding: 0 0.85rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.universeActive {
+  color: var(--white);
+  background: var(--forest-800);
+}
+
+.universeLink {
+  color: var(--forest-800);
+  background: var(--forest-50);
+}
+
+.universeLink:hover {
+  background: var(--gold-100);
+}
+
+.universeLink:focus-visible {
+  outline: 2px solid var(--forest-700);
+  outline-offset: 2px;
+}
+
 .operationTabs {
   min-width: 0;
   margin: 0 0 0.85rem;
@@ -67,9 +126,16 @@
 .searchFields {
   display: grid;
   grid-template-columns:
-    minmax(240px, 1.5fr) minmax(175px, 1fr) minmax(180px, 1fr) 9.5rem;
+    minmax(200px, 1.4fr) minmax(160px, 0.95fr) minmax(260px, 1.35fr) 9.5rem;
   align-items: end;
   gap: 0.75rem;
+}
+
+.budgetPair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  min-width: 0;
 }
 
 .searchField {
@@ -194,7 +260,8 @@
     border-radius: var(--radius-lg);
   }
 
-  .searchFields {
+  .searchFields,
+  .budgetPair {
     grid-template-columns: 1fr;
   }
 

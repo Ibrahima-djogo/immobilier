@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { BadgeCheck, ShieldCheck, Star } from "lucide-react";
 
 import { BrandLogo } from "@/components/layout/BrandLogo";
-import { DemoAccessPanel } from "@/components/auth/DemoAccessPanel/DemoAccessPanel";
 import { LoginForm } from "@/components/auth/LoginForm/LoginForm";
 import { Button } from "@/components/ui";
 import { skipImageOptimization } from "@/lib/imageOptimization";
@@ -106,7 +105,6 @@ export default function ConnexionPage() {
             <Suspense fallback={<p>Chargement du formulaire…</p>}>
               <LoginForm />
             </Suspense>
-            <DemoAccessPanel />
           </div>
         </section>
       </main>

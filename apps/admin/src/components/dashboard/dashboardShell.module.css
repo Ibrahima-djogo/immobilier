@@ -202,7 +202,7 @@
   place-items: center;
   color: var(--g950);
   background: var(--gold-400);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 800;
 }
 
@@ -365,7 +365,7 @@
   position: sticky;
   top: var(--header-h);
   height: calc(100dvh - var(--header-h));
-  padding: 1.15rem 0.85rem 1rem;
+  padding: 1.25rem 0.9rem 1.1rem;
   border-right: 1px solid var(--sidebar-border);
   display: flex;
   flex-direction: column;
@@ -452,15 +452,15 @@
 
 .sidebar nav {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.28rem;
 }
 
 .navLabel {
-  margin: 0.95rem 0.65rem 0.4rem;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.62rem;
+  margin: 1.05rem 0.75rem 0.45rem;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.64rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -473,14 +473,14 @@
 .logout,
 .roleLink {
   position: relative;
-  min-height: 2.7rem;
-  padding: 0 0.7rem;
-  border-radius: 10px;
+  min-height: 2.85rem;
+  padding: 0 0.8rem;
+  border-radius: 11px;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   color: var(--sidebar-text);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 650;
   text-decoration: none;
   border: 1px solid transparent;
@@ -502,12 +502,13 @@
 .navLink:hover,
 .logout:hover {
   color: var(--sidebar-text-active);
-  background: var(--sidebar-hover);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .activeLink {
   color: var(--sidebar-text-active);
-  background: var(--sidebar-active);
+  background: rgba(213, 170, 53, 0.16);
+  border-color: rgba(213, 170, 53, 0.22);
   box-shadow: none;
 }
 
@@ -729,7 +730,7 @@
   min-width: 0;
   width: 100%;
   max-width: 100%;
-  padding: 1.5rem 1.25rem 2.25rem;
+  padding: 1rem 1.1rem 1.5rem;
 }
 
 .contentFlush {

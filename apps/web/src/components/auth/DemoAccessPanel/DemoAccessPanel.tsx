@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Building2,
   ClipboardPen,
@@ -15,6 +16,7 @@ import { DemoApiError } from "@/lib/demo-api/client";
 import {
   destinationForAuthRole,
   establishSessionFromAuthResponse,
+  safeAuthReturnPath,
 } from "@/lib/auth/complete-auth-session";
 import styles from "./DemoAccessPanel.module.css";
 
@@ -85,13 +87,13 @@ const DEMO_PROFILES: DemoProfile[] = [
   },
 ];
 
-/**
- * Accès Démo — visible uniquement si NEXT_PUBLIC_DEMO_MODE=true.
- * Crée la même session locale que le login classique.
- */
-export function DemoAccessPanel() {
+function DemoAccessPanelInner() {
+  const searchParams = useSearchParams();
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const returnPath = safeAuthReturnPath(
+    searchParams.get("retour") || searchParams.get("returnUrl"),
+  );
 
   if (!isDemoAuthMode) return null;
 
@@ -101,7 +103,10 @@ export function DemoAccessPanel() {
     try {
       const result = await authService.demoLogin(userId);
       const session = establishSessionFromAuthResponse(result);
-      const destination = destinationForAuthRole(session.role || "USER", null);
+      const destination = destinationForAuthRole(
+        session.role || "USER",
+        returnPath,
+      );
       window.location.assign(destination);
     } catch (err) {
       const message =
@@ -162,5 +167,17 @@ export function DemoAccessPanel() {
         })}
       </ul>
     </section>
+  );
+}
+
+/**
+ * Accès Démo — visible uniquement si NEXT_PUBLIC_DEMO_MODE=true.
+ * Crée la même session locale que le login classique.
+ */
+export function DemoAccessPanel() {
+  return (
+    <Suspense fallback={null}>
+      <DemoAccessPanelInner />
+    </Suspense>
   );
 }

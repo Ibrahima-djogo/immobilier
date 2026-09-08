@@ -54,7 +54,7 @@ export default function PropertyDetailPage() {
           setError(
             err instanceof Error
               ? err.message
-              : "Impossible de charger le bien (Demo API).",
+              : "Impossible de charger le bien.",
           );
         }
       } finally {
@@ -111,7 +111,7 @@ export default function PropertyDetailPage() {
       <OwnerPageHeader
         eyebrow="Fiche du bien"
         title={property.title}
-        description="Consultez les informations techniques, les médias et les performances du bien."
+        description="Consultez les informations, les médias et les performances du bien."
         action={
           <Button href={`/proprietaire/biens/${property.slug}/modifier`}>
             <Edit3 size={16} aria-hidden="true" />

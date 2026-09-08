@@ -1,4 +1,4 @@
-export type MegaMenuId = "about" | "buy" | "rent" | "agencies";
+export type MegaMenuId = "about" | "buy" | "rent" | "materials" | "agencies";
 
 export type MegaMenuLink = {
   label: string;
@@ -15,7 +15,7 @@ export type MegaMenuDefinition = {
   id: MegaMenuId;
   panelId: string;
   label: string;
-  navKey: "a-propos" | "acheter" | "louer" | "agences";
+  navKey: "a-propos" | "acheter" | "louer" | "materiaux" | "agences";
   columns: MegaMenuColumn[];
 };
 
@@ -183,6 +183,52 @@ const rentMenu: MegaMenuDefinition = {
   ],
 };
 
+const materialsMenu: MegaMenuDefinition = {
+  id: "materials",
+  panelId: "mega-menu-materials",
+  label: "Matériaux",
+  navKey: "materiaux",
+  columns: [
+    {
+      title: "Catalogue",
+      links: [
+        { label: "Tous les matériaux", href: "/materiaux" },
+        {
+          label: "Ciment et liants",
+          href: "/materiaux?categorie=ciment-et-liants",
+        },
+        {
+          label: "Fer et acier",
+          href: "/materiaux?categorie=fer-et-acier",
+        },
+        {
+          label: "Peinture",
+          href: "/materiaux?categorie=peinture",
+        },
+        {
+          label: "Plomberie",
+          href: "/materiaux?categorie=plomberie",
+        },
+      ],
+    },
+    {
+      title: "Votre projet",
+      links: [
+        {
+          label: "Panier",
+          href: "/panier",
+          description: "Vérifiez vos matériaux avant de commander.",
+        },
+        {
+          label: "Mes commandes",
+          href: "/mes-commandes",
+          description: "Suivi des commandes liées à votre compte.",
+        },
+      ],
+    },
+  ],
+};
+
 const agenciesMenu: MegaMenuDefinition = {
   id: "agencies",
   panelId: "mega-menu-agencies",
@@ -225,6 +271,7 @@ export const megaMenus: MegaMenuDefinition[] = [
   aboutMenu,
   buyMenu,
   rentMenu,
+  materialsMenu,
   agenciesMenu,
 ];
 
@@ -232,6 +279,7 @@ export const megaMenuById = {
   about: aboutMenu,
   buy: buyMenu,
   rent: rentMenu,
+  materials: materialsMenu,
   agencies: agenciesMenu,
 } as const satisfies Record<MegaMenuId, MegaMenuDefinition>;
 
@@ -254,6 +302,7 @@ export const publicNavigation: PublicNavItem[] = [
     href: "/annonces",
     navKey: "annonces",
   },
+  { kind: "mega", menu: materialsMenu },
   { kind: "mega", menu: agenciesMenu },
   {
     kind: "link",

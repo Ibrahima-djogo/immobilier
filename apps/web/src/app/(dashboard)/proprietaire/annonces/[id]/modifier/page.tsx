@@ -35,7 +35,7 @@ export default function EditAdPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Impossible de charger l’annonce (Demo API).",
+          : "Impossible de charger l’annonce.",
       );
       setAd(null);
     } finally {
@@ -66,7 +66,7 @@ export default function EditAdPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Impossible d’enregistrer (Demo API).",
+          : "Impossible d’enregistrer.",
       );
     } finally {
       setBusy(false);
@@ -91,7 +91,7 @@ export default function EditAdPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Impossible de resoumettre (Demo API).",
+          : "Impossible de resoumettre.",
       );
     } finally {
       setBusy(false);

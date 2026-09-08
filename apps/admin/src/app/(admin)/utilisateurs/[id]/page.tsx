@@ -2,9 +2,7 @@
 
 import {
   Ban,
-  CalendarDays,
   CheckCircle2,
-  Clock3,
   Lock,
   RotateCcw,
   Save,
@@ -346,7 +344,7 @@ export default function AdminUserDetailPage() {
       description="Consultez le profil, les rôles, les ressources et l’état du compte."
       note={
         user.source === "demo-api"
-          ? "Profil résolu via la Demo API partagée."
+          ? "Profil synchronisé."
           : undefined
       }
       icon={UserRound}
@@ -355,11 +353,7 @@ export default function AdminUserDetailPage() {
       backLabel="Retour aux utilisateurs"
       badge={formatStatusLabel(status)}
       badgeTone={statusTone(status)}
-      meta={[
-        { label: "Rôle", value: user.role, icon: UserCog },
-        { label: "Inscription", value: user.createdAt, icon: CalendarDays },
-        { label: "Dernière connexion", value: user.lastLogin, icon: Clock3 },
-      ]}
+      meta={[{ label: "Rôle", value: user.role, icon: UserCog }]}
     >
       {saved && (
         <div className={styles.success}>
@@ -430,7 +424,7 @@ export default function AdminUserDetailPage() {
                 <small>
                   {user.source === "demo-api"
                     ? user.roleVerified || user.documentsVerified
-                      ? "Compte vérifié (Demo API)"
+                      ? "Compte vérifié"
                       : "Vérification en attente"
                     : "Contrôle automatique simulé"}
                 </small>

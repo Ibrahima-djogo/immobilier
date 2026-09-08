@@ -5,9 +5,8 @@ import { LoaderCircle } from "lucide-react";
 import { type FormEvent, useId, useState } from "react";
 
 import { routes } from "@/lib/routes/app-routes";
+import { emailSchema } from "@/lib/validation";
 import styles from "./page.module.css";
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ForgotPasswordForm() {
   const emailId = useId();
@@ -22,13 +21,11 @@ export default function ForgotPasswordForm() {
     event.preventDefault();
     setDemoMessage(undefined);
 
-    const trimmed = email.trim();
-    if (!trimmed) {
-      setError("L’adresse e-mail est requise.");
-      return;
-    }
-    if (!EMAIL_PATTERN.test(trimmed)) {
-      setError("Saisissez une adresse e-mail valide.");
+    const parsed = emailSchema.safeParse(email);
+    if (!parsed.success) {
+      setError(
+        parsed.error.issues[0]?.message || "Saisissez une adresse e-mail valide.",
+      );
       return;
     }
 

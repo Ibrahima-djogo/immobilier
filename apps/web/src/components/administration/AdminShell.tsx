@@ -101,7 +101,6 @@ export default function AdminShell({
               aria-label="Voir les signalements"
             >
               <Bell size={19} />
-              <span>12</span>
             </Link>
             <div className={`${styles.account} ${styles.accountPrivileged}`}>
               <span>SA</span>

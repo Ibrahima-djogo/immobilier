@@ -267,15 +267,15 @@
 }
 
 .cancel {
-  border: 1px solid #c9d7ce;
+  border: 1px solid #246448;
   background: #fff;
-  color: #0f3527;
+  color: #174b37;
 }
 
 .submit {
-  border: 1px solid #174b37;
-  background: #174b37;
-  color: #fff;
+  border: 1px solid #e8bf4d;
+  background: #e8bf4d;
+  color: #071f17;
 }
 
 .submit:disabled {

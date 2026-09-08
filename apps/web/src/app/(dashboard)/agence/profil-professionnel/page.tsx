@@ -10,11 +10,13 @@ import {
 import { useCallback, useRef, useState } from "react";
 
 import AgencyShell from "@/components/agence/AgencyShell";
-import { DemoToast } from "@/components/ui";
+import { DemoToast, FieldError, fieldA11y } from "@/components/ui";
+import { agencyProfileSchema, safeParseFields, validateUploadFile } from "@/lib/validation";
 import styles from "./page.module.css";
 
 export default function AgencyProfessionalProfilePage() {
   const [saved, setSaved] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [toast, setToast] = useState<string | null>(null);
   const dismissToast = useCallback(() => setToast(null), []);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -37,6 +39,16 @@ export default function AgencyProfessionalProfilePage() {
   }
 
   function onLogoSelected() {
+    const file = fileRef.current?.files?.[0];
+    if (file) {
+      const uploadError = validateUploadFile(file, "image");
+      if (uploadError) {
+        setErrors((current) => ({ ...current, logo: uploadError }));
+        if (fileRef.current) fileRef.current.value = "";
+        return;
+      }
+    }
+    setErrors((current) => ({ ...current, logo: "" }));
     setToast(
       "Action simulée dans la démonstration frontend. Le logo sera uploadé avec le backend.",
     );
@@ -69,8 +81,25 @@ export default function AgencyProfessionalProfilePage() {
           className={`${styles.card} ${styles.form}`}
           onSubmit={(e) => {
             e.preventDefault();
+            const parsed = safeParseFields(agencyProfileSchema, {
+              name: form.name,
+              rccm: form.registration,
+              email: form.email,
+              phone: form.phone,
+              city: form.city,
+              address: form.address,
+              website: form.website,
+              managerName: "",
+              managerPhone: "",
+            });
+            if (!parsed.ok) {
+              setErrors(parsed.errors);
+              return;
+            }
+            setErrors({});
             setSaved(true);
           }}
+          noValidate
         >
           <div className={styles.logoUpload}>
             <span>
@@ -101,7 +130,9 @@ export default function AgencyProfessionalProfilePage() {
                 onChange={(e) =>
                   setForm((v) => ({ ...v, name: e.target.value }))
                 }
+                {...fieldA11y("agency-name-error", errors.name)}
               />
+              <FieldError id="agency-name-error" message={errors.name} />
             </label>
             <label className={styles.full}>
               Référence d’enregistrement
@@ -110,25 +141,33 @@ export default function AgencyProfessionalProfilePage() {
                 onChange={(e) =>
                   setForm((v) => ({ ...v, registration: e.target.value }))
                 }
+                {...fieldA11y("agency-rccm-error", errors.rccm)}
               />
+              <FieldError id="agency-rccm-error" message={errors.rccm} />
             </label>
             <label>
               Téléphone
               <input
+                type="tel"
                 value={form.phone}
                 onChange={(e) =>
                   setForm((v) => ({ ...v, phone: e.target.value }))
                 }
+                {...fieldA11y("agency-phone-error", errors.phone)}
               />
+              <FieldError id="agency-phone-error" message={errors.phone} />
             </label>
             <label>
               E-mail professionnel
               <input
+                type="email"
                 value={form.email}
                 onChange={(e) =>
                   setForm((v) => ({ ...v, email: e.target.value }))
                 }
+                {...fieldA11y("agency-email-error", errors.email)}
               />
+              <FieldError id="agency-email-error" message={errors.email} />
             </label>
             <label>
               Ville
@@ -137,7 +176,9 @@ export default function AgencyProfessionalProfilePage() {
                 onChange={(e) =>
                   setForm((v) => ({ ...v, city: e.target.value }))
                 }
+                {...fieldA11y("agency-city-error", errors.city)}
               />
+              <FieldError id="agency-city-error" message={errors.city} />
             </label>
             <label>
               Adresse
@@ -146,16 +187,21 @@ export default function AgencyProfessionalProfilePage() {
                 onChange={(e) =>
                   setForm((v) => ({ ...v, address: e.target.value }))
                 }
+                {...fieldA11y("agency-address-error", errors.address)}
               />
+              <FieldError id="agency-address-error" message={errors.address} />
             </label>
             <label className={styles.full}>
               Site web
               <input
+                type="url"
                 value={form.website}
                 onChange={(e) =>
                   setForm((v) => ({ ...v, website: e.target.value }))
                 }
+                {...fieldA11y("agency-website-error", errors.website)}
               />
+              <FieldError id="agency-website-error" message={errors.website} />
             </label>
             <label className={styles.full}>
               Présentation

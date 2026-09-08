@@ -1,0 +1,127 @@
+.catalog {
+  display: grid;
+  gap: 1.2rem;
+  overflow-x: hidden;
+}
+
+.featured {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.featured h2 {
+  margin: 0;
+  color: var(--forest-900);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.filterFields {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.28rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fieldLabel {
+  color: var(--forest-900);
+  font-size: 0.72rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.filterFields select,
+.priceField input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.5rem;
+  padding: 0 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--text-dark);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.filterFields select:disabled,
+.priceField input:disabled {
+  color: var(--text-soft);
+  background: var(--forest-50);
+  cursor: not-allowed;
+}
+
+.choices {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 1.55rem;
+  color: var(--text-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.choice input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex: 0 0 16px;
+  accent-color: var(--forest-800);
+  cursor: pointer;
+}
+
+.choice span {
+  min-width: 0;
+}
+
+.priceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.priceField {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.priceHint {
+  color: var(--text-soft);
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
+.reset {
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--forest-800);
+  background: var(--white);
+  font-size: 0.78rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+@media (max-width: 429px) {
+  .priceRow {
+    grid-template-columns: 1fr;
+  }
+}

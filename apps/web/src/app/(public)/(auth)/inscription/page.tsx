@@ -32,6 +32,7 @@ import {
 import { authService } from "@/lib/demo-api/auth";
 import { DemoApiError } from "@/lib/demo-api/client";
 import { isDemoAuthMode } from "@/lib/demo-api/config";
+import { registerSchema, safeParseFields } from "@/lib/validation";
 import styles from "./page.module.css";
 
 type RegistrationFormValues = {
@@ -59,9 +60,6 @@ const initialValues: RegistrationFormValues = {
   acceptTerms: false,
   marketingConsent: false,
 };
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phonePattern = /^\+?[0-9\s().-]{8,20}$/;
 
 function passwordCriteria(password: string) {
   return {
@@ -98,8 +96,6 @@ export default function RegistrationPage() {
     () => passwordCriteria(values.password),
     [values.password],
   );
-  const passwordIsValid = Object.values(criteria).every(Boolean);
-
   function handleFieldChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value, checked, type } = event.target;
     const field = name as keyof RegistrationFormValues;
@@ -117,44 +113,13 @@ export default function RegistrationPage() {
   }
 
   function validateForm() {
-    const nextErrors: RegistrationFormErrors = {};
-
-    if (!values.firstName.trim()) nextErrors.firstName = "Saisissez votre prénom.";
-    if (!values.lastName.trim()) nextErrors.lastName = "Saisissez votre nom.";
-
-    const email = values.email.trim();
-    if (!email) {
-      nextErrors.email = "Saisissez votre adresse e-mail.";
-    } else if (!emailPattern.test(email)) {
-      nextErrors.email = "Saisissez une adresse e-mail valide.";
+    const parsed = safeParseFields(registerSchema, values);
+    if (!parsed.ok) {
+      setErrors(parsed.errors);
+      return false;
     }
-
-    const phone = values.phone.trim();
-    if (!phone) {
-      nextErrors.phone = "Saisissez votre numéro de téléphone.";
-    } else if (!phonePattern.test(phone)) {
-      nextErrors.phone = "Saisissez un numéro de téléphone valide.";
-    }
-
-    if (!values.password) {
-      nextErrors.password = "Créez un mot de passe.";
-    } else if (!passwordIsValid) {
-      nextErrors.password = "Le mot de passe doit respecter tous les critères indiqués.";
-    }
-
-    if (!values.confirmPassword) {
-      nextErrors.confirmPassword = "Confirmez votre mot de passe.";
-    } else if (values.confirmPassword !== values.password) {
-      nextErrors.confirmPassword = "Les deux mots de passe ne correspondent pas.";
-    }
-
-    if (!values.acceptTerms) {
-      nextErrors.acceptTerms =
-        "Vous devez accepter les conditions pour créer un compte.";
-    }
-
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    setErrors({});
+    return true;
   }
 
   const [registeredUserId, setRegisteredUserId] = useState<string | null>(null);
@@ -170,7 +135,7 @@ export default function RegistrationPage() {
       const result = await authService.register({
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
-        email: values.email.trim(),
+        email: values.email.trim().toLowerCase(),
         phone: values.phone.trim(),
         password: values.password,
       });
@@ -496,9 +461,7 @@ export default function RegistrationPage() {
                 <span className={styles.stateEyebrow}>Étape de vérification</span>
                 <h2>Vérifiez vos coordonnées</h2>
                 <p>
-                  {isDemoAuthMode
-                    ? "Mode démonstration : vérification SMS désactivée."
-                    : "Un code temporaire sera envoyé à vos coordonnées."}
+                  Un code temporaire a été envoyé à vos coordonnées.
                 </p>
 
                 <div className={styles.contactPreview}>
@@ -542,7 +505,7 @@ export default function RegistrationPage() {
                     }
                   />
                   <p id="verification-help" className={styles.verificationHelp}>
-                    Démonstration front-end : aucun code réel n’est envoyé.
+                    Saisissez le code à 6 chiffres reçu par e-mail ou SMS.
                   </p>
 
                   {verificationMessage && (
@@ -563,7 +526,7 @@ export default function RegistrationPage() {
                     className={styles.secondaryButton}
                     onClick={() =>
                       setVerificationMessage(
-                        "Le renvoi du code sera disponible après l’intégration de l’API.",
+                        "Un nouveau code sera envoyé sous peu.",
                       )
                     }
                   >
@@ -581,9 +544,8 @@ export default function RegistrationPage() {
                 <span className={styles.stateEyebrow}>Compte créé</span>
                 <h2>Bienvenue sur Demeure Guinée</h2>
                 <p>
-                  {isDemoAuthMode
-                    ? "Mode démonstration : vérification SMS désactivée. Votre compte standard est actif."
-                    : "Votre compte standard a été enregistré. Vous pouvez demander un rôle Propriétaire ou Agence."}
+                  Votre compte standard a été enregistré. Vous pouvez demander
+                  un rôle Propriétaire ou Agence.
                 </p>
 
                 <div className={styles.contactPreview}>

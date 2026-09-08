@@ -20,6 +20,7 @@ const PERMISSION_LABELS: Record<string, string> = {
   ADMINISTRATEURS: "Administrateurs",
   STATISTIQUES: "Statistiques",
   REFERENTIELS: "Référentiels",
+  MATERIAUX: "Matériaux de construction",
 };
 
 const ROLE_LABELS: Record<string, string> = {

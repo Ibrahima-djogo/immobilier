@@ -6,6 +6,11 @@ import styles from "./PageHero.module.css";
 
 export type PageHeroVariant = "default" | "dashboard" | "compact" | "public";
 
+export type PageHeroCrumb = {
+  href?: string;
+  label: string;
+};
+
 export type PageHeroProps = {
   eyebrow: string;
   title: string;
@@ -15,8 +20,10 @@ export type PageHeroProps = {
   icon?: ReactNode;
   backHref?: string;
   backLabel?: string;
+  crumbs?: PageHeroCrumb[];
   badge?: ReactNode;
   actions?: ReactNode;
+  aside?: ReactNode;
   meta?: ReactNode;
   children?: ReactNode;
   variant?: PageHeroVariant;
@@ -31,8 +38,10 @@ export function PageHero({
   icon,
   backHref,
   backLabel = "Retour",
+  crumbs,
   badge,
   actions,
+  aside,
   meta,
   children,
   variant = "default",
@@ -43,6 +52,7 @@ export function PageHero({
       className={[styles.hero, styles[variant], className || ""]
         .filter(Boolean)
         .join(" ")}
+      data-page-header="page-hero"
     >
       <div className={styles.decoration} aria-hidden="true">
         <span className={styles.decorationCircle} />
@@ -52,6 +62,35 @@ export function PageHero({
       </div>
 
       <div className={styles.inner}>
+        {crumbs && crumbs.length > 0 ? (
+          <nav aria-label="Fil d’Ariane">
+            <ol className={styles.breadcrumb}>
+              {crumbs.map((crumb, index) => {
+                const isLast = index === crumbs.length - 1;
+                return (
+                  <li key={`${crumb.label}-${index}`}>
+                    {index > 0 ? (
+                      <span className={styles.separator} aria-hidden="true">
+                        /
+                      </span>
+                    ) : null}
+                    {crumb.href && !isLast ? (
+                      <Link href={crumb.href}>{crumb.label}</Link>
+                    ) : (
+                      <span
+                        className={styles.current}
+                        aria-current={isLast ? "page" : undefined}
+                      >
+                        {crumb.label}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        ) : null}
+
         {backHref ? (
           <Link href={backHref} className={styles.back}>
             <ArrowLeft size={15} aria-hidden="true" />
@@ -79,6 +118,7 @@ export function PageHero({
             {children}
           </div>
 
+          {aside ? <div className={styles.aside}>{aside}</div> : null}
           {actions ? <div className={styles.actions}>{actions}</div> : null}
         </div>
       </div>

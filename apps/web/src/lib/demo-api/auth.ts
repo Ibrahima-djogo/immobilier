@@ -15,6 +15,8 @@ export type DemoAuthUser = {
   phoneVerified?: boolean;
   verificationMethod?: string | null;
   verificationStatus?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
 };
 
 export type AuthResponse = {
@@ -122,6 +124,26 @@ export const authService = {
       "/api/auth/me",
       {
         headers: { "X-User-Id": userId },
+      },
+    );
+  },
+
+  updateMe(
+    token: string,
+    payload: {
+      firstName?: string;
+      lastName?: string;
+      name?: string;
+      email?: string;
+      phone?: string;
+    },
+  ) {
+    return demoApiFetch<{ user: DemoAuthUser; demoMode?: boolean }>(
+      "/api/auth/me",
+      {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify(payload),
       },
     );
   },

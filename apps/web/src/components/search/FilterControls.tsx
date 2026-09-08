@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
+import { parseBudgetInput } from "@/lib/search/budget";
 import styles from "@/app/(public)/(site)/annonces/page.module.css";
 
 type FilterControlsProps = {
@@ -99,11 +100,13 @@ export function FilterControls({ idPrefix, onApply }: FilterControlsProps) {
         params.delete("localisation");
       }
 
-      if (next.prixMin) params.set("prixMin", next.prixMin);
+      const min = parseBudgetInput(next.prixMin);
+      const max = parseBudgetInput(next.prixMax);
+      if (min != null) params.set("prixMin", String(min));
       else params.delete("prixMin");
 
-      if (next.prixMax) {
-        params.set("prixMax", next.prixMax);
+      if (max != null) {
+        params.set("prixMax", String(max));
         params.delete("budget");
       } else {
         params.delete("prixMax");
@@ -229,7 +232,6 @@ export function FilterControls({ idPrefix, onApply }: FilterControlsProps) {
                   <Icon size={17} aria-hidden="true" />
                   <span>{category.name}</span>
                 </span>
-                <small>{category.count}</small>
               </label>
             );
           })}
@@ -281,16 +283,16 @@ export function FilterControls({ idPrefix, onApply }: FilterControlsProps) {
       </fieldset>
 
       <fieldset className={styles.filterGroup}>
-        <legend>Budget (GNF)</legend>
+        <legend>Budget</legend>
         <div className={styles.priceGrid}>
           <div className={styles.filterField}>
-            <label htmlFor={`${idPrefix}-min-price`}>Minimum</label>
+            <label htmlFor={`${idPrefix}-min-price`}>Budget minimum</label>
             <input
               id={`${idPrefix}-min-price`}
               name="prixMin"
-              type="number"
-              min="0"
-              placeholder="0"
+              inputMode="numeric"
+              placeholder="500 000 GNF"
+              aria-label="Budget minimum en GNF"
               value={draft.prixMin}
               onChange={(e) =>
                 setDraft((prev) => ({ ...prev, prixMin: e.target.value }))
@@ -298,13 +300,13 @@ export function FilterControls({ idPrefix, onApply }: FilterControlsProps) {
             />
           </div>
           <div className={styles.filterField}>
-            <label htmlFor={`${idPrefix}-max-price`}>Maximum</label>
+            <label htmlFor={`${idPrefix}-max-price`}>Budget maximum</label>
             <input
               id={`${idPrefix}-max-price`}
               name="prixMax"
-              type="number"
-              min="0"
-              placeholder="Sans limite"
+              inputMode="numeric"
+              placeholder="5 000 000 GNF"
+              aria-label="Budget maximum en GNF"
               value={draft.prixMax}
               onChange={(e) =>
                 setDraft((prev) => ({ ...prev, prixMax: e.target.value }))
@@ -358,6 +360,9 @@ export function FilterControls({ idPrefix, onApply }: FilterControlsProps) {
       </label>
 
       <div className={styles.filterActions}>
+        <button type="submit" className={styles.applyFiltersButton}>
+          Appliquer
+        </button>
         <button
           type="button"
           onClick={handleReset}

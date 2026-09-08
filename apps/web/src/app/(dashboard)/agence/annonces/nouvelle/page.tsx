@@ -291,7 +291,7 @@ function NewAgencyAdForm() {
       >
         <section className={`${styles.card} ${styles.form}`}>
           <p className={styles.warn} role="alert">
-            {loadError} — lancez `npm start` dans immo-demo-api.
+            {loadError}
           </p>
         </section>
       </AgencyShell>

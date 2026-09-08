@@ -1,4 +1,4 @@
-import { AlertTriangle, FileText, Scale } from "lucide-react";
+import { FileText, Scale } from "lucide-react";
 
 import styles from "./LegalDocument.module.css";
 
@@ -36,22 +36,12 @@ export default function LegalDocument({
           <div className={styles.meta}>
             <FileText size={16} />
             <span>{version}</span>
-            <span>Document de démonstration à valider juridiquement</span>
           </div>
         </div>
       </section>
 
       <section className={styles.content}>
         <div className={styles.container}>
-          <aside className={styles.warning}>
-            <AlertTriangle size={20} />
-            <p>
-              Ce texte organise l’interface front-end. Les bases légales, délais,
-              durées de conservation et mentions obligatoires doivent être
-              validés pour le pays de déploiement avant la mise en production.
-            </p>
-          </aside>
-
           <div className={styles.document}>
             {sections.map((section, index) => (
               <article key={section.title}>

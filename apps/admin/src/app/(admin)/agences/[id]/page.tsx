@@ -53,7 +53,7 @@ export default function AdminAgencyDetailPage() {
         setAgency(null);
         setError(
           err instanceof DemoApiError && err.status === 404
-            ? "Agence introuvable dans la Demo API."
+            ? "Agence introuvable."
             : err instanceof Error
               ? err.message
               : "Impossible de charger l’agence.",
@@ -102,7 +102,7 @@ export default function AdminAgencyDetailPage() {
         active="utilisateurs"
         eyebrow="Fiche agence"
         title="Agence introuvable"
-        description={error || "Cette agence n’existe pas dans la Demo API."}
+        description={error || "Cette agence n’existe pas."}
         icon={Building2}
         heroVariant="compact"
         backHref={routes.users}
@@ -110,7 +110,7 @@ export default function AdminAgencyDetailPage() {
       >
         <EmptyState
           title="Agence introuvable"
-          description={error || "Cette agence n’existe pas dans la Demo API."}
+          description={error || "Cette agence n’existe pas."}
         />
       </AdminShell>
     );
@@ -128,11 +128,9 @@ export default function AdminAgencyDetailPage() {
       backLabel="Retour aux utilisateurs"
       badge={agency.verified ? "Vérifiée" : "Non vérifiée"}
       badgeTone={agency.verified ? "success" : "warning"}
-      meta={[{ label: "Identifiant", value: agency.id, icon: Hash }]}
       stats={[
         { label: "Biens", value: properties.length },
         { label: "Annonces", value: listings.length },
-        { label: "Publiées", value: stats.published, tone: "success" },
       ]}
     >
       <div className={styles.layout}>
@@ -350,7 +348,7 @@ export default function AdminAgencyDetailPage() {
             <ol className={styles.timeline}>
               <li>
                 <strong>Agence référencée</strong>
-                <span>{agency.createdAt || "Date non renseignée (Demo API)"}</span>
+                <span>{agency.createdAt || "Date non renseignée"}</span>
               </li>
               <li>
                 <strong>

@@ -9,6 +9,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import { DashboardMaterialOrders } from "@/app/(dashboard)/tableau-de-bord/DashboardMaterialOrders";
 import AgencyShell from "@/components/agence/AgencyShell";
 import { Button } from "@/components/ui";
 import { ChartCard, DonutChart, LineChart } from "@/components/charts";
@@ -80,6 +81,8 @@ export default function AgencyDashboardPage() {
         </div>
         <Link href="/agence/profil-professionnel">Gérer le profil</Link>
       </section>
+
+      <DashboardMaterialOrders />
 
       <KpiStrip
         highlightFirst

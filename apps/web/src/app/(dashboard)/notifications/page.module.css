@@ -23,7 +23,7 @@
   --shadow-soft: 0 12px 34px rgba(7, 31, 23, 0.07);
   --shadow-medium: 0 22px 58px rgba(7, 31, 23, 0.11);
   min-width: 0;
-  padding: 38px;
+  padding: 24px;
   color: var(--text-dark);
 }
 
@@ -533,7 +533,7 @@
 /* EMPTY */
 
 .emptyState {
-  min-height: 430px;
+  min-height: 220px;
   padding: 42px 22px;
   border: 0;
   border-radius: 0;
